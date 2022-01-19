@@ -3,6 +3,9 @@ package Proj.core;
 import java.util.ArrayList;
 import java.util.List;
 
+import Proj.core.exception.MapPositionOutOfBoundsException;
+import Proj.core.exception.MapPositionTakenException;
+
 
 public class ServerEnvironment {
 	 Map _map;
@@ -18,11 +21,10 @@ public class ServerEnvironment {
 	 public static void checkEntityPositions() {		 
 	 }
 	 
-	 //verificacoes em falta	 
-	 public boolean addEntity(Entity ent, Location loc){
-		 _entities.add(ent);
-		 _map.addEntity(ent, loc);
-		 return true;
-		 
+	 
+	 public void addEntity(Entity entity) throws MapPositionTakenException, MapPositionOutOfBoundsException {	 
+		 _map.addEntity(entity);
+		 // entity will only be added to _entities if _map.addEntity does not throw an exception
+		 _entities.add(entity);
 	 }
 }

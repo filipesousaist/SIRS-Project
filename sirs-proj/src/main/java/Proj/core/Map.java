@@ -3,19 +3,24 @@ package Proj.core;
 import java.util.ArrayList;
 import java.util.List;
 
+import Proj.core.exception.MapPositionOutOfBoundsException;
+import Proj.core.exception.MapPositionTakenException;
+
 public class Map {
-	 List<Position> _map;
+	int _width;
+	int _height;
 	
+	List<Position> _positions;
 	
-	public Map(int _x, int _y) {
-		_map = new ArrayList<Position>();
+	public Map(int width, int height) {
+		_width = width;
+		_height = height;
+		_positions = new ArrayList<Position>();
 		
-		for(int x = 0; x<_x ;x++) {
-			for(int y =0; y<_y; y++) {
-				Entity ent = null;
-				Location loc = new Location(x,y);
-				Position pos = new Position(loc,ent);
-				_map.add(pos);
+		for (int x = 0; x < width ; x ++) {
+			for (int y = 0; y < height; y ++) {
+				Position pos = new Position(new Location(x, y), null);
+				_positions.add(pos);
 			}			
 		}		
 	}
@@ -24,13 +29,21 @@ public class Map {
 	}
 	
 	// entity can be null	
-	public boolean addEntity(Entity ent, Location loc) {
-		for(Position pos : _map) {
-			if(pos.getLocation().getX()==loc.getX() && pos.getLocation().getY()==loc.getY()) {
-				pos.setEntity(ent);
-				return true;
+	public void addEntity(Entity ent) throws MapPositionTakenException, MapPositionOutOfBoundsException {
+		Location entLoc = ent.getLocation();
+		
+		for (Position pos : _positions) {
+			Location loc = pos.getLocation();
+			
+			if (loc.getX() == entLoc.getX() && loc.getY() == entLoc.getY()) {
+				Entity oldEnt = pos.getEntity();
+				if (oldEnt == null) {	
+					pos.setEntity(ent);
+					return;
+				}
+				throw new MapPositionTakenException(oldEnt, ent);
 			}
 		}		
-		return false;
+		throw new MapPositionOutOfBoundsException(ent);
 	}
 }
