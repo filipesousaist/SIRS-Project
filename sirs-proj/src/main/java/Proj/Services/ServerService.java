@@ -6,11 +6,14 @@ import Proj.Services.ServerServiceOuterClass.RegisterRequest;
 import Proj.Services.ServerServiceOuterClass.RegisterResponse;
 import Proj.core.Entity;
 import Proj.core.Location;
+import Proj.core.ServerEnvironment;
 import io.grpc.stub.StreamObserver;
 
 public class ServerService extends ServerServiceImplBase{
 	Entity _ent;
 	Location _loc;
+	ServerEnvironment server;
+	//falta verificacoes de input
 	@Override
 	public void register(RegisterRequest request, StreamObserver<RegisterResponse> responseObserver) {
 		String s = request.getLocation();
@@ -19,7 +22,7 @@ public class ServerService extends ServerServiceImplBase{
 		int y = Integer.parseInt(loc[1]);
 		_loc = new Location(x,y);
 		int id = Integer.parseInt(request.getId());
-		_ent = new Entity(id,_loc);
+		_ent = new Entity(id,_loc,request.getType());
 		System.out.println("New Entity request received");
 		
 		
@@ -28,6 +31,11 @@ public class ServerService extends ServerServiceImplBase{
 	
 	public Entity getEntity() {
 		return _ent;
+	}
+	
+	public void setServer(ServerEnvironment server) {
+		this.server=server;
+		
 	}
 
 }
