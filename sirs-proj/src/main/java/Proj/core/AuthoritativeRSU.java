@@ -1,14 +1,16 @@
 package Proj.core;
 
-public class AuthoritativeRSU implements Verifier {
+public class AuthoritativeRSU extends RoadSideUnit implements Verifier {
 
-	public void receiveLocationClaim() {
-	
+	public AuthoritativeRSU(int id, Location location) {
+		super(id, location);
+	}
+
+	public void receiveLocationClaim(){	
 		
 	}
 
-	public void receiveLocationEndorsement() {
-	
+	public void receiveLocationEndorsement() {	
 		
 	}
 

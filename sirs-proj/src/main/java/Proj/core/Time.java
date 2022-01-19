@@ -6,5 +6,9 @@ public class Time {
 	public Time(int timestamp) {
 		_timestamp = timestamp;
 	}
+	
+	public int getTime() {
+		return _timestamp;
+	}
 
 }

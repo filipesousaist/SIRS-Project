@@ -1,12 +1,22 @@
 package Proj.core;
 
 public class Location {
-	int _i;
-	int _k;
+	int _x;
+	int _y;
 	
-	public Location(int i,int k) {
-		_i=i;
-		_k=k;
+	public Location(int x,int y) {
+		_x=x;
+		_y=y;
 	}
+	
+	public int getX() {
+		return _x;
+	}
+	
+	public int getY() {
+		return _y;
+	}
+	
+	
 
 }
