@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+option java_package = "Proj.Services";
+
+service ServerService{
+
+	rpc register(RegisterRequest) returns (RegisterResponse);
+		
+}
+
+message RegisterRequest{
+	string id = 1;
+	string location = 2;
+	string type = 3;
+}
+
+message RegisterResponse{
+	string responseMessage = 1;
+	int32 responseCode = 2;
+}
