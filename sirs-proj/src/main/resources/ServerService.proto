@@ -12,6 +12,7 @@ message RegisterRequest{
 	string id = 1;
 	string location = 2;
 	string type = 3;
+	int32 speed = 4;
 }
 
 message RegisterResponse{

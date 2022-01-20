@@ -47,6 +47,11 @@ public final class ServerServiceOuterClass {
      */
     com.google.protobuf.ByteString
         getTypeBytes();
+
+    /**
+     * <code>int32 speed = 4;</code>
+     */
+    int getSpeed();
   }
   /**
    * Protobuf type {@code RegisterRequest}
@@ -64,6 +69,7 @@ public final class ServerServiceOuterClass {
       id_ = "";
       location_ = "";
       type_ = "";
+      speed_ = 0;
     }
 
     @java.lang.Override
@@ -106,6 +112,11 @@ public final class ServerServiceOuterClass {
               java.lang.String s = input.readStringRequireUtf8();
 
               type_ = s;
+              break;
+            }
+            case 32: {
+
+              speed_ = input.readInt32();
               break;
             }
             default: {
@@ -242,6 +253,15 @@ public final class ServerServiceOuterClass {
       }
     }
 
+    public static final int SPEED_FIELD_NUMBER = 4;
+    private int speed_;
+    /**
+     * <code>int32 speed = 4;</code>
+     */
+    public int getSpeed() {
+      return speed_;
+    }
+
     private byte memoizedIsInitialized = -1;
     @java.lang.Override
     public final boolean isInitialized() {
@@ -265,6 +285,9 @@ public final class ServerServiceOuterClass {
       if (!getTypeBytes().isEmpty()) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 3, type_);
       }
+      if (speed_ != 0) {
+        output.writeInt32(4, speed_);
+      }
       unknownFields.writeTo(output);
     }
 
@@ -282,6 +305,10 @@ public final class ServerServiceOuterClass {
       }
       if (!getTypeBytes().isEmpty()) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, type_);
+      }
+      if (speed_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(4, speed_);
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -305,6 +332,8 @@ public final class ServerServiceOuterClass {
           .equals(other.getLocation());
       result = result && getType()
           .equals(other.getType());
+      result = result && (getSpeed()
+          == other.getSpeed());
       result = result && unknownFields.equals(other.unknownFields);
       return result;
     }
@@ -322,6 +351,8 @@ public final class ServerServiceOuterClass {
       hash = (53 * hash) + getLocation().hashCode();
       hash = (37 * hash) + TYPE_FIELD_NUMBER;
       hash = (53 * hash) + getType().hashCode();
+      hash = (37 * hash) + SPEED_FIELD_NUMBER;
+      hash = (53 * hash) + getSpeed();
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -461,6 +492,8 @@ public final class ServerServiceOuterClass {
 
         type_ = "";
 
+        speed_ = 0;
+
         return this;
       }
 
@@ -490,6 +523,7 @@ public final class ServerServiceOuterClass {
         result.id_ = id_;
         result.location_ = location_;
         result.type_ = type_;
+        result.speed_ = speed_;
         onBuilt();
         return result;
       }
@@ -549,6 +583,9 @@ public final class ServerServiceOuterClass {
         if (!other.getType().isEmpty()) {
           type_ = other.type_;
           onChanged();
+        }
+        if (other.getSpeed() != 0) {
+          setSpeed(other.getSpeed());
         }
         this.mergeUnknownFields(other.unknownFields);
         onChanged();
@@ -782,6 +819,32 @@ public final class ServerServiceOuterClass {
   checkByteStringIsUtf8(value);
         
         type_ = value;
+        onChanged();
+        return this;
+      }
+
+      private int speed_ ;
+      /**
+       * <code>int32 speed = 4;</code>
+       */
+      public int getSpeed() {
+        return speed_;
+      }
+      /**
+       * <code>int32 speed = 4;</code>
+       */
+      public Builder setSpeed(int value) {
+        
+        speed_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>int32 speed = 4;</code>
+       */
+      public Builder clearSpeed() {
+        
+        speed_ = 0;
         onChanged();
         return this;
       }
@@ -1470,13 +1533,13 @@ public final class ServerServiceOuterClass {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\023ServerService.proto\"=\n\017RegisterRequest" +
+      "\n\023ServerService.proto\"L\n\017RegisterRequest" +
       "\022\n\n\002id\030\001 \001(\t\022\020\n\010location\030\002 \001(\t\022\014\n\004type\030\003" +
-      " \001(\t\"A\n\020RegisterResponse\022\027\n\017responseMess" +
-      "age\030\001 \001(\t\022\024\n\014responseCode\030\002 \001(\0052@\n\rServe" +
-      "rService\022/\n\010register\022\020.RegisterRequest\032\021" +
-      ".RegisterResponseB\017\n\rProj.Servicesb\006prot" +
-      "o3"
+      " \001(\t\022\r\n\005speed\030\004 \001(\005\"A\n\020RegisterResponse\022" +
+      "\027\n\017responseMessage\030\001 \001(\t\022\024\n\014responseCode" +
+      "\030\002 \001(\0052@\n\rServerService\022/\n\010register\022\020.Re" +
+      "gisterRequest\032\021.RegisterResponseB\017\n\rProj" +
+      ".Servicesb\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -1495,7 +1558,7 @@ public final class ServerServiceOuterClass {
     internal_static_RegisterRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_RegisterRequest_descriptor,
-        new java.lang.String[] { "Id", "Location", "Type", });
+        new java.lang.String[] { "Id", "Location", "Type", "Speed", });
     internal_static_RegisterResponse_descriptor =
       getDescriptor().getMessageTypes().get(1);
     internal_static_RegisterResponse_fieldAccessorTable = new

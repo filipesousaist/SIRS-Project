@@ -2,8 +2,8 @@ package Proj.core;
 
 public class SmartVehicle extends Entity implements Prover, Witness {
 
-	public SmartVehicle(int id, Location location) {
-		super(id, location,"Car");
+	public SmartVehicle(int id, Location location, int speed) {
+		super(id, location, speed);
 		
 	}
 
@@ -26,6 +26,8 @@ public class SmartVehicle extends Entity implements Prover, Witness {
 		
 	}
 
-
+	public String getType() {
+		return "SV";
+	}
 
 }

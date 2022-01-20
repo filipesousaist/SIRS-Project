@@ -17,6 +17,9 @@ public class AuthoritativeRSU extends RoadSideUnit implements Verifier {
 	public void broadcastLocationVerification() {
 				
 	}
-
+	
+	public String getType() {
+		return "A-RSU";
+	}
 
 }

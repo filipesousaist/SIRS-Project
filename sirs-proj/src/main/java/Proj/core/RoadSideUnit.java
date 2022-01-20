@@ -1,8 +1,7 @@
 package Proj.core;
 
-public class RoadSideUnit extends Entity{
+public abstract class RoadSideUnit extends Entity{
 	public RoadSideUnit(int id, Location location) {
-		super(id, location, "RSU");
-	
+		super(id, location, 0);
 	}
 }

@@ -12,6 +12,14 @@ public class MapPositionOutOfBoundsException extends Exception {
 		_entity = entity;
 	}
 	
+	public MapPositionOutOfBoundsException() {
+		
+	}
+	
+	public void setEntity(Entity entity) {
+		_entity = entity;
+	}
+
 	@Override
 	public String getMessage() {
 		Location loc = _entity.getLocation();

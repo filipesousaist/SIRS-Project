@@ -1,9 +1,6 @@
 package Proj.core;
 
 public class NonAuthoritativeRSU extends RoadSideUnit implements Witness, Verifier {
-
-	
-
 	public NonAuthoritativeRSU(int id, Location location) {
 		super(id, location);
 		
@@ -30,5 +27,7 @@ public class NonAuthoritativeRSU extends RoadSideUnit implements Witness, Verifi
 	}
 
 
-
+	public String getType() {
+		return "NA-RSU";
+	}
 }
