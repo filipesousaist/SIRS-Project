@@ -29,12 +29,16 @@ public final class ClientServiceOuterClass {
   static {
     java.lang.String[] descriptorData = {
       "\n\023ClientService.proto\022\nProj.Proto\032\023Locat" +
-      "ionClaim.proto\"?\n\016ClientResponse\022\027\n\017resp" +
-      "onseMessage\030\001 \001(\t\022\024\n\014responseCode\030\002 \001(\0052" +
-      "^\n\rClientService\022M\n\024receiveLocationClaim" +
-      "\022\031.Proj.Proto.LocationClaim\032\032.Proj.Proto" +
-      ".ClientResponseB\021\n\rProj.ServicesP\001b\006prot" +
-      "o3"
+      "ionClaim.proto\032\023CollectedData.proto\"?\n\016C" +
+      "lientResponse\022\027\n\017responseMessage\030\001 \001(\t\022\024" +
+      "\n\014responseCode\030\002 \001(\0052\355\001\n\rClientService\022M" +
+      "\n\024receiveLocationClaim\022\031.Proj.Proto.Loca" +
+      "tionClaim\032\032.Proj.Proto.ClientResponse\022I\n" +
+      "\025collectDataFromSensor\022\024.Proj.Proto.Enti" +
+      "ties\032\032.Proj.Proto.ClientResponse\022B\n\016upda" +
+      "teTimeStep\022\024.Proj.Proto.Position\032\032.Proj." +
+      "Proto.ClientResponseB\021\n\rProj.ServicesP\001b" +
+      "\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -48,6 +52,7 @@ public final class ClientServiceOuterClass {
       .internalBuildGeneratedFileFrom(descriptorData,
         new com.google.protobuf.Descriptors.FileDescriptor[] {
           Proj.Proto.LocationClaimProto.getDescriptor(),
+          Proj.Proto.CollectedDataProto.getDescriptor(),
         }, assigner);
     internal_static_Proj_Proto_ClientResponse_descriptor =
       getDescriptor().getMessageTypes().get(0);
@@ -56,6 +61,7 @@ public final class ClientServiceOuterClass {
         internal_static_Proj_Proto_ClientResponse_descriptor,
         new java.lang.String[] { "ResponseMessage", "ResponseCode", });
     Proj.Proto.LocationClaimProto.getDescriptor();
+    Proj.Proto.CollectedDataProto.getDescriptor();
   }
 
   // @@protoc_insertion_point(outer_class_scope)

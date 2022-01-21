@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+package Proj.Proto;
+
+option java_multiple_files = true;
+option java_package = "Proj.Proto";
+option java_outer_classname = "CollectedDataProto";
+
+message Position{
+	int32 x = 1;
+	int32 y = 2;
+	int32 timestep = 3;
+}
+
+message Entity{
+	string type=1;
+	int32 x=2;
+	int32 y=3;
+	string id =4; 
+} 
+
+message Entities{
+	repeated Entity entity = 1;
+}

@@ -8,4 +8,8 @@ public class SmartVehicle extends Client {
 		
 		speed = initialSpeed;
 	}
+	public SmartVehicle(String id, int x, int y) {
+		super(id, x, y);
+		
+	}
 }

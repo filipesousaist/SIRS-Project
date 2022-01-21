@@ -59,6 +59,70 @@ public final class ClientServiceGrpc {
      return getReceiveLocationClaimMethod;
   }
 
+  private static volatile io.grpc.MethodDescriptor<Proj.Proto.Entities,
+      Proj.Services.ClientResponse> getCollectDataFromSensorMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "collectDataFromSensor",
+      requestType = Proj.Proto.Entities.class,
+      responseType = Proj.Services.ClientResponse.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+  public static io.grpc.MethodDescriptor<Proj.Proto.Entities,
+      Proj.Services.ClientResponse> getCollectDataFromSensorMethod() {
+    io.grpc.MethodDescriptor<Proj.Proto.Entities, Proj.Services.ClientResponse> getCollectDataFromSensorMethod;
+    if ((getCollectDataFromSensorMethod = ClientServiceGrpc.getCollectDataFromSensorMethod) == null) {
+      synchronized (ClientServiceGrpc.class) {
+        if ((getCollectDataFromSensorMethod = ClientServiceGrpc.getCollectDataFromSensorMethod) == null) {
+          ClientServiceGrpc.getCollectDataFromSensorMethod = getCollectDataFromSensorMethod = 
+              io.grpc.MethodDescriptor.<Proj.Proto.Entities, Proj.Services.ClientResponse>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "Proj.Proto.ClientService", "collectDataFromSensor"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  Proj.Proto.Entities.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  Proj.Services.ClientResponse.getDefaultInstance()))
+                  .setSchemaDescriptor(new ClientServiceMethodDescriptorSupplier("collectDataFromSensor"))
+                  .build();
+          }
+        }
+     }
+     return getCollectDataFromSensorMethod;
+  }
+
+  private static volatile io.grpc.MethodDescriptor<Proj.Proto.Position,
+      Proj.Services.ClientResponse> getUpdateTimeStepMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "updateTimeStep",
+      requestType = Proj.Proto.Position.class,
+      responseType = Proj.Services.ClientResponse.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+  public static io.grpc.MethodDescriptor<Proj.Proto.Position,
+      Proj.Services.ClientResponse> getUpdateTimeStepMethod() {
+    io.grpc.MethodDescriptor<Proj.Proto.Position, Proj.Services.ClientResponse> getUpdateTimeStepMethod;
+    if ((getUpdateTimeStepMethod = ClientServiceGrpc.getUpdateTimeStepMethod) == null) {
+      synchronized (ClientServiceGrpc.class) {
+        if ((getUpdateTimeStepMethod = ClientServiceGrpc.getUpdateTimeStepMethod) == null) {
+          ClientServiceGrpc.getUpdateTimeStepMethod = getUpdateTimeStepMethod = 
+              io.grpc.MethodDescriptor.<Proj.Proto.Position, Proj.Services.ClientResponse>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "Proj.Proto.ClientService", "updateTimeStep"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  Proj.Proto.Position.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  Proj.Services.ClientResponse.getDefaultInstance()))
+                  .setSchemaDescriptor(new ClientServiceMethodDescriptorSupplier("updateTimeStep"))
+                  .build();
+          }
+        }
+     }
+     return getUpdateTimeStepMethod;
+  }
+
   /**
    * Creates a new async stub that supports all call types for the service
    */
@@ -93,6 +157,20 @@ public final class ClientServiceGrpc {
       asyncUnimplementedUnaryCall(getReceiveLocationClaimMethod(), responseObserver);
     }
 
+    /**
+     */
+    public void collectDataFromSensor(Proj.Proto.Entities request,
+        io.grpc.stub.StreamObserver<Proj.Services.ClientResponse> responseObserver) {
+      asyncUnimplementedUnaryCall(getCollectDataFromSensorMethod(), responseObserver);
+    }
+
+    /**
+     */
+    public void updateTimeStep(Proj.Proto.Position request,
+        io.grpc.stub.StreamObserver<Proj.Services.ClientResponse> responseObserver) {
+      asyncUnimplementedUnaryCall(getUpdateTimeStepMethod(), responseObserver);
+    }
+
     @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
       return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
           .addMethod(
@@ -102,6 +180,20 @@ public final class ClientServiceGrpc {
                 Proj.Proto.LocationClaim,
                 Proj.Services.ClientResponse>(
                   this, METHODID_RECEIVE_LOCATION_CLAIM)))
+          .addMethod(
+            getCollectDataFromSensorMethod(),
+            asyncUnaryCall(
+              new MethodHandlers<
+                Proj.Proto.Entities,
+                Proj.Services.ClientResponse>(
+                  this, METHODID_COLLECT_DATA_FROM_SENSOR)))
+          .addMethod(
+            getUpdateTimeStepMethod(),
+            asyncUnaryCall(
+              new MethodHandlers<
+                Proj.Proto.Position,
+                Proj.Services.ClientResponse>(
+                  this, METHODID_UPDATE_TIME_STEP)))
           .build();
     }
   }
@@ -131,6 +223,22 @@ public final class ClientServiceGrpc {
       asyncUnaryCall(
           getChannel().newCall(getReceiveLocationClaimMethod(), getCallOptions()), request, responseObserver);
     }
+
+    /**
+     */
+    public void collectDataFromSensor(Proj.Proto.Entities request,
+        io.grpc.stub.StreamObserver<Proj.Services.ClientResponse> responseObserver) {
+      asyncUnaryCall(
+          getChannel().newCall(getCollectDataFromSensorMethod(), getCallOptions()), request, responseObserver);
+    }
+
+    /**
+     */
+    public void updateTimeStep(Proj.Proto.Position request,
+        io.grpc.stub.StreamObserver<Proj.Services.ClientResponse> responseObserver) {
+      asyncUnaryCall(
+          getChannel().newCall(getUpdateTimeStepMethod(), getCallOptions()), request, responseObserver);
+    }
   }
 
   /**
@@ -156,6 +264,20 @@ public final class ClientServiceGrpc {
     public Proj.Services.ClientResponse receiveLocationClaim(Proj.Proto.LocationClaim request) {
       return blockingUnaryCall(
           getChannel(), getReceiveLocationClaimMethod(), getCallOptions(), request);
+    }
+
+    /**
+     */
+    public Proj.Services.ClientResponse collectDataFromSensor(Proj.Proto.Entities request) {
+      return blockingUnaryCall(
+          getChannel(), getCollectDataFromSensorMethod(), getCallOptions(), request);
+    }
+
+    /**
+     */
+    public Proj.Services.ClientResponse updateTimeStep(Proj.Proto.Position request) {
+      return blockingUnaryCall(
+          getChannel(), getUpdateTimeStepMethod(), getCallOptions(), request);
     }
   }
 
@@ -184,9 +306,27 @@ public final class ClientServiceGrpc {
       return futureUnaryCall(
           getChannel().newCall(getReceiveLocationClaimMethod(), getCallOptions()), request);
     }
+
+    /**
+     */
+    public com.google.common.util.concurrent.ListenableFuture<Proj.Services.ClientResponse> collectDataFromSensor(
+        Proj.Proto.Entities request) {
+      return futureUnaryCall(
+          getChannel().newCall(getCollectDataFromSensorMethod(), getCallOptions()), request);
+    }
+
+    /**
+     */
+    public com.google.common.util.concurrent.ListenableFuture<Proj.Services.ClientResponse> updateTimeStep(
+        Proj.Proto.Position request) {
+      return futureUnaryCall(
+          getChannel().newCall(getUpdateTimeStepMethod(), getCallOptions()), request);
+    }
   }
 
   private static final int METHODID_RECEIVE_LOCATION_CLAIM = 0;
+  private static final int METHODID_COLLECT_DATA_FROM_SENSOR = 1;
+  private static final int METHODID_UPDATE_TIME_STEP = 2;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -207,6 +347,14 @@ public final class ClientServiceGrpc {
       switch (methodId) {
         case METHODID_RECEIVE_LOCATION_CLAIM:
           serviceImpl.receiveLocationClaim((Proj.Proto.LocationClaim) request,
+              (io.grpc.stub.StreamObserver<Proj.Services.ClientResponse>) responseObserver);
+          break;
+        case METHODID_COLLECT_DATA_FROM_SENSOR:
+          serviceImpl.collectDataFromSensor((Proj.Proto.Entities) request,
+              (io.grpc.stub.StreamObserver<Proj.Services.ClientResponse>) responseObserver);
+          break;
+        case METHODID_UPDATE_TIME_STEP:
+          serviceImpl.updateTimeStep((Proj.Proto.Position) request,
               (io.grpc.stub.StreamObserver<Proj.Services.ClientResponse>) responseObserver);
           break;
         default:
@@ -271,6 +419,8 @@ public final class ClientServiceGrpc {
           serviceDescriptor = result = io.grpc.ServiceDescriptor.newBuilder(SERVICE_NAME)
               .setSchemaDescriptor(new ClientServiceFileDescriptorSupplier())
               .addMethod(getReceiveLocationClaimMethod())
+              .addMethod(getCollectDataFromSensorMethod())
+              .addMethod(getUpdateTimeStepMethod())
               .build();
         }
       }
