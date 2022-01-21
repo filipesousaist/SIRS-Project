@@ -6,14 +6,13 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="sirs-proj" />
         <module name="sirs-proj-client" />
+        <module name="sirs-proj" />
         <module name="sirs-contract" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="Sirs" target="11" />
-      <module name="SIRS" target="11" />
       <module name="sirs-contract" target="1.8" />
       <module name="sirs-proj" target="1.8" />
       <module name="sirs-proj-client" target="1.8" />
