@@ -24,39 +24,71 @@ public final class ServerServiceGrpc {
 
   private ServerServiceGrpc() {}
 
-  public static final String SERVICE_NAME = "ServerService";
+  public static final String SERVICE_NAME = "Proj.Proto.ServerService";
 
   // Static method descriptors that strictly reflect the proto.
-  private static volatile io.grpc.MethodDescriptor<Proj.Services.ServerServiceOuterClass.RegisterRequest,
-      Proj.Services.ServerServiceOuterClass.RegisterResponse> getRegisterMethod;
+  private static volatile io.grpc.MethodDescriptor<Proj.Services.RegisterRequest,
+      Proj.Services.ServerResponse> getRegisterMethod;
 
   @io.grpc.stub.annotations.RpcMethod(
       fullMethodName = SERVICE_NAME + '/' + "register",
-      requestType = Proj.Services.ServerServiceOuterClass.RegisterRequest.class,
-      responseType = Proj.Services.ServerServiceOuterClass.RegisterResponse.class,
+      requestType = Proj.Services.RegisterRequest.class,
+      responseType = Proj.Services.ServerResponse.class,
       methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
-  public static io.grpc.MethodDescriptor<Proj.Services.ServerServiceOuterClass.RegisterRequest,
-      Proj.Services.ServerServiceOuterClass.RegisterResponse> getRegisterMethod() {
-    io.grpc.MethodDescriptor<Proj.Services.ServerServiceOuterClass.RegisterRequest, Proj.Services.ServerServiceOuterClass.RegisterResponse> getRegisterMethod;
+  public static io.grpc.MethodDescriptor<Proj.Services.RegisterRequest,
+      Proj.Services.ServerResponse> getRegisterMethod() {
+    io.grpc.MethodDescriptor<Proj.Services.RegisterRequest, Proj.Services.ServerResponse> getRegisterMethod;
     if ((getRegisterMethod = ServerServiceGrpc.getRegisterMethod) == null) {
       synchronized (ServerServiceGrpc.class) {
         if ((getRegisterMethod = ServerServiceGrpc.getRegisterMethod) == null) {
           ServerServiceGrpc.getRegisterMethod = getRegisterMethod = 
-              io.grpc.MethodDescriptor.<Proj.Services.ServerServiceOuterClass.RegisterRequest, Proj.Services.ServerServiceOuterClass.RegisterResponse>newBuilder()
+              io.grpc.MethodDescriptor.<Proj.Services.RegisterRequest, Proj.Services.ServerResponse>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
               .setFullMethodName(generateFullMethodName(
-                  "ServerService", "register"))
+                  "Proj.Proto.ServerService", "register"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  Proj.Services.ServerServiceOuterClass.RegisterRequest.getDefaultInstance()))
+                  Proj.Services.RegisterRequest.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  Proj.Services.ServerServiceOuterClass.RegisterResponse.getDefaultInstance()))
+                  Proj.Services.ServerResponse.getDefaultInstance()))
                   .setSchemaDescriptor(new ServerServiceMethodDescriptorSupplier("register"))
                   .build();
           }
         }
      }
      return getRegisterMethod;
+  }
+
+  private static volatile io.grpc.MethodDescriptor<Proj.Proto.LocationClaim,
+      Proj.Services.ServerResponse> getBroadcastLocationClaimMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "broadcastLocationClaim",
+      requestType = Proj.Proto.LocationClaim.class,
+      responseType = Proj.Services.ServerResponse.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+  public static io.grpc.MethodDescriptor<Proj.Proto.LocationClaim,
+      Proj.Services.ServerResponse> getBroadcastLocationClaimMethod() {
+    io.grpc.MethodDescriptor<Proj.Proto.LocationClaim, Proj.Services.ServerResponse> getBroadcastLocationClaimMethod;
+    if ((getBroadcastLocationClaimMethod = ServerServiceGrpc.getBroadcastLocationClaimMethod) == null) {
+      synchronized (ServerServiceGrpc.class) {
+        if ((getBroadcastLocationClaimMethod = ServerServiceGrpc.getBroadcastLocationClaimMethod) == null) {
+          ServerServiceGrpc.getBroadcastLocationClaimMethod = getBroadcastLocationClaimMethod = 
+              io.grpc.MethodDescriptor.<Proj.Proto.LocationClaim, Proj.Services.ServerResponse>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "Proj.Proto.ServerService", "broadcastLocationClaim"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  Proj.Proto.LocationClaim.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  Proj.Services.ServerResponse.getDefaultInstance()))
+                  .setSchemaDescriptor(new ServerServiceMethodDescriptorSupplier("broadcastLocationClaim"))
+                  .build();
+          }
+        }
+     }
+     return getBroadcastLocationClaimMethod;
   }
 
   /**
@@ -88,9 +120,16 @@ public final class ServerServiceGrpc {
 
     /**
      */
-    public void register(Proj.Services.ServerServiceOuterClass.RegisterRequest request,
-        io.grpc.stub.StreamObserver<Proj.Services.ServerServiceOuterClass.RegisterResponse> responseObserver) {
+    public void register(Proj.Services.RegisterRequest request,
+        io.grpc.stub.StreamObserver<Proj.Services.ServerResponse> responseObserver) {
       asyncUnimplementedUnaryCall(getRegisterMethod(), responseObserver);
+    }
+
+    /**
+     */
+    public void broadcastLocationClaim(Proj.Proto.LocationClaim request,
+        io.grpc.stub.StreamObserver<Proj.Services.ServerResponse> responseObserver) {
+      asyncUnimplementedUnaryCall(getBroadcastLocationClaimMethod(), responseObserver);
     }
 
     @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
@@ -99,9 +138,16 @@ public final class ServerServiceGrpc {
             getRegisterMethod(),
             asyncUnaryCall(
               new MethodHandlers<
-                Proj.Services.ServerServiceOuterClass.RegisterRequest,
-                Proj.Services.ServerServiceOuterClass.RegisterResponse>(
+                Proj.Services.RegisterRequest,
+                Proj.Services.ServerResponse>(
                   this, METHODID_REGISTER)))
+          .addMethod(
+            getBroadcastLocationClaimMethod(),
+            asyncUnaryCall(
+              new MethodHandlers<
+                Proj.Proto.LocationClaim,
+                Proj.Services.ServerResponse>(
+                  this, METHODID_BROADCAST_LOCATION_CLAIM)))
           .build();
     }
   }
@@ -126,10 +172,18 @@ public final class ServerServiceGrpc {
 
     /**
      */
-    public void register(Proj.Services.ServerServiceOuterClass.RegisterRequest request,
-        io.grpc.stub.StreamObserver<Proj.Services.ServerServiceOuterClass.RegisterResponse> responseObserver) {
+    public void register(Proj.Services.RegisterRequest request,
+        io.grpc.stub.StreamObserver<Proj.Services.ServerResponse> responseObserver) {
       asyncUnaryCall(
           getChannel().newCall(getRegisterMethod(), getCallOptions()), request, responseObserver);
+    }
+
+    /**
+     */
+    public void broadcastLocationClaim(Proj.Proto.LocationClaim request,
+        io.grpc.stub.StreamObserver<Proj.Services.ServerResponse> responseObserver) {
+      asyncUnaryCall(
+          getChannel().newCall(getBroadcastLocationClaimMethod(), getCallOptions()), request, responseObserver);
     }
   }
 
@@ -153,9 +207,16 @@ public final class ServerServiceGrpc {
 
     /**
      */
-    public Proj.Services.ServerServiceOuterClass.RegisterResponse register(Proj.Services.ServerServiceOuterClass.RegisterRequest request) {
+    public Proj.Services.ServerResponse register(Proj.Services.RegisterRequest request) {
       return blockingUnaryCall(
           getChannel(), getRegisterMethod(), getCallOptions(), request);
+    }
+
+    /**
+     */
+    public Proj.Services.ServerResponse broadcastLocationClaim(Proj.Proto.LocationClaim request) {
+      return blockingUnaryCall(
+          getChannel(), getBroadcastLocationClaimMethod(), getCallOptions(), request);
     }
   }
 
@@ -179,14 +240,23 @@ public final class ServerServiceGrpc {
 
     /**
      */
-    public com.google.common.util.concurrent.ListenableFuture<Proj.Services.ServerServiceOuterClass.RegisterResponse> register(
-        Proj.Services.ServerServiceOuterClass.RegisterRequest request) {
+    public com.google.common.util.concurrent.ListenableFuture<Proj.Services.ServerResponse> register(
+        Proj.Services.RegisterRequest request) {
       return futureUnaryCall(
           getChannel().newCall(getRegisterMethod(), getCallOptions()), request);
+    }
+
+    /**
+     */
+    public com.google.common.util.concurrent.ListenableFuture<Proj.Services.ServerResponse> broadcastLocationClaim(
+        Proj.Proto.LocationClaim request) {
+      return futureUnaryCall(
+          getChannel().newCall(getBroadcastLocationClaimMethod(), getCallOptions()), request);
     }
   }
 
   private static final int METHODID_REGISTER = 0;
+  private static final int METHODID_BROADCAST_LOCATION_CLAIM = 1;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -206,8 +276,12 @@ public final class ServerServiceGrpc {
     public void invoke(Req request, io.grpc.stub.StreamObserver<Resp> responseObserver) {
       switch (methodId) {
         case METHODID_REGISTER:
-          serviceImpl.register((Proj.Services.ServerServiceOuterClass.RegisterRequest) request,
-              (io.grpc.stub.StreamObserver<Proj.Services.ServerServiceOuterClass.RegisterResponse>) responseObserver);
+          serviceImpl.register((Proj.Services.RegisterRequest) request,
+              (io.grpc.stub.StreamObserver<Proj.Services.ServerResponse>) responseObserver);
+          break;
+        case METHODID_BROADCAST_LOCATION_CLAIM:
+          serviceImpl.broadcastLocationClaim((Proj.Proto.LocationClaim) request,
+              (io.grpc.stub.StreamObserver<Proj.Services.ServerResponse>) responseObserver);
           break;
         default:
           throw new AssertionError();
@@ -271,6 +345,7 @@ public final class ServerServiceGrpc {
           serviceDescriptor = result = io.grpc.ServiceDescriptor.newBuilder(SERVICE_NAME)
               .setSchemaDescriptor(new ServerServiceFileDescriptorSupplier())
               .addMethod(getRegisterMethod())
+              .addMethod(getBroadcastLocationClaimMethod())
               .build();
         }
       }

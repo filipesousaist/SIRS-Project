@@ -1,10 +1,17 @@
 syntax = "proto3";
 
+package Proj.Proto;
+option java_multiple_files = true;
 option java_package = "Proj.Services";
+
+import "LocationClaim.proto";
+
 
 service ServerService{
 
-	rpc register(RegisterRequest) returns (RegisterResponse);
+	rpc register(RegisterRequest) returns (ServerResponse);
+	rpc broadcastLocationClaim(LocationClaim) returns (ServerResponse);
+	
 		
 }
 
@@ -15,7 +22,7 @@ message RegisterRequest{
 	int32 speed = 4;
 }
 
-message RegisterResponse{
+message ServerResponse{
 	string responseMessage = 1;
 	int32 responseCode = 2;
 }

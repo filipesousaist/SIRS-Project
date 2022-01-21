@@ -27,6 +27,26 @@ public class EnvironmentServer implements Runnable {
 		 _entities.add(entity);
 	 }
 	 
+	 public List<Entity> getEntities(){
+		 return _entities;
+	 }
+	 
+	 public Entity getEntity(int id){
+		 for(Entity ent: _entities){
+			 if(ent.getID()==id) return ent;
+		 }
+		 return null;
+	 }
+	 public List<Entity> getCloseEntities(Entity ent){
+		 List<Entity> lista = new ArrayList<Entity>();
+		 for(Entity entity: _entities) {
+			 if(Math.pow(entity.getLocation().getX()-ent.getLocation().getX(),2)+ Math.pow(entity.getLocation().getY()-ent.getLocation().getY(),2)<=9 && entity.getID()!=ent.getID()){
+				 lista.add(entity);				 
+			 }
+		 }		 
+		 return lista;
+	 }
+	 
 	 @Override
 	 public void run() {
 		 try {

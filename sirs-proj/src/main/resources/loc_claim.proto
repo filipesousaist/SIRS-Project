@@ -24,6 +24,7 @@ message LocationClaim{
     string evidenceType = 5;
 	// location evidence e.g. sensor readings, photo, screen signing - according to evidence type
 	google.protobuf.Any evidence = 6;
+	
 }
 
 // signed location claim 
