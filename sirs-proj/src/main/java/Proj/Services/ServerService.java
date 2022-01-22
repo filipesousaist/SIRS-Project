@@ -1,8 +1,12 @@
 package Proj.Services;
 
+import java.util.List;
+
+import Proj.Proto.LocationClaim;
+import Proj.Services.ClientServiceGrpc.ClientServiceBlockingStub;
+import Proj.Services.ServerResponse.Builder;
+import Proj.Services.ServerServiceGrpc.ServerServiceBlockingStub;
 import Proj.Services.ServerServiceGrpc.ServerServiceImplBase;
-import Proj.Services.ServerServiceOuterClass.RegisterRequest;
-import Proj.Services.ServerServiceOuterClass.RegisterResponse;
 import Proj.core.AuthoritativeRSU;
 import Proj.core.Entity;
 import Proj.core.Location;
@@ -11,13 +15,15 @@ import Proj.core.SmartVehicle;
 import Proj.core.EnvironmentServer;
 import Proj.core.exception.MapPositionOutOfBoundsException;
 import Proj.core.exception.MapPositionTakenException;
+import io.grpc.ManagedChannel;
+import io.grpc.ManagedChannelBuilder;
 import io.grpc.stub.StreamObserver;
 
 public class ServerService extends ServerServiceImplBase {
 	EnvironmentServer _server;
 	// TODO: falta algumas verificações de input
 	@Override
-	public void register(RegisterRequest request, StreamObserver<RegisterResponse> responseObserver) {
+	public void register(RegisterRequest request, StreamObserver<ServerResponse> responseObserver) {
 		String s = request.getLocation();
 		String[] loc = s.split(",");
 		int x = Integer.parseInt(loc[0]);
@@ -33,6 +39,10 @@ public class ServerService extends ServerServiceImplBase {
 		catch (MapPositionTakenException | MapPositionOutOfBoundsException e) {
 			System.out.println(e.getMessage());
 		}
+		ServerResponse res = ServerResponse.newBuilder().setResponseMessage("sucessfully received").setResponseCode(1).build();		
+		responseObserver.onNext(res);
+		responseObserver.onCompleted();
+		
 	}
 	
 	private Entity createEntity(int id, Location location, String type, int speed) {
@@ -50,6 +60,23 @@ public class ServerService extends ServerServiceImplBase {
 	
 	public void setServer(EnvironmentServer server) {
 		_server = server;	
+	}
+
+	@Override
+	public void broadcastLocationClaim(LocationClaim request, StreamObserver<ServerResponse> responseObserver) {
+		List<Entity> entities = _server.getCloseEntities(_server.getEntity(Integer.parseInt(request.getProverId())));
+		for(Entity ent: entities) {
+			if(ent!=null) {
+			int port = ent.getID()+9090;
+			System.out.println("trying to connect to port : "+port);
+			ManagedChannel channel = ManagedChannelBuilder.forAddress("localhost", port).usePlaintext().build();
+			ClientServiceBlockingStub clientStub = ClientServiceGrpc.newBlockingStub(channel);
+			ClientResponse response = clientStub.receiveLocationClaim(request);
+			System.out.println("Resposta: "+response.getResponseMessage());		
+			}
+		}
+		
+		super.broadcastLocationClaim(request, responseObserver);
 	}
 
 }
