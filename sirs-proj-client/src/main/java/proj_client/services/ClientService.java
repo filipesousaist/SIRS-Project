@@ -1,7 +1,7 @@
 package proj_client.services;
 import io.grpc.stub.StreamObserver;
-import proj_client.core.Client;
-import proj_client.core.SmartVehicle;
+import proj_client.Client;
+import proj_client.SmartVehicle;
 import proj_contract.proto.Entities;
 import proj_contract.proto.Entity;
 import proj_contract.proto.LocationClaim;

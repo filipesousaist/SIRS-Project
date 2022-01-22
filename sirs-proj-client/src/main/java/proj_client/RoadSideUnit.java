@@ -1,4 +1,4 @@
-package proj_client.core;
+package proj_client;
 
 public abstract class RoadSideUnit extends Client{
 

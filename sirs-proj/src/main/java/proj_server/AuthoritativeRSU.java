@@ -1,4 +1,4 @@
-package proj_server.core;
+package proj_server;
 
 public class AuthoritativeRSU extends RoadSideUnit implements Verifier {
 

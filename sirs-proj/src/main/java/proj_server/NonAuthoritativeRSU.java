@@ -1,4 +1,4 @@
-package proj_server.core;
+package proj_server;
 
 public class NonAuthoritativeRSU extends RoadSideUnit implements Witness, Verifier {
 	public NonAuthoritativeRSU(int id, Location location) {

@@ -1,4 +1,4 @@
-package proj_server.core;
+package proj_server;
 public abstract class Entity {
 	int _id;
 	Location _location;

@@ -1,4 +1,4 @@
-package proj_client.core;
+package proj_client;
 
 public class Location {
 	int _x;

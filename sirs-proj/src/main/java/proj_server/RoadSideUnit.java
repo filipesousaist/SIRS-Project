@@ -1,4 +1,4 @@
-package proj_server.core;
+package proj_server;
 
 public abstract class RoadSideUnit extends Entity{
 	public RoadSideUnit(int id, Location location) {

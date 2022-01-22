@@ -1,8 +1,9 @@
 package proj_server.main;
 import java.io.IOException;
+
 import io.grpc.Server;
 import io.grpc.ServerBuilder;
-import proj_server.core.*;
+import proj_server.EnvironmentServer;
 import proj_server.services.ServerService;
 
 public class App {

@@ -1,4 +1,4 @@
-package proj_server.core;
+package proj_server;
 
 import java.awt.Canvas;
 import java.awt.Color;

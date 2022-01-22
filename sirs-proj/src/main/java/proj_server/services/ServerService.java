@@ -8,18 +8,18 @@ import io.grpc.stub.StreamObserver;
 import proj_contract.proto.LocationClaim;
 import proj_contract.services.ClientResponse;
 import proj_contract.services.ClientServiceGrpc;
+import proj_contract.services.ClientServiceGrpc.ClientServiceBlockingStub;
 import proj_contract.services.RegisterRequest;
 import proj_contract.services.ServerResponse;
-import proj_contract.services.ClientServiceGrpc.ClientServiceBlockingStub;
 import proj_contract.services.ServerServiceGrpc.ServerServiceImplBase;
-import proj_server.core.AuthoritativeRSU;
-import proj_server.core.Entity;
-import proj_server.core.EnvironmentServer;
-import proj_server.core.Location;
-import proj_server.core.NonAuthoritativeRSU;
-import proj_server.core.SmartVehicle;
-import proj_server.core.exception.MapPositionOutOfBoundsException;
-import proj_server.core.exception.MapPositionTakenException;
+import proj_server.AuthoritativeRSU;
+import proj_server.Entity;
+import proj_server.EnvironmentServer;
+import proj_server.Location;
+import proj_server.NonAuthoritativeRSU;
+import proj_server.SmartVehicle;
+import proj_server.exception.MapPositionOutOfBoundsException;
+import proj_server.exception.MapPositionTakenException;
 
 public class ServerService extends ServerServiceImplBase {
 	EnvironmentServer _server;
@@ -41,7 +41,7 @@ public class ServerService extends ServerServiceImplBase {
 		catch (MapPositionTakenException | MapPositionOutOfBoundsException e) {
 			System.out.println(e.getMessage());
 		}
-		ServerResponse res = ServerResponse.newBuilder().setResponseMessage("sucessfully received").setResponseCode(1).build();		
+		ServerResponse res = ServerResponse.newBuilder().setResponseMessage("Successfully received").setResponseCode(1).build();		
 		responseObserver.onNext(res);
 		responseObserver.onCompleted();
 		

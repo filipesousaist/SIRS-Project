@@ -1,4 +1,4 @@
-package proj_server.core;
+package proj_server;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -6,8 +6,8 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
-import proj_server.core.exception.MapPositionOutOfBoundsException;
-import proj_server.core.exception.MapPositionTakenException;
+import proj_server.exception.MapPositionOutOfBoundsException;
+import proj_server.exception.MapPositionTakenException;
 
 
 public class EnvironmentServer implements Runnable {
