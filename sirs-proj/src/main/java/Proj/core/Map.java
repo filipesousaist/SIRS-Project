@@ -1,36 +1,45 @@
 package Proj.core;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import Proj.core.exception.MapPositionOutOfBoundsException;
 import Proj.core.exception.MapPositionTakenException;
 
-public class Map {
-	int _width;
-	int _height;
-	int _size;
+public class Map {	
+	private int _width;
+	private int _height;
+	private int _size;
 	
 	List<Entity> _entities;
+	
+	MapDisplay _display;
 	
 	public Map(int width, int height) {
 		_width = width;
 		_height = height;
 		_size = width * height;
-		_entities = new ArrayList<Entity>();
+		_entities = new ArrayList<Entity>(Collections.nCopies(_size, null));
 		
-		for (int x = 0; x < width ; x ++) {
-			for (int y = 0; y < height; y ++) {
-				_entities.add(null);
-			}			
-		}		
+		_display = new MapDisplay(this, _width, _height);
+		_display.render();
 	}
 	
 	public Entity getEntity(int x, int y) throws MapPositionOutOfBoundsException {
-		int index = x * _width + y;
+		int index = x * _height + y;
 		if (index < 0 || index >= _size)
 			throw new MapPositionOutOfBoundsException();
 		return _entities.get(x * _height + y);
+	}
+	
+	public Entity getEntityOrNull(int x, int y) {
+		try {
+			return getEntity(x, y);
+		}
+		catch (MapPositionOutOfBoundsException e) {
+			return null;
+		}
 	}
 	
 	public void addEntity(Entity ent) throws MapPositionTakenException, MapPositionOutOfBoundsException {
@@ -73,14 +82,6 @@ public class Map {
 		
 	}
 	
-	public void moveEntities() {
-		for (int i = _size - 1; i >= 0; i --) {
-			Entity ent = _entities.get(i);
-			if (ent != null)
-				moveEntity(ent, ent.getSpeed());
-		}
-	}
-	
 	public void print() {
 		String roadLimit = "";
 		for (int i = 0; i < _width; i ++)
@@ -115,4 +116,7 @@ public class Map {
 		}
 	}
 	
+	public void draw() {
+		_display.render();
+	}
 }

@@ -18,13 +18,15 @@ public class EnvironmentServer implements Runnable {
 	 // receive the map size
 	 public EnvironmentServer(int x, int y){
 		 _map = new Map(x,y);
-		 _entities= new ArrayList<Entity>();
+		 _entities = new ArrayList<Entity>();
 	 }
 	 
 	 public void addEntity(Entity entity) throws MapPositionTakenException, MapPositionOutOfBoundsException {	 
 		 _map.addEntity(entity);
 		 // entity will only be added to _entities if _map.addEntity does not throw an exception
 		 _entities.add(entity);
+		 _map.print();
+		 _map.draw();
 	 }
 	 
 	 @Override
@@ -33,8 +35,10 @@ public class EnvironmentServer implements Runnable {
 			 BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 			 while (true) {
 				reader.readLine();
-				_map.moveEntities();
+				for (Entity ent: _entities)
+					_map.moveEntity(ent, ent.getSpeed());
 				_map.print();
+				_map.draw();
 			 } 
 		 }
 		 catch (IOException e) {
