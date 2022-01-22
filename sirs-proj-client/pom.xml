@@ -1,15 +1,19 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
   	<modelVersion>4.0.0</modelVersion>
-		<parent>
-			<groupId>Proj</groupId>
-			<artifactId>Sirs</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
-		</parent>
-  	<artifactId>sirs-proj-client</artifactId>
-  	<version>0.0.1-SNAPSHOT</version>
+	<parent>
+		<groupId>Proj</groupId>
+		<artifactId>Sirs</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+	</parent>
+	<artifactId>sirs-proj-client</artifactId>
   	<name>sirs-proj-client</name>
 
 	<dependencies>
+		<dependency>
+		  	<groupId>Proj</groupId>
+		  	<artifactId>sirs-contract</artifactId>
+		  	<version>0.0.1-SNAPSHOT</version>
+	  	</dependency>
 		<dependency>
 			<groupId>com.google.protobuf</groupId>
 			<artifactId>protobuf-java</artifactId>

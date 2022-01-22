@@ -5,6 +5,7 @@
         <artifactId>Sirs</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
+	<groupId>Proj</groupId>
     <artifactId>sirs-contract</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>jar</packaging>

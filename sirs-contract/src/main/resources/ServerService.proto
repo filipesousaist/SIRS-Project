@@ -2,17 +2,13 @@ syntax = "proto3";
 
 package Proj.Proto;
 option java_multiple_files = true;
-option java_package = "Proj.Services";
+option java_package = "proj_contract.services";
 
 import "LocationClaim.proto";
 
-
-service ServerService{
-
+service ServerService {
 	rpc register(RegisterRequest) returns (ServerResponse);
 	rpc broadcastLocationClaim(LocationClaim) returns (ServerResponse);
-	
-		
 }
 
 message RegisterRequest{
