@@ -1,48 +1,60 @@
 package proj_client.services;
 import io.grpc.stub.StreamObserver;
-import proj_client.Client;
+import proj_client.EntityServer;
 import proj_client.SmartVehicle;
-import proj_contract.proto.Entities;
-import proj_contract.proto.Entity;
+import proj_contract.proto.Coordinates;
+import proj_contract.proto.EntitiesData;
+import proj_contract.proto.EntityData;
 import proj_contract.proto.LocationClaim;
-import proj_contract.proto.Position;
+import proj_contract.proto.TimestepData;
 import proj_contract.services.ClientResponse;
 import proj_contract.services.ClientServiceGrpc.ClientServiceImplBase;
 
 public class ClientService extends ClientServiceImplBase {
-	private Client _client;
-	@Override
-	public void receiveLocationClaim(LocationClaim request, StreamObserver<ClientResponse> responseObserver) {
-		System.out.println("Location claim Received ");
-		// TODO Auto-generated method stub
-		super.receiveLocationClaim(request, responseObserver);
-	}
-
-	@Override
-	public void collectDataFromSensors(Entities request, StreamObserver<ClientResponse> responseObserver) {
-		for(int i = 0; i < request.getEntityCount();i++){
-			Entity ent = request.getEntity(i);
-			if(ent!=null) {
-				int x = ent.getX();
-				int y = ent.getY();
-				String id = ent.getId();
-				SmartVehicle smart = new SmartVehicle(id,x,y);
-				_client.collectedDatafromSensors(smart);
-			}			
-		}
-	}
-
-	@Override
-	public void updateTimeStep(Position request, StreamObserver<ClientResponse> responseObserver) {
-		int x = request.getX();
-		int y = request.getY();
-		int timestep = request.getTimestep();
-		this._client.setTimeStep(timestep);
-		this._client.setLocation(x,y);		
+	private EntityServer _entityServer;
+	private int _entityId;
+	
+	public ClientService(EntityServer entityServer) {
+		_entityServer = entityServer;
+		_entityId = entityServer.getEntityId();
 	}
 	
-	public void setClient(Client client){
-		_client = client;
+	@Override
+	public void receiveLocationClaim(LocationClaim request, StreamObserver<ClientResponse> responseObserver) {
+		System.out.println("Location claim received.");
 		
+		respondToServer(responseObserver, "Location Claim");
+	}
+
+	@Override
+	public void collectDataFromSensors(EntitiesData request, StreamObserver<ClientResponse> responseObserver) {
+		for (EntityData entData: request.getEntityDataList()){
+			if (entData != null) {
+				Coordinates coords = entData.getCoordinates();
+				SmartVehicle sv = new SmartVehicle(
+					entData.getId(), coords.getX(), coords.getY()
+				);
+				_entityServer.collectDataFromSensors(sv);
+			}			
+		}
+		
+		respondToServer(responseObserver, "Sensors Data");
+	}
+
+	@Override
+	public void updateTimeStep(TimestepData request, StreamObserver<ClientResponse> responseObserver) {
+		Coordinates coords = request.getCoordinates();
+		_entityServer.updateTimestepData(request.getTimestep(), coords.getX(), coords.getY());
+		
+		respondToServer(responseObserver, "Timestep Data");
+	}
+	
+	private void respondToServer(StreamObserver<ClientResponse> responseObserver, String message) {
+		ClientResponse response = ClientResponse.newBuilder()
+			.setResponseMessage("Client with ID " + _entityId + " received \"" + message + "\" successfully.")
+			.setResponseCode(0)
+			.build();
+		responseObserver.onNext(response);
+		responseObserver.onCompleted();
 	}
 }

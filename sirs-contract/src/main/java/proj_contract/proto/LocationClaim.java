@@ -20,9 +20,9 @@ private static final long serialVersionUID = 0L;
     super(builder);
   }
   private LocationClaim() {
-    claimId_ = "";
-    proverId_ = "";
-    time_ = 0;
+    claimId_ = 0;
+    proverId_ = 0;
+    timestep_ = 0;
   }
 
   @java.lang.Override
@@ -49,45 +49,30 @@ private static final long serialVersionUID = 0L;
           case 0:
             done = true;
             break;
-          case 10: {
-            java.lang.String s = input.readStringRequireUtf8();
+          case 8: {
 
-            claimId_ = s;
+            claimId_ = input.readInt32();
             break;
           }
-          case 18: {
-            java.lang.String s = input.readStringRequireUtf8();
+          case 16: {
 
-            proverId_ = s;
+            proverId_ = input.readInt32();
             break;
           }
-          case 26: {
-            proj_contract.proto.Location.Builder subBuilder = null;
-            if (location_ != null) {
-              subBuilder = location_.toBuilder();
+          case 24: {
+
+            timestep_ = input.readInt32();
+            break;
+          }
+          case 34: {
+            proj_contract.proto.EntityData.Builder subBuilder = null;
+            if (entityData_ != null) {
+              subBuilder = entityData_.toBuilder();
             }
-            location_ = input.readMessage(proj_contract.proto.Location.parser(), extensionRegistry);
+            entityData_ = input.readMessage(proj_contract.proto.EntityData.parser(), extensionRegistry);
             if (subBuilder != null) {
-              subBuilder.mergeFrom(location_);
-              location_ = subBuilder.buildPartial();
-            }
-
-            break;
-          }
-          case 32: {
-
-            time_ = input.readInt32();
-            break;
-          }
-          case 42: {
-            proj_contract.proto.Observation.Builder subBuilder = null;
-            if (observation_ != null) {
-              subBuilder = observation_.toBuilder();
-            }
-            observation_ = input.readMessage(proj_contract.proto.Observation.parser(), extensionRegistry);
-            if (subBuilder != null) {
-              subBuilder.mergeFrom(observation_);
-              observation_ = subBuilder.buildPartial();
+              subBuilder.mergeFrom(entityData_);
+              entityData_ = subBuilder.buildPartial();
             }
 
             break;
@@ -125,122 +110,51 @@ private static final long serialVersionUID = 0L;
   }
 
   public static final int CLAIMID_FIELD_NUMBER = 1;
-  private volatile java.lang.Object claimId_;
+  private int claimId_;
   /**
-   * <code>string claimId = 1;</code>
+   * <code>int32 claimId = 1;</code>
    */
-  public java.lang.String getClaimId() {
-    java.lang.Object ref = claimId_;
-    if (ref instanceof java.lang.String) {
-      return (java.lang.String) ref;
-    } else {
-      com.google.protobuf.ByteString bs = 
-          (com.google.protobuf.ByteString) ref;
-      java.lang.String s = bs.toStringUtf8();
-      claimId_ = s;
-      return s;
-    }
-  }
-  /**
-   * <code>string claimId = 1;</code>
-   */
-  public com.google.protobuf.ByteString
-      getClaimIdBytes() {
-    java.lang.Object ref = claimId_;
-    if (ref instanceof java.lang.String) {
-      com.google.protobuf.ByteString b = 
-          com.google.protobuf.ByteString.copyFromUtf8(
-              (java.lang.String) ref);
-      claimId_ = b;
-      return b;
-    } else {
-      return (com.google.protobuf.ByteString) ref;
-    }
+  public int getClaimId() {
+    return claimId_;
   }
 
   public static final int PROVERID_FIELD_NUMBER = 2;
-  private volatile java.lang.Object proverId_;
+  private int proverId_;
   /**
-   * <code>string proverId = 2;</code>
+   * <code>int32 proverId = 2;</code>
    */
-  public java.lang.String getProverId() {
-    java.lang.Object ref = proverId_;
-    if (ref instanceof java.lang.String) {
-      return (java.lang.String) ref;
-    } else {
-      com.google.protobuf.ByteString bs = 
-          (com.google.protobuf.ByteString) ref;
-      java.lang.String s = bs.toStringUtf8();
-      proverId_ = s;
-      return s;
-    }
-  }
-  /**
-   * <code>string proverId = 2;</code>
-   */
-  public com.google.protobuf.ByteString
-      getProverIdBytes() {
-    java.lang.Object ref = proverId_;
-    if (ref instanceof java.lang.String) {
-      com.google.protobuf.ByteString b = 
-          com.google.protobuf.ByteString.copyFromUtf8(
-              (java.lang.String) ref);
-      proverId_ = b;
-      return b;
-    } else {
-      return (com.google.protobuf.ByteString) ref;
-    }
+  public int getProverId() {
+    return proverId_;
   }
 
-  public static final int LOCATION_FIELD_NUMBER = 3;
-  private proj_contract.proto.Location location_;
+  public static final int TIMESTEP_FIELD_NUMBER = 3;
+  private int timestep_;
   /**
-   * <code>.Proj.Proto.Location location = 3;</code>
+   * <code>int32 timestep = 3;</code>
    */
-  public boolean hasLocation() {
-    return location_ != null;
-  }
-  /**
-   * <code>.Proj.Proto.Location location = 3;</code>
-   */
-  public proj_contract.proto.Location getLocation() {
-    return location_ == null ? proj_contract.proto.Location.getDefaultInstance() : location_;
-  }
-  /**
-   * <code>.Proj.Proto.Location location = 3;</code>
-   */
-  public proj_contract.proto.LocationOrBuilder getLocationOrBuilder() {
-    return getLocation();
+  public int getTimestep() {
+    return timestep_;
   }
 
-  public static final int TIME_FIELD_NUMBER = 4;
-  private int time_;
+  public static final int ENTITYDATA_FIELD_NUMBER = 4;
+  private proj_contract.proto.EntityData entityData_;
   /**
-   * <code>int32 time = 4;</code>
+   * <code>.Proj.Proto.EntityData entityData = 4;</code>
    */
-  public int getTime() {
-    return time_;
-  }
-
-  public static final int OBSERVATION_FIELD_NUMBER = 5;
-  private proj_contract.proto.Observation observation_;
-  /**
-   * <code>.Proj.Proto.Observation observation = 5;</code>
-   */
-  public boolean hasObservation() {
-    return observation_ != null;
+  public boolean hasEntityData() {
+    return entityData_ != null;
   }
   /**
-   * <code>.Proj.Proto.Observation observation = 5;</code>
+   * <code>.Proj.Proto.EntityData entityData = 4;</code>
    */
-  public proj_contract.proto.Observation getObservation() {
-    return observation_ == null ? proj_contract.proto.Observation.getDefaultInstance() : observation_;
+  public proj_contract.proto.EntityData getEntityData() {
+    return entityData_ == null ? proj_contract.proto.EntityData.getDefaultInstance() : entityData_;
   }
   /**
-   * <code>.Proj.Proto.Observation observation = 5;</code>
+   * <code>.Proj.Proto.EntityData entityData = 4;</code>
    */
-  public proj_contract.proto.ObservationOrBuilder getObservationOrBuilder() {
-    return getObservation();
+  public proj_contract.proto.EntityDataOrBuilder getEntityDataOrBuilder() {
+    return getEntityData();
   }
 
   private byte memoizedIsInitialized = -1;
@@ -257,20 +171,17 @@ private static final long serialVersionUID = 0L;
   @java.lang.Override
   public void writeTo(com.google.protobuf.CodedOutputStream output)
                       throws java.io.IOException {
-    if (!getClaimIdBytes().isEmpty()) {
-      com.google.protobuf.GeneratedMessageV3.writeString(output, 1, claimId_);
+    if (claimId_ != 0) {
+      output.writeInt32(1, claimId_);
     }
-    if (!getProverIdBytes().isEmpty()) {
-      com.google.protobuf.GeneratedMessageV3.writeString(output, 2, proverId_);
+    if (proverId_ != 0) {
+      output.writeInt32(2, proverId_);
     }
-    if (location_ != null) {
-      output.writeMessage(3, getLocation());
+    if (timestep_ != 0) {
+      output.writeInt32(3, timestep_);
     }
-    if (time_ != 0) {
-      output.writeInt32(4, time_);
-    }
-    if (observation_ != null) {
-      output.writeMessage(5, getObservation());
+    if (entityData_ != null) {
+      output.writeMessage(4, getEntityData());
     }
     unknownFields.writeTo(output);
   }
@@ -281,23 +192,21 @@ private static final long serialVersionUID = 0L;
     if (size != -1) return size;
 
     size = 0;
-    if (!getClaimIdBytes().isEmpty()) {
-      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, claimId_);
-    }
-    if (!getProverIdBytes().isEmpty()) {
-      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, proverId_);
-    }
-    if (location_ != null) {
+    if (claimId_ != 0) {
       size += com.google.protobuf.CodedOutputStream
-        .computeMessageSize(3, getLocation());
+        .computeInt32Size(1, claimId_);
     }
-    if (time_ != 0) {
+    if (proverId_ != 0) {
       size += com.google.protobuf.CodedOutputStream
-        .computeInt32Size(4, time_);
+        .computeInt32Size(2, proverId_);
     }
-    if (observation_ != null) {
+    if (timestep_ != 0) {
       size += com.google.protobuf.CodedOutputStream
-        .computeMessageSize(5, getObservation());
+        .computeInt32Size(3, timestep_);
+    }
+    if (entityData_ != null) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeMessageSize(4, getEntityData());
     }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
@@ -315,21 +224,16 @@ private static final long serialVersionUID = 0L;
     proj_contract.proto.LocationClaim other = (proj_contract.proto.LocationClaim) obj;
 
     boolean result = true;
-    result = result && getClaimId()
-        .equals(other.getClaimId());
-    result = result && getProverId()
-        .equals(other.getProverId());
-    result = result && (hasLocation() == other.hasLocation());
-    if (hasLocation()) {
-      result = result && getLocation()
-          .equals(other.getLocation());
-    }
-    result = result && (getTime()
-        == other.getTime());
-    result = result && (hasObservation() == other.hasObservation());
-    if (hasObservation()) {
-      result = result && getObservation()
-          .equals(other.getObservation());
+    result = result && (getClaimId()
+        == other.getClaimId());
+    result = result && (getProverId()
+        == other.getProverId());
+    result = result && (getTimestep()
+        == other.getTimestep());
+    result = result && (hasEntityData() == other.hasEntityData());
+    if (hasEntityData()) {
+      result = result && getEntityData()
+          .equals(other.getEntityData());
     }
     result = result && unknownFields.equals(other.unknownFields);
     return result;
@@ -343,18 +247,14 @@ private static final long serialVersionUID = 0L;
     int hash = 41;
     hash = (19 * hash) + getDescriptor().hashCode();
     hash = (37 * hash) + CLAIMID_FIELD_NUMBER;
-    hash = (53 * hash) + getClaimId().hashCode();
+    hash = (53 * hash) + getClaimId();
     hash = (37 * hash) + PROVERID_FIELD_NUMBER;
-    hash = (53 * hash) + getProverId().hashCode();
-    if (hasLocation()) {
-      hash = (37 * hash) + LOCATION_FIELD_NUMBER;
-      hash = (53 * hash) + getLocation().hashCode();
-    }
-    hash = (37 * hash) + TIME_FIELD_NUMBER;
-    hash = (53 * hash) + getTime();
-    if (hasObservation()) {
-      hash = (37 * hash) + OBSERVATION_FIELD_NUMBER;
-      hash = (53 * hash) + getObservation().hashCode();
+    hash = (53 * hash) + getProverId();
+    hash = (37 * hash) + TIMESTEP_FIELD_NUMBER;
+    hash = (53 * hash) + getTimestep();
+    if (hasEntityData()) {
+      hash = (37 * hash) + ENTITYDATA_FIELD_NUMBER;
+      hash = (53 * hash) + getEntityData().hashCode();
     }
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
@@ -493,23 +393,17 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public Builder clear() {
       super.clear();
-      claimId_ = "";
+      claimId_ = 0;
 
-      proverId_ = "";
+      proverId_ = 0;
 
-      if (locationBuilder_ == null) {
-        location_ = null;
+      timestep_ = 0;
+
+      if (entityDataBuilder_ == null) {
+        entityData_ = null;
       } else {
-        location_ = null;
-        locationBuilder_ = null;
-      }
-      time_ = 0;
-
-      if (observationBuilder_ == null) {
-        observation_ = null;
-      } else {
-        observation_ = null;
-        observationBuilder_ = null;
+        entityData_ = null;
+        entityDataBuilder_ = null;
       }
       return this;
     }
@@ -539,16 +433,11 @@ private static final long serialVersionUID = 0L;
       proj_contract.proto.LocationClaim result = new proj_contract.proto.LocationClaim(this);
       result.claimId_ = claimId_;
       result.proverId_ = proverId_;
-      if (locationBuilder_ == null) {
-        result.location_ = location_;
+      result.timestep_ = timestep_;
+      if (entityDataBuilder_ == null) {
+        result.entityData_ = entityData_;
       } else {
-        result.location_ = locationBuilder_.build();
-      }
-      result.time_ = time_;
-      if (observationBuilder_ == null) {
-        result.observation_ = observation_;
-      } else {
-        result.observation_ = observationBuilder_.build();
+        result.entityData_ = entityDataBuilder_.build();
       }
       onBuilt();
       return result;
@@ -598,22 +487,17 @@ private static final long serialVersionUID = 0L;
 
     public Builder mergeFrom(proj_contract.proto.LocationClaim other) {
       if (other == proj_contract.proto.LocationClaim.getDefaultInstance()) return this;
-      if (!other.getClaimId().isEmpty()) {
-        claimId_ = other.claimId_;
-        onChanged();
+      if (other.getClaimId() != 0) {
+        setClaimId(other.getClaimId());
       }
-      if (!other.getProverId().isEmpty()) {
-        proverId_ = other.proverId_;
-        onChanged();
+      if (other.getProverId() != 0) {
+        setProverId(other.getProverId());
       }
-      if (other.hasLocation()) {
-        mergeLocation(other.getLocation());
+      if (other.getTimestep() != 0) {
+        setTimestep(other.getTimestep());
       }
-      if (other.getTime() != 0) {
-        setTime(other.getTime());
-      }
-      if (other.hasObservation()) {
-        mergeObservation(other.getObservation());
+      if (other.hasEntityData()) {
+        mergeEntityData(other.getEntityData());
       }
       this.mergeUnknownFields(other.unknownFields);
       onChanged();
@@ -644,402 +528,199 @@ private static final long serialVersionUID = 0L;
       return this;
     }
 
-    private java.lang.Object claimId_ = "";
+    private int claimId_ ;
     /**
-     * <code>string claimId = 1;</code>
+     * <code>int32 claimId = 1;</code>
      */
-    public java.lang.String getClaimId() {
-      java.lang.Object ref = claimId_;
-      if (!(ref instanceof java.lang.String)) {
-        com.google.protobuf.ByteString bs =
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        claimId_ = s;
-        return s;
-      } else {
-        return (java.lang.String) ref;
-      }
+    public int getClaimId() {
+      return claimId_;
     }
     /**
-     * <code>string claimId = 1;</code>
+     * <code>int32 claimId = 1;</code>
      */
-    public com.google.protobuf.ByteString
-        getClaimIdBytes() {
-      java.lang.Object ref = claimId_;
-      if (ref instanceof String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        claimId_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
-    }
-    /**
-     * <code>string claimId = 1;</code>
-     */
-    public Builder setClaimId(
-        java.lang.String value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  
+    public Builder setClaimId(int value) {
+      
       claimId_ = value;
       onChanged();
       return this;
     }
     /**
-     * <code>string claimId = 1;</code>
+     * <code>int32 claimId = 1;</code>
      */
     public Builder clearClaimId() {
       
-      claimId_ = getDefaultInstance().getClaimId();
-      onChanged();
-      return this;
-    }
-    /**
-     * <code>string claimId = 1;</code>
-     */
-    public Builder setClaimIdBytes(
-        com.google.protobuf.ByteString value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-      
-      claimId_ = value;
+      claimId_ = 0;
       onChanged();
       return this;
     }
 
-    private java.lang.Object proverId_ = "";
+    private int proverId_ ;
     /**
-     * <code>string proverId = 2;</code>
+     * <code>int32 proverId = 2;</code>
      */
-    public java.lang.String getProverId() {
-      java.lang.Object ref = proverId_;
-      if (!(ref instanceof java.lang.String)) {
-        com.google.protobuf.ByteString bs =
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        proverId_ = s;
-        return s;
-      } else {
-        return (java.lang.String) ref;
-      }
+    public int getProverId() {
+      return proverId_;
     }
     /**
-     * <code>string proverId = 2;</code>
+     * <code>int32 proverId = 2;</code>
      */
-    public com.google.protobuf.ByteString
-        getProverIdBytes() {
-      java.lang.Object ref = proverId_;
-      if (ref instanceof String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        proverId_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
-    }
-    /**
-     * <code>string proverId = 2;</code>
-     */
-    public Builder setProverId(
-        java.lang.String value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  
+    public Builder setProverId(int value) {
+      
       proverId_ = value;
       onChanged();
       return this;
     }
     /**
-     * <code>string proverId = 2;</code>
+     * <code>int32 proverId = 2;</code>
      */
     public Builder clearProverId() {
       
-      proverId_ = getDefaultInstance().getProverId();
-      onChanged();
-      return this;
-    }
-    /**
-     * <code>string proverId = 2;</code>
-     */
-    public Builder setProverIdBytes(
-        com.google.protobuf.ByteString value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-      
-      proverId_ = value;
+      proverId_ = 0;
       onChanged();
       return this;
     }
 
-    private proj_contract.proto.Location location_ = null;
-    private com.google.protobuf.SingleFieldBuilderV3<
-        proj_contract.proto.Location, proj_contract.proto.Location.Builder, proj_contract.proto.LocationOrBuilder> locationBuilder_;
+    private int timestep_ ;
     /**
-     * <code>.Proj.Proto.Location location = 3;</code>
+     * <code>int32 timestep = 3;</code>
      */
-    public boolean hasLocation() {
-      return locationBuilder_ != null || location_ != null;
+    public int getTimestep() {
+      return timestep_;
     }
     /**
-     * <code>.Proj.Proto.Location location = 3;</code>
+     * <code>int32 timestep = 3;</code>
      */
-    public proj_contract.proto.Location getLocation() {
-      if (locationBuilder_ == null) {
-        return location_ == null ? proj_contract.proto.Location.getDefaultInstance() : location_;
+    public Builder setTimestep(int value) {
+      
+      timestep_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>int32 timestep = 3;</code>
+     */
+    public Builder clearTimestep() {
+      
+      timestep_ = 0;
+      onChanged();
+      return this;
+    }
+
+    private proj_contract.proto.EntityData entityData_ = null;
+    private com.google.protobuf.SingleFieldBuilderV3<
+        proj_contract.proto.EntityData, proj_contract.proto.EntityData.Builder, proj_contract.proto.EntityDataOrBuilder> entityDataBuilder_;
+    /**
+     * <code>.Proj.Proto.EntityData entityData = 4;</code>
+     */
+    public boolean hasEntityData() {
+      return entityDataBuilder_ != null || entityData_ != null;
+    }
+    /**
+     * <code>.Proj.Proto.EntityData entityData = 4;</code>
+     */
+    public proj_contract.proto.EntityData getEntityData() {
+      if (entityDataBuilder_ == null) {
+        return entityData_ == null ? proj_contract.proto.EntityData.getDefaultInstance() : entityData_;
       } else {
-        return locationBuilder_.getMessage();
+        return entityDataBuilder_.getMessage();
       }
     }
     /**
-     * <code>.Proj.Proto.Location location = 3;</code>
+     * <code>.Proj.Proto.EntityData entityData = 4;</code>
      */
-    public Builder setLocation(proj_contract.proto.Location value) {
-      if (locationBuilder_ == null) {
+    public Builder setEntityData(proj_contract.proto.EntityData value) {
+      if (entityDataBuilder_ == null) {
         if (value == null) {
           throw new NullPointerException();
         }
-        location_ = value;
+        entityData_ = value;
         onChanged();
       } else {
-        locationBuilder_.setMessage(value);
+        entityDataBuilder_.setMessage(value);
       }
 
       return this;
     }
     /**
-     * <code>.Proj.Proto.Location location = 3;</code>
+     * <code>.Proj.Proto.EntityData entityData = 4;</code>
      */
-    public Builder setLocation(
-        proj_contract.proto.Location.Builder builderForValue) {
-      if (locationBuilder_ == null) {
-        location_ = builderForValue.build();
+    public Builder setEntityData(
+        proj_contract.proto.EntityData.Builder builderForValue) {
+      if (entityDataBuilder_ == null) {
+        entityData_ = builderForValue.build();
         onChanged();
       } else {
-        locationBuilder_.setMessage(builderForValue.build());
+        entityDataBuilder_.setMessage(builderForValue.build());
       }
 
       return this;
     }
     /**
-     * <code>.Proj.Proto.Location location = 3;</code>
+     * <code>.Proj.Proto.EntityData entityData = 4;</code>
      */
-    public Builder mergeLocation(proj_contract.proto.Location value) {
-      if (locationBuilder_ == null) {
-        if (location_ != null) {
-          location_ =
-            proj_contract.proto.Location.newBuilder(location_).mergeFrom(value).buildPartial();
+    public Builder mergeEntityData(proj_contract.proto.EntityData value) {
+      if (entityDataBuilder_ == null) {
+        if (entityData_ != null) {
+          entityData_ =
+            proj_contract.proto.EntityData.newBuilder(entityData_).mergeFrom(value).buildPartial();
         } else {
-          location_ = value;
+          entityData_ = value;
         }
         onChanged();
       } else {
-        locationBuilder_.mergeFrom(value);
+        entityDataBuilder_.mergeFrom(value);
       }
 
       return this;
     }
     /**
-     * <code>.Proj.Proto.Location location = 3;</code>
+     * <code>.Proj.Proto.EntityData entityData = 4;</code>
      */
-    public Builder clearLocation() {
-      if (locationBuilder_ == null) {
-        location_ = null;
+    public Builder clearEntityData() {
+      if (entityDataBuilder_ == null) {
+        entityData_ = null;
         onChanged();
       } else {
-        location_ = null;
-        locationBuilder_ = null;
+        entityData_ = null;
+        entityDataBuilder_ = null;
       }
 
       return this;
     }
     /**
-     * <code>.Proj.Proto.Location location = 3;</code>
+     * <code>.Proj.Proto.EntityData entityData = 4;</code>
      */
-    public proj_contract.proto.Location.Builder getLocationBuilder() {
+    public proj_contract.proto.EntityData.Builder getEntityDataBuilder() {
       
       onChanged();
-      return getLocationFieldBuilder().getBuilder();
+      return getEntityDataFieldBuilder().getBuilder();
     }
     /**
-     * <code>.Proj.Proto.Location location = 3;</code>
+     * <code>.Proj.Proto.EntityData entityData = 4;</code>
      */
-    public proj_contract.proto.LocationOrBuilder getLocationOrBuilder() {
-      if (locationBuilder_ != null) {
-        return locationBuilder_.getMessageOrBuilder();
+    public proj_contract.proto.EntityDataOrBuilder getEntityDataOrBuilder() {
+      if (entityDataBuilder_ != null) {
+        return entityDataBuilder_.getMessageOrBuilder();
       } else {
-        return location_ == null ?
-            proj_contract.proto.Location.getDefaultInstance() : location_;
+        return entityData_ == null ?
+            proj_contract.proto.EntityData.getDefaultInstance() : entityData_;
       }
     }
     /**
-     * <code>.Proj.Proto.Location location = 3;</code>
+     * <code>.Proj.Proto.EntityData entityData = 4;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
-        proj_contract.proto.Location, proj_contract.proto.Location.Builder, proj_contract.proto.LocationOrBuilder> 
-        getLocationFieldBuilder() {
-      if (locationBuilder_ == null) {
-        locationBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-            proj_contract.proto.Location, proj_contract.proto.Location.Builder, proj_contract.proto.LocationOrBuilder>(
-                getLocation(),
+        proj_contract.proto.EntityData, proj_contract.proto.EntityData.Builder, proj_contract.proto.EntityDataOrBuilder> 
+        getEntityDataFieldBuilder() {
+      if (entityDataBuilder_ == null) {
+        entityDataBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+            proj_contract.proto.EntityData, proj_contract.proto.EntityData.Builder, proj_contract.proto.EntityDataOrBuilder>(
+                getEntityData(),
                 getParentForChildren(),
                 isClean());
-        location_ = null;
+        entityData_ = null;
       }
-      return locationBuilder_;
-    }
-
-    private int time_ ;
-    /**
-     * <code>int32 time = 4;</code>
-     */
-    public int getTime() {
-      return time_;
-    }
-    /**
-     * <code>int32 time = 4;</code>
-     */
-    public Builder setTime(int value) {
-      
-      time_ = value;
-      onChanged();
-      return this;
-    }
-    /**
-     * <code>int32 time = 4;</code>
-     */
-    public Builder clearTime() {
-      
-      time_ = 0;
-      onChanged();
-      return this;
-    }
-
-    private proj_contract.proto.Observation observation_ = null;
-    private com.google.protobuf.SingleFieldBuilderV3<
-        proj_contract.proto.Observation, proj_contract.proto.Observation.Builder, proj_contract.proto.ObservationOrBuilder> observationBuilder_;
-    /**
-     * <code>.Proj.Proto.Observation observation = 5;</code>
-     */
-    public boolean hasObservation() {
-      return observationBuilder_ != null || observation_ != null;
-    }
-    /**
-     * <code>.Proj.Proto.Observation observation = 5;</code>
-     */
-    public proj_contract.proto.Observation getObservation() {
-      if (observationBuilder_ == null) {
-        return observation_ == null ? proj_contract.proto.Observation.getDefaultInstance() : observation_;
-      } else {
-        return observationBuilder_.getMessage();
-      }
-    }
-    /**
-     * <code>.Proj.Proto.Observation observation = 5;</code>
-     */
-    public Builder setObservation(proj_contract.proto.Observation value) {
-      if (observationBuilder_ == null) {
-        if (value == null) {
-          throw new NullPointerException();
-        }
-        observation_ = value;
-        onChanged();
-      } else {
-        observationBuilder_.setMessage(value);
-      }
-
-      return this;
-    }
-    /**
-     * <code>.Proj.Proto.Observation observation = 5;</code>
-     */
-    public Builder setObservation(
-        proj_contract.proto.Observation.Builder builderForValue) {
-      if (observationBuilder_ == null) {
-        observation_ = builderForValue.build();
-        onChanged();
-      } else {
-        observationBuilder_.setMessage(builderForValue.build());
-      }
-
-      return this;
-    }
-    /**
-     * <code>.Proj.Proto.Observation observation = 5;</code>
-     */
-    public Builder mergeObservation(proj_contract.proto.Observation value) {
-      if (observationBuilder_ == null) {
-        if (observation_ != null) {
-          observation_ =
-            proj_contract.proto.Observation.newBuilder(observation_).mergeFrom(value).buildPartial();
-        } else {
-          observation_ = value;
-        }
-        onChanged();
-      } else {
-        observationBuilder_.mergeFrom(value);
-      }
-
-      return this;
-    }
-    /**
-     * <code>.Proj.Proto.Observation observation = 5;</code>
-     */
-    public Builder clearObservation() {
-      if (observationBuilder_ == null) {
-        observation_ = null;
-        onChanged();
-      } else {
-        observation_ = null;
-        observationBuilder_ = null;
-      }
-
-      return this;
-    }
-    /**
-     * <code>.Proj.Proto.Observation observation = 5;</code>
-     */
-    public proj_contract.proto.Observation.Builder getObservationBuilder() {
-      
-      onChanged();
-      return getObservationFieldBuilder().getBuilder();
-    }
-    /**
-     * <code>.Proj.Proto.Observation observation = 5;</code>
-     */
-    public proj_contract.proto.ObservationOrBuilder getObservationOrBuilder() {
-      if (observationBuilder_ != null) {
-        return observationBuilder_.getMessageOrBuilder();
-      } else {
-        return observation_ == null ?
-            proj_contract.proto.Observation.getDefaultInstance() : observation_;
-      }
-    }
-    /**
-     * <code>.Proj.Proto.Observation observation = 5;</code>
-     */
-    private com.google.protobuf.SingleFieldBuilderV3<
-        proj_contract.proto.Observation, proj_contract.proto.Observation.Builder, proj_contract.proto.ObservationOrBuilder> 
-        getObservationFieldBuilder() {
-      if (observationBuilder_ == null) {
-        observationBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-            proj_contract.proto.Observation, proj_contract.proto.Observation.Builder, proj_contract.proto.ObservationOrBuilder>(
-                getObservation(),
-                getParentForChildren(),
-                isClean());
-        observation_ = null;
-      }
-      return observationBuilder_;
+      return entityDataBuilder_;
     }
     @java.lang.Override
     public final Builder setUnknownFields(

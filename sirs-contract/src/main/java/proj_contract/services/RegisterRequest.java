@@ -16,8 +16,7 @@ private static final long serialVersionUID = 0L;
     super(builder);
   }
   private RegisterRequest() {
-    id_ = "";
-    location_ = "";
+    id_ = 0;
     type_ = "";
     speed_ = 0;
   }
@@ -46,16 +45,22 @@ private static final long serialVersionUID = 0L;
           case 0:
             done = true;
             break;
-          case 10: {
-            java.lang.String s = input.readStringRequireUtf8();
+          case 8: {
 
-            id_ = s;
+            id_ = input.readInt32();
             break;
           }
           case 18: {
-            java.lang.String s = input.readStringRequireUtf8();
+            proj_contract.proto.Coordinates.Builder subBuilder = null;
+            if (coordinates_ != null) {
+              subBuilder = coordinates_.toBuilder();
+            }
+            coordinates_ = input.readMessage(proj_contract.proto.Coordinates.parser(), extensionRegistry);
+            if (subBuilder != null) {
+              subBuilder.mergeFrom(coordinates_);
+              coordinates_ = subBuilder.buildPartial();
+            }
 
-            location_ = s;
             break;
           }
           case 26: {
@@ -102,71 +107,33 @@ private static final long serialVersionUID = 0L;
   }
 
   public static final int ID_FIELD_NUMBER = 1;
-  private volatile java.lang.Object id_;
+  private int id_;
   /**
-   * <code>string id = 1;</code>
+   * <code>int32 id = 1;</code>
    */
-  public java.lang.String getId() {
-    java.lang.Object ref = id_;
-    if (ref instanceof java.lang.String) {
-      return (java.lang.String) ref;
-    } else {
-      com.google.protobuf.ByteString bs = 
-          (com.google.protobuf.ByteString) ref;
-      java.lang.String s = bs.toStringUtf8();
-      id_ = s;
-      return s;
-    }
-  }
-  /**
-   * <code>string id = 1;</code>
-   */
-  public com.google.protobuf.ByteString
-      getIdBytes() {
-    java.lang.Object ref = id_;
-    if (ref instanceof java.lang.String) {
-      com.google.protobuf.ByteString b = 
-          com.google.protobuf.ByteString.copyFromUtf8(
-              (java.lang.String) ref);
-      id_ = b;
-      return b;
-    } else {
-      return (com.google.protobuf.ByteString) ref;
-    }
+  public int getId() {
+    return id_;
   }
 
-  public static final int LOCATION_FIELD_NUMBER = 2;
-  private volatile java.lang.Object location_;
+  public static final int COORDINATES_FIELD_NUMBER = 2;
+  private proj_contract.proto.Coordinates coordinates_;
   /**
-   * <code>string location = 2;</code>
+   * <code>.Proj.Proto.Coordinates coordinates = 2;</code>
    */
-  public java.lang.String getLocation() {
-    java.lang.Object ref = location_;
-    if (ref instanceof java.lang.String) {
-      return (java.lang.String) ref;
-    } else {
-      com.google.protobuf.ByteString bs = 
-          (com.google.protobuf.ByteString) ref;
-      java.lang.String s = bs.toStringUtf8();
-      location_ = s;
-      return s;
-    }
+  public boolean hasCoordinates() {
+    return coordinates_ != null;
   }
   /**
-   * <code>string location = 2;</code>
+   * <code>.Proj.Proto.Coordinates coordinates = 2;</code>
    */
-  public com.google.protobuf.ByteString
-      getLocationBytes() {
-    java.lang.Object ref = location_;
-    if (ref instanceof java.lang.String) {
-      com.google.protobuf.ByteString b = 
-          com.google.protobuf.ByteString.copyFromUtf8(
-              (java.lang.String) ref);
-      location_ = b;
-      return b;
-    } else {
-      return (com.google.protobuf.ByteString) ref;
-    }
+  public proj_contract.proto.Coordinates getCoordinates() {
+    return coordinates_ == null ? proj_contract.proto.Coordinates.getDefaultInstance() : coordinates_;
+  }
+  /**
+   * <code>.Proj.Proto.Coordinates coordinates = 2;</code>
+   */
+  public proj_contract.proto.CoordinatesOrBuilder getCoordinatesOrBuilder() {
+    return getCoordinates();
   }
 
   public static final int TYPE_FIELD_NUMBER = 3;
@@ -226,11 +193,11 @@ private static final long serialVersionUID = 0L;
   @java.lang.Override
   public void writeTo(com.google.protobuf.CodedOutputStream output)
                       throws java.io.IOException {
-    if (!getIdBytes().isEmpty()) {
-      com.google.protobuf.GeneratedMessageV3.writeString(output, 1, id_);
+    if (id_ != 0) {
+      output.writeInt32(1, id_);
     }
-    if (!getLocationBytes().isEmpty()) {
-      com.google.protobuf.GeneratedMessageV3.writeString(output, 2, location_);
+    if (coordinates_ != null) {
+      output.writeMessage(2, getCoordinates());
     }
     if (!getTypeBytes().isEmpty()) {
       com.google.protobuf.GeneratedMessageV3.writeString(output, 3, type_);
@@ -247,11 +214,13 @@ private static final long serialVersionUID = 0L;
     if (size != -1) return size;
 
     size = 0;
-    if (!getIdBytes().isEmpty()) {
-      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, id_);
+    if (id_ != 0) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeInt32Size(1, id_);
     }
-    if (!getLocationBytes().isEmpty()) {
-      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, location_);
+    if (coordinates_ != null) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeMessageSize(2, getCoordinates());
     }
     if (!getTypeBytes().isEmpty()) {
       size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, type_);
@@ -276,10 +245,13 @@ private static final long serialVersionUID = 0L;
     proj_contract.services.RegisterRequest other = (proj_contract.services.RegisterRequest) obj;
 
     boolean result = true;
-    result = result && getId()
-        .equals(other.getId());
-    result = result && getLocation()
-        .equals(other.getLocation());
+    result = result && (getId()
+        == other.getId());
+    result = result && (hasCoordinates() == other.hasCoordinates());
+    if (hasCoordinates()) {
+      result = result && getCoordinates()
+          .equals(other.getCoordinates());
+    }
     result = result && getType()
         .equals(other.getType());
     result = result && (getSpeed()
@@ -296,9 +268,11 @@ private static final long serialVersionUID = 0L;
     int hash = 41;
     hash = (19 * hash) + getDescriptor().hashCode();
     hash = (37 * hash) + ID_FIELD_NUMBER;
-    hash = (53 * hash) + getId().hashCode();
-    hash = (37 * hash) + LOCATION_FIELD_NUMBER;
-    hash = (53 * hash) + getLocation().hashCode();
+    hash = (53 * hash) + getId();
+    if (hasCoordinates()) {
+      hash = (37 * hash) + COORDINATES_FIELD_NUMBER;
+      hash = (53 * hash) + getCoordinates().hashCode();
+    }
     hash = (37 * hash) + TYPE_FIELD_NUMBER;
     hash = (53 * hash) + getType().hashCode();
     hash = (37 * hash) + SPEED_FIELD_NUMBER;
@@ -436,10 +410,14 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public Builder clear() {
       super.clear();
-      id_ = "";
+      id_ = 0;
 
-      location_ = "";
-
+      if (coordinatesBuilder_ == null) {
+        coordinates_ = null;
+      } else {
+        coordinates_ = null;
+        coordinatesBuilder_ = null;
+      }
       type_ = "";
 
       speed_ = 0;
@@ -471,7 +449,11 @@ private static final long serialVersionUID = 0L;
     public proj_contract.services.RegisterRequest buildPartial() {
       proj_contract.services.RegisterRequest result = new proj_contract.services.RegisterRequest(this);
       result.id_ = id_;
-      result.location_ = location_;
+      if (coordinatesBuilder_ == null) {
+        result.coordinates_ = coordinates_;
+      } else {
+        result.coordinates_ = coordinatesBuilder_.build();
+      }
       result.type_ = type_;
       result.speed_ = speed_;
       onBuilt();
@@ -522,13 +504,11 @@ private static final long serialVersionUID = 0L;
 
     public Builder mergeFrom(proj_contract.services.RegisterRequest other) {
       if (other == proj_contract.services.RegisterRequest.getDefaultInstance()) return this;
-      if (!other.getId().isEmpty()) {
-        id_ = other.id_;
-        onChanged();
+      if (other.getId() != 0) {
+        setId(other.getId());
       }
-      if (!other.getLocation().isEmpty()) {
-        location_ = other.location_;
-        onChanged();
+      if (other.hasCoordinates()) {
+        mergeCoordinates(other.getCoordinates());
       }
       if (!other.getType().isEmpty()) {
         type_ = other.type_;
@@ -566,142 +546,147 @@ private static final long serialVersionUID = 0L;
       return this;
     }
 
-    private java.lang.Object id_ = "";
+    private int id_ ;
     /**
-     * <code>string id = 1;</code>
+     * <code>int32 id = 1;</code>
      */
-    public java.lang.String getId() {
-      java.lang.Object ref = id_;
-      if (!(ref instanceof java.lang.String)) {
-        com.google.protobuf.ByteString bs =
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        id_ = s;
-        return s;
-      } else {
-        return (java.lang.String) ref;
-      }
+    public int getId() {
+      return id_;
     }
     /**
-     * <code>string id = 1;</code>
+     * <code>int32 id = 1;</code>
      */
-    public com.google.protobuf.ByteString
-        getIdBytes() {
-      java.lang.Object ref = id_;
-      if (ref instanceof String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        id_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
-    }
-    /**
-     * <code>string id = 1;</code>
-     */
-    public Builder setId(
-        java.lang.String value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  
+    public Builder setId(int value) {
+      
       id_ = value;
       onChanged();
       return this;
     }
     /**
-     * <code>string id = 1;</code>
+     * <code>int32 id = 1;</code>
      */
     public Builder clearId() {
       
-      id_ = getDefaultInstance().getId();
-      onChanged();
-      return this;
-    }
-    /**
-     * <code>string id = 1;</code>
-     */
-    public Builder setIdBytes(
-        com.google.protobuf.ByteString value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-      
-      id_ = value;
+      id_ = 0;
       onChanged();
       return this;
     }
 
-    private java.lang.Object location_ = "";
+    private proj_contract.proto.Coordinates coordinates_ = null;
+    private com.google.protobuf.SingleFieldBuilderV3<
+        proj_contract.proto.Coordinates, proj_contract.proto.Coordinates.Builder, proj_contract.proto.CoordinatesOrBuilder> coordinatesBuilder_;
     /**
-     * <code>string location = 2;</code>
+     * <code>.Proj.Proto.Coordinates coordinates = 2;</code>
      */
-    public java.lang.String getLocation() {
-      java.lang.Object ref = location_;
-      if (!(ref instanceof java.lang.String)) {
-        com.google.protobuf.ByteString bs =
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        location_ = s;
-        return s;
+    public boolean hasCoordinates() {
+      return coordinatesBuilder_ != null || coordinates_ != null;
+    }
+    /**
+     * <code>.Proj.Proto.Coordinates coordinates = 2;</code>
+     */
+    public proj_contract.proto.Coordinates getCoordinates() {
+      if (coordinatesBuilder_ == null) {
+        return coordinates_ == null ? proj_contract.proto.Coordinates.getDefaultInstance() : coordinates_;
       } else {
-        return (java.lang.String) ref;
+        return coordinatesBuilder_.getMessage();
       }
     }
     /**
-     * <code>string location = 2;</code>
+     * <code>.Proj.Proto.Coordinates coordinates = 2;</code>
      */
-    public com.google.protobuf.ByteString
-        getLocationBytes() {
-      java.lang.Object ref = location_;
-      if (ref instanceof String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        location_ = b;
-        return b;
+    public Builder setCoordinates(proj_contract.proto.Coordinates value) {
+      if (coordinatesBuilder_ == null) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        coordinates_ = value;
+        onChanged();
       } else {
-        return (com.google.protobuf.ByteString) ref;
+        coordinatesBuilder_.setMessage(value);
+      }
+
+      return this;
+    }
+    /**
+     * <code>.Proj.Proto.Coordinates coordinates = 2;</code>
+     */
+    public Builder setCoordinates(
+        proj_contract.proto.Coordinates.Builder builderForValue) {
+      if (coordinatesBuilder_ == null) {
+        coordinates_ = builderForValue.build();
+        onChanged();
+      } else {
+        coordinatesBuilder_.setMessage(builderForValue.build());
+      }
+
+      return this;
+    }
+    /**
+     * <code>.Proj.Proto.Coordinates coordinates = 2;</code>
+     */
+    public Builder mergeCoordinates(proj_contract.proto.Coordinates value) {
+      if (coordinatesBuilder_ == null) {
+        if (coordinates_ != null) {
+          coordinates_ =
+            proj_contract.proto.Coordinates.newBuilder(coordinates_).mergeFrom(value).buildPartial();
+        } else {
+          coordinates_ = value;
+        }
+        onChanged();
+      } else {
+        coordinatesBuilder_.mergeFrom(value);
+      }
+
+      return this;
+    }
+    /**
+     * <code>.Proj.Proto.Coordinates coordinates = 2;</code>
+     */
+    public Builder clearCoordinates() {
+      if (coordinatesBuilder_ == null) {
+        coordinates_ = null;
+        onChanged();
+      } else {
+        coordinates_ = null;
+        coordinatesBuilder_ = null;
+      }
+
+      return this;
+    }
+    /**
+     * <code>.Proj.Proto.Coordinates coordinates = 2;</code>
+     */
+    public proj_contract.proto.Coordinates.Builder getCoordinatesBuilder() {
+      
+      onChanged();
+      return getCoordinatesFieldBuilder().getBuilder();
+    }
+    /**
+     * <code>.Proj.Proto.Coordinates coordinates = 2;</code>
+     */
+    public proj_contract.proto.CoordinatesOrBuilder getCoordinatesOrBuilder() {
+      if (coordinatesBuilder_ != null) {
+        return coordinatesBuilder_.getMessageOrBuilder();
+      } else {
+        return coordinates_ == null ?
+            proj_contract.proto.Coordinates.getDefaultInstance() : coordinates_;
       }
     }
     /**
-     * <code>string location = 2;</code>
+     * <code>.Proj.Proto.Coordinates coordinates = 2;</code>
      */
-    public Builder setLocation(
-        java.lang.String value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  
-      location_ = value;
-      onChanged();
-      return this;
-    }
-    /**
-     * <code>string location = 2;</code>
-     */
-    public Builder clearLocation() {
-      
-      location_ = getDefaultInstance().getLocation();
-      onChanged();
-      return this;
-    }
-    /**
-     * <code>string location = 2;</code>
-     */
-    public Builder setLocationBytes(
-        com.google.protobuf.ByteString value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-      
-      location_ = value;
-      onChanged();
-      return this;
+    private com.google.protobuf.SingleFieldBuilderV3<
+        proj_contract.proto.Coordinates, proj_contract.proto.Coordinates.Builder, proj_contract.proto.CoordinatesOrBuilder> 
+        getCoordinatesFieldBuilder() {
+      if (coordinatesBuilder_ == null) {
+        coordinatesBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+            proj_contract.proto.Coordinates, proj_contract.proto.Coordinates.Builder, proj_contract.proto.CoordinatesOrBuilder>(
+                getCoordinates(),
+                getParentForChildren(),
+                isClean());
+        coordinates_ = null;
+      }
+      return coordinatesBuilder_;
     }
 
     private java.lang.Object type_ = "";

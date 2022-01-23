@@ -4,6 +4,7 @@ package Proj.Proto;
 option java_multiple_files = true;
 option java_package = "proj_contract.services";
 
+import "Data.proto";
 import "LocationClaim.proto";
 
 service ServerService {
@@ -11,14 +12,14 @@ service ServerService {
 	rpc broadcastLocationClaim(LocationClaim) returns (ServerResponse);
 }
 
-message RegisterRequest{
-	string id = 1;
-	string location = 2;
+message RegisterRequest {
+	int32 id = 1;
+	Coordinates coordinates = 2;
 	string type = 3;
 	int32 speed = 4;
 }
 
-message ServerResponse{
+message ServerResponse {
 	string responseMessage = 1;
 	int32 responseCode = 2;
 }

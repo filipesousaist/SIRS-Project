@@ -33,9 +33,10 @@ public final class ServerServiceOuterClass {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\023ServerService.proto\022\nProj.Proto\032\023Locat" +
-      "ionClaim.proto\"L\n\017RegisterRequest\022\n\n\002id\030" +
-      "\001 \001(\t\022\020\n\010location\030\002 \001(\t\022\014\n\004type\030\003 \001(\t\022\r\n" +
+      "\n\023ServerService.proto\022\nProj.Proto\032\nData." +
+      "proto\032\023LocationClaim.proto\"h\n\017RegisterRe" +
+      "quest\022\n\n\002id\030\001 \001(\005\022,\n\013coordinates\030\002 \001(\0132\027" +
+      ".Proj.Proto.Coordinates\022\014\n\004type\030\003 \001(\t\022\r\n" +
       "\005speed\030\004 \001(\005\"?\n\016ServerResponse\022\027\n\017respon" +
       "seMessage\030\001 \001(\t\022\024\n\014responseCode\030\002 \001(\0052\245\001" +
       "\n\rServerService\022C\n\010register\022\033.Proj.Proto" +
@@ -56,6 +57,7 @@ public final class ServerServiceOuterClass {
     com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
         new com.google.protobuf.Descriptors.FileDescriptor[] {
+          proj_contract.proto.DataProto.getDescriptor(),
           proj_contract.proto.LocationClaimProto.getDescriptor(),
         }, assigner);
     internal_static_Proj_Proto_RegisterRequest_descriptor =
@@ -63,13 +65,14 @@ public final class ServerServiceOuterClass {
     internal_static_Proj_Proto_RegisterRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_Proj_Proto_RegisterRequest_descriptor,
-        new java.lang.String[] { "Id", "Location", "Type", "Speed", });
+        new java.lang.String[] { "Id", "Coordinates", "Type", "Speed", });
     internal_static_Proj_Proto_ServerResponse_descriptor =
       getDescriptor().getMessageTypes().get(1);
     internal_static_Proj_Proto_ServerResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_Proj_Proto_ServerResponse_descriptor,
         new java.lang.String[] { "ResponseMessage", "ResponseCode", });
+    proj_contract.proto.DataProto.getDescriptor();
     proj_contract.proto.LocationClaimProto.getDescriptor();
   }
 

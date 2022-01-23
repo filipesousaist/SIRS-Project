@@ -11,8 +11,7 @@ public class App {
 	long timeInMillis = System.currentTimeMillis(); // current time in milliseconds
     public static void main( String[] args ){ // args are the map size
     	EnvironmentServer serverEn = new EnvironmentServer(Integer.parseInt(args[0]),Integer.parseInt(args[1]));
-    	ServerService service = new ServerService();
-    	service.setServer(serverEn);    	   	
+    	ServerService service = new ServerService(serverEn);
     	Server server = ServerBuilder.forPort(9090).addService(service).build(); 
 
        	try {

@@ -8,53 +8,30 @@ public interface LocationClaimOrBuilder extends
     com.google.protobuf.MessageOrBuilder {
 
   /**
-   * <code>string claimId = 1;</code>
+   * <code>int32 claimId = 1;</code>
    */
-  java.lang.String getClaimId();
-  /**
-   * <code>string claimId = 1;</code>
-   */
-  com.google.protobuf.ByteString
-      getClaimIdBytes();
+  int getClaimId();
 
   /**
-   * <code>string proverId = 2;</code>
+   * <code>int32 proverId = 2;</code>
    */
-  java.lang.String getProverId();
-  /**
-   * <code>string proverId = 2;</code>
-   */
-  com.google.protobuf.ByteString
-      getProverIdBytes();
+  int getProverId();
 
   /**
-   * <code>.Proj.Proto.Location location = 3;</code>
+   * <code>int32 timestep = 3;</code>
    */
-  boolean hasLocation();
-  /**
-   * <code>.Proj.Proto.Location location = 3;</code>
-   */
-  proj_contract.proto.Location getLocation();
-  /**
-   * <code>.Proj.Proto.Location location = 3;</code>
-   */
-  proj_contract.proto.LocationOrBuilder getLocationOrBuilder();
+  int getTimestep();
 
   /**
-   * <code>int32 time = 4;</code>
+   * <code>.Proj.Proto.EntityData entityData = 4;</code>
    */
-  int getTime();
-
+  boolean hasEntityData();
   /**
-   * <code>.Proj.Proto.Observation observation = 5;</code>
+   * <code>.Proj.Proto.EntityData entityData = 4;</code>
    */
-  boolean hasObservation();
+  proj_contract.proto.EntityData getEntityData();
   /**
-   * <code>.Proj.Proto.Observation observation = 5;</code>
+   * <code>.Proj.Proto.EntityData entityData = 4;</code>
    */
-  proj_contract.proto.Observation getObservation();
-  /**
-   * <code>.Proj.Proto.Observation observation = 5;</code>
-   */
-  proj_contract.proto.ObservationOrBuilder getObservationOrBuilder();
+  proj_contract.proto.EntityDataOrBuilder getEntityDataOrBuilder();
 }

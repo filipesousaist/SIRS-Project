@@ -15,7 +15,7 @@ public class MapDisplay extends Canvas {
 	private int _width;
 	private int _height;
 	
-	private Map _map;
+	private Road _map;
 	private int _mapWidth;
 	private int _mapHeight;
 	
@@ -23,7 +23,7 @@ public class MapDisplay extends Canvas {
 	private Graphics _graphics;
 	private BufferStrategy _bufferStrategy;
 	
-	public MapDisplay(Map map, int mapWidth, int mapHeight) {
+	public MapDisplay(Road map, int mapWidth, int mapHeight) {
 		_map = map;
 		_mapWidth = mapWidth;
 		_mapHeight = mapHeight;

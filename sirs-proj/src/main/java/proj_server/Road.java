@@ -7,7 +7,7 @@ import java.util.List;
 import proj_server.exception.MapPositionOutOfBoundsException;
 import proj_server.exception.MapPositionTakenException;
 
-public class Map {	
+public class Road {	
 	private int _width;
 	private int _height;
 	private int _size;
@@ -16,7 +16,7 @@ public class Map {
 	
 	MapDisplay _display;
 	
-	public Map(int width, int height) {
+	public Road(int width, int height) {
 		_width = width;
 		_height = height;
 		_size = width * height;

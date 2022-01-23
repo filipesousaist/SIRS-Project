@@ -28,13 +28,12 @@ public final class LocationClaimProto {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\023LocationClaim.proto\022\nProj.Proto\032\021Obser" +
-      "vation.proto\032\016Location.proto\"\226\001\n\rLocatio" +
-      "nClaim\022\017\n\007claimId\030\001 \001(\t\022\020\n\010proverId\030\002 \001(" +
-      "\t\022&\n\010location\030\003 \001(\0132\024.Proj.Proto.Locatio" +
-      "n\022\014\n\004time\030\004 \001(\005\022,\n\013observation\030\005 \001(\0132\027.P" +
-      "roj.Proto.ObservationB+\n\023proj_contract.p" +
-      "rotoB\022LocationClaimProtoP\001b\006proto3"
+      "\n\023LocationClaim.proto\022\nProj.Proto\032\nData." +
+      "proto\"p\n\rLocationClaim\022\017\n\007claimId\030\001 \001(\005\022" +
+      "\020\n\010proverId\030\002 \001(\005\022\020\n\010timestep\030\003 \001(\005\022*\n\ne" +
+      "ntityData\030\004 \001(\0132\026.Proj.Proto.EntityDataB" +
+      "+\n\023proj_contract.protoB\022LocationClaimPro" +
+      "toP\001b\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -47,17 +46,15 @@ public final class LocationClaimProto {
     com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
         new com.google.protobuf.Descriptors.FileDescriptor[] {
-          proj_contract.proto.ObservationProto.getDescriptor(),
-          proj_contract.proto.LocationProto.getDescriptor(),
+          proj_contract.proto.DataProto.getDescriptor(),
         }, assigner);
     internal_static_Proj_Proto_LocationClaim_descriptor =
       getDescriptor().getMessageTypes().get(0);
     internal_static_Proj_Proto_LocationClaim_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_Proj_Proto_LocationClaim_descriptor,
-        new java.lang.String[] { "ClaimId", "ProverId", "Location", "Time", "Observation", });
-    proj_contract.proto.ObservationProto.getDescriptor();
-    proj_contract.proto.LocationProto.getDescriptor();
+        new java.lang.String[] { "ClaimId", "ProverId", "Timestep", "EntityData", });
+    proj_contract.proto.DataProto.getDescriptor();
   }
 
   // @@protoc_insertion_point(outer_class_scope)
