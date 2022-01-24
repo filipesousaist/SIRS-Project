@@ -6,11 +6,11 @@ import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
 import io.grpc.Server;
 import io.grpc.ServerBuilder;
-import proj_client.AuthoritativeRSU;
-import proj_client.Entity;
-import proj_client.EntityServer;
-import proj_client.NonAuthoritativeRSU;
-import proj_client.SmartVehicle;
+import proj_client.base.EntityServer;
+import proj_client.entities.AuthoritativeRSU;
+import proj_client.entities.Entity;
+import proj_client.entities.NonAuthoritativeRSU;
+import proj_client.entities.SmartVehicle;
 import proj_client.services.ClientService;
 import proj_contract.services.RegisterRequest;
 import proj_contract.services.ServerResponse;
@@ -57,11 +57,11 @@ public class ClientApp {
 		Entity entity;
 		switch (type) {
 			case "SV":
-				entity = new SmartVehicle(id, x, y, speed); break;
+				entity = new SmartVehicle(id, x, y, 0, speed); break;
 			case "A-RSU":
-				entity = new AuthoritativeRSU(id, x, y); break;
+				entity = new AuthoritativeRSU(id, x, y, 0); break;
 			case "NA-RSU":
-				entity = new NonAuthoritativeRSU(id, x, y); break;
+				entity = new NonAuthoritativeRSU(id, x, y, 0); break;
 			default:
 				entity = null; break;
 		}

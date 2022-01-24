@@ -10,7 +10,7 @@ import "LocationClaim.proto";
 service ClientService {
 	rpc receiveLocationClaim(LocationClaim) returns (ClientResponse);
 	rpc collectDataFromSensors(EntitiesData) returns (ClientResponse);
-	rpc updateTimeStep(TimestepData) returns (ClientResponse);	
+	rpc updateTimestepData(TimestepData) returns (ClientResponse);	
 }
 message ClientResponse{
 	string responseMessage = 1;

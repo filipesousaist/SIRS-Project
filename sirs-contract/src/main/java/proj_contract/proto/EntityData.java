@@ -16,8 +16,8 @@ private static final long serialVersionUID = 0L;
     super(builder);
   }
   private EntityData() {
-    type_ = "";
     id_ = 0;
+    type_ = "";
   }
 
   @java.lang.Override
@@ -44,13 +44,18 @@ private static final long serialVersionUID = 0L;
           case 0:
             done = true;
             break;
-          case 10: {
+          case 8: {
+
+            id_ = input.readInt32();
+            break;
+          }
+          case 18: {
             java.lang.String s = input.readStringRequireUtf8();
 
             type_ = s;
             break;
           }
-          case 18: {
+          case 26: {
             proj_contract.proto.Coordinates.Builder subBuilder = null;
             if (coordinates_ != null) {
               subBuilder = coordinates_.toBuilder();
@@ -61,11 +66,6 @@ private static final long serialVersionUID = 0L;
               coordinates_ = subBuilder.buildPartial();
             }
 
-            break;
-          }
-          case 24: {
-
-            id_ = input.readInt32();
             break;
           }
           default: {
@@ -100,10 +100,19 @@ private static final long serialVersionUID = 0L;
             proj_contract.proto.EntityData.class, proj_contract.proto.EntityData.Builder.class);
   }
 
-  public static final int TYPE_FIELD_NUMBER = 1;
+  public static final int ID_FIELD_NUMBER = 1;
+  private int id_;
+  /**
+   * <code>int32 id = 1;</code>
+   */
+  public int getId() {
+    return id_;
+  }
+
+  public static final int TYPE_FIELD_NUMBER = 2;
   private volatile java.lang.Object type_;
   /**
-   * <code>string type = 1;</code>
+   * <code>string type = 2;</code>
    */
   public java.lang.String getType() {
     java.lang.Object ref = type_;
@@ -118,7 +127,7 @@ private static final long serialVersionUID = 0L;
     }
   }
   /**
-   * <code>string type = 1;</code>
+   * <code>string type = 2;</code>
    */
   public com.google.protobuf.ByteString
       getTypeBytes() {
@@ -134,34 +143,25 @@ private static final long serialVersionUID = 0L;
     }
   }
 
-  public static final int COORDINATES_FIELD_NUMBER = 2;
+  public static final int COORDINATES_FIELD_NUMBER = 3;
   private proj_contract.proto.Coordinates coordinates_;
   /**
-   * <code>.Proj.Proto.Coordinates coordinates = 2;</code>
+   * <code>.Proj.Proto.Coordinates coordinates = 3;</code>
    */
   public boolean hasCoordinates() {
     return coordinates_ != null;
   }
   /**
-   * <code>.Proj.Proto.Coordinates coordinates = 2;</code>
+   * <code>.Proj.Proto.Coordinates coordinates = 3;</code>
    */
   public proj_contract.proto.Coordinates getCoordinates() {
     return coordinates_ == null ? proj_contract.proto.Coordinates.getDefaultInstance() : coordinates_;
   }
   /**
-   * <code>.Proj.Proto.Coordinates coordinates = 2;</code>
+   * <code>.Proj.Proto.Coordinates coordinates = 3;</code>
    */
   public proj_contract.proto.CoordinatesOrBuilder getCoordinatesOrBuilder() {
     return getCoordinates();
-  }
-
-  public static final int ID_FIELD_NUMBER = 3;
-  private int id_;
-  /**
-   * <code>int32 id = 3;</code>
-   */
-  public int getId() {
-    return id_;
   }
 
   private byte memoizedIsInitialized = -1;
@@ -178,14 +178,14 @@ private static final long serialVersionUID = 0L;
   @java.lang.Override
   public void writeTo(com.google.protobuf.CodedOutputStream output)
                       throws java.io.IOException {
+    if (id_ != 0) {
+      output.writeInt32(1, id_);
+    }
     if (!getTypeBytes().isEmpty()) {
-      com.google.protobuf.GeneratedMessageV3.writeString(output, 1, type_);
+      com.google.protobuf.GeneratedMessageV3.writeString(output, 2, type_);
     }
     if (coordinates_ != null) {
-      output.writeMessage(2, getCoordinates());
-    }
-    if (id_ != 0) {
-      output.writeInt32(3, id_);
+      output.writeMessage(3, getCoordinates());
     }
     unknownFields.writeTo(output);
   }
@@ -196,16 +196,16 @@ private static final long serialVersionUID = 0L;
     if (size != -1) return size;
 
     size = 0;
+    if (id_ != 0) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeInt32Size(1, id_);
+    }
     if (!getTypeBytes().isEmpty()) {
-      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, type_);
+      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, type_);
     }
     if (coordinates_ != null) {
       size += com.google.protobuf.CodedOutputStream
-        .computeMessageSize(2, getCoordinates());
-    }
-    if (id_ != 0) {
-      size += com.google.protobuf.CodedOutputStream
-        .computeInt32Size(3, id_);
+        .computeMessageSize(3, getCoordinates());
     }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
@@ -223,6 +223,8 @@ private static final long serialVersionUID = 0L;
     proj_contract.proto.EntityData other = (proj_contract.proto.EntityData) obj;
 
     boolean result = true;
+    result = result && (getId()
+        == other.getId());
     result = result && getType()
         .equals(other.getType());
     result = result && (hasCoordinates() == other.hasCoordinates());
@@ -230,8 +232,6 @@ private static final long serialVersionUID = 0L;
       result = result && getCoordinates()
           .equals(other.getCoordinates());
     }
-    result = result && (getId()
-        == other.getId());
     result = result && unknownFields.equals(other.unknownFields);
     return result;
   }
@@ -243,14 +243,14 @@ private static final long serialVersionUID = 0L;
     }
     int hash = 41;
     hash = (19 * hash) + getDescriptor().hashCode();
+    hash = (37 * hash) + ID_FIELD_NUMBER;
+    hash = (53 * hash) + getId();
     hash = (37 * hash) + TYPE_FIELD_NUMBER;
     hash = (53 * hash) + getType().hashCode();
     if (hasCoordinates()) {
       hash = (37 * hash) + COORDINATES_FIELD_NUMBER;
       hash = (53 * hash) + getCoordinates().hashCode();
     }
-    hash = (37 * hash) + ID_FIELD_NUMBER;
-    hash = (53 * hash) + getId();
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
     return hash;
@@ -384,6 +384,8 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public Builder clear() {
       super.clear();
+      id_ = 0;
+
       type_ = "";
 
       if (coordinatesBuilder_ == null) {
@@ -392,8 +394,6 @@ private static final long serialVersionUID = 0L;
         coordinates_ = null;
         coordinatesBuilder_ = null;
       }
-      id_ = 0;
-
       return this;
     }
 
@@ -420,13 +420,13 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public proj_contract.proto.EntityData buildPartial() {
       proj_contract.proto.EntityData result = new proj_contract.proto.EntityData(this);
+      result.id_ = id_;
       result.type_ = type_;
       if (coordinatesBuilder_ == null) {
         result.coordinates_ = coordinates_;
       } else {
         result.coordinates_ = coordinatesBuilder_.build();
       }
-      result.id_ = id_;
       onBuilt();
       return result;
     }
@@ -475,15 +475,15 @@ private static final long serialVersionUID = 0L;
 
     public Builder mergeFrom(proj_contract.proto.EntityData other) {
       if (other == proj_contract.proto.EntityData.getDefaultInstance()) return this;
+      if (other.getId() != 0) {
+        setId(other.getId());
+      }
       if (!other.getType().isEmpty()) {
         type_ = other.type_;
         onChanged();
       }
       if (other.hasCoordinates()) {
         mergeCoordinates(other.getCoordinates());
-      }
-      if (other.getId() != 0) {
-        setId(other.getId());
       }
       this.mergeUnknownFields(other.unknownFields);
       onChanged();
@@ -514,9 +514,35 @@ private static final long serialVersionUID = 0L;
       return this;
     }
 
+    private int id_ ;
+    /**
+     * <code>int32 id = 1;</code>
+     */
+    public int getId() {
+      return id_;
+    }
+    /**
+     * <code>int32 id = 1;</code>
+     */
+    public Builder setId(int value) {
+      
+      id_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>int32 id = 1;</code>
+     */
+    public Builder clearId() {
+      
+      id_ = 0;
+      onChanged();
+      return this;
+    }
+
     private java.lang.Object type_ = "";
     /**
-     * <code>string type = 1;</code>
+     * <code>string type = 2;</code>
      */
     public java.lang.String getType() {
       java.lang.Object ref = type_;
@@ -531,7 +557,7 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <code>string type = 1;</code>
+     * <code>string type = 2;</code>
      */
     public com.google.protobuf.ByteString
         getTypeBytes() {
@@ -547,7 +573,7 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <code>string type = 1;</code>
+     * <code>string type = 2;</code>
      */
     public Builder setType(
         java.lang.String value) {
@@ -560,7 +586,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>string type = 1;</code>
+     * <code>string type = 2;</code>
      */
     public Builder clearType() {
       
@@ -569,7 +595,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>string type = 1;</code>
+     * <code>string type = 2;</code>
      */
     public Builder setTypeBytes(
         com.google.protobuf.ByteString value) {
@@ -587,13 +613,13 @@ private static final long serialVersionUID = 0L;
     private com.google.protobuf.SingleFieldBuilderV3<
         proj_contract.proto.Coordinates, proj_contract.proto.Coordinates.Builder, proj_contract.proto.CoordinatesOrBuilder> coordinatesBuilder_;
     /**
-     * <code>.Proj.Proto.Coordinates coordinates = 2;</code>
+     * <code>.Proj.Proto.Coordinates coordinates = 3;</code>
      */
     public boolean hasCoordinates() {
       return coordinatesBuilder_ != null || coordinates_ != null;
     }
     /**
-     * <code>.Proj.Proto.Coordinates coordinates = 2;</code>
+     * <code>.Proj.Proto.Coordinates coordinates = 3;</code>
      */
     public proj_contract.proto.Coordinates getCoordinates() {
       if (coordinatesBuilder_ == null) {
@@ -603,7 +629,7 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <code>.Proj.Proto.Coordinates coordinates = 2;</code>
+     * <code>.Proj.Proto.Coordinates coordinates = 3;</code>
      */
     public Builder setCoordinates(proj_contract.proto.Coordinates value) {
       if (coordinatesBuilder_ == null) {
@@ -619,7 +645,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>.Proj.Proto.Coordinates coordinates = 2;</code>
+     * <code>.Proj.Proto.Coordinates coordinates = 3;</code>
      */
     public Builder setCoordinates(
         proj_contract.proto.Coordinates.Builder builderForValue) {
@@ -633,7 +659,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>.Proj.Proto.Coordinates coordinates = 2;</code>
+     * <code>.Proj.Proto.Coordinates coordinates = 3;</code>
      */
     public Builder mergeCoordinates(proj_contract.proto.Coordinates value) {
       if (coordinatesBuilder_ == null) {
@@ -651,7 +677,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>.Proj.Proto.Coordinates coordinates = 2;</code>
+     * <code>.Proj.Proto.Coordinates coordinates = 3;</code>
      */
     public Builder clearCoordinates() {
       if (coordinatesBuilder_ == null) {
@@ -665,7 +691,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>.Proj.Proto.Coordinates coordinates = 2;</code>
+     * <code>.Proj.Proto.Coordinates coordinates = 3;</code>
      */
     public proj_contract.proto.Coordinates.Builder getCoordinatesBuilder() {
       
@@ -673,7 +699,7 @@ private static final long serialVersionUID = 0L;
       return getCoordinatesFieldBuilder().getBuilder();
     }
     /**
-     * <code>.Proj.Proto.Coordinates coordinates = 2;</code>
+     * <code>.Proj.Proto.Coordinates coordinates = 3;</code>
      */
     public proj_contract.proto.CoordinatesOrBuilder getCoordinatesOrBuilder() {
       if (coordinatesBuilder_ != null) {
@@ -684,7 +710,7 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <code>.Proj.Proto.Coordinates coordinates = 2;</code>
+     * <code>.Proj.Proto.Coordinates coordinates = 3;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         proj_contract.proto.Coordinates, proj_contract.proto.Coordinates.Builder, proj_contract.proto.CoordinatesOrBuilder> 
@@ -698,32 +724,6 @@ private static final long serialVersionUID = 0L;
         coordinates_ = null;
       }
       return coordinatesBuilder_;
-    }
-
-    private int id_ ;
-    /**
-     * <code>int32 id = 3;</code>
-     */
-    public int getId() {
-      return id_;
-    }
-    /**
-     * <code>int32 id = 3;</code>
-     */
-    public Builder setId(int value) {
-      
-      id_ = value;
-      onChanged();
-      return this;
-    }
-    /**
-     * <code>int32 id = 3;</code>
-     */
-    public Builder clearId() {
-      
-      id_ = 0;
-      onChanged();
-      return this;
     }
     @java.lang.Override
     public final Builder setUnknownFields(

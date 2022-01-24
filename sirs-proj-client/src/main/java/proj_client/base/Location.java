@@ -1,4 +1,4 @@
-package proj_client;
+package proj_client.base;
 
 import proj_contract.proto.Coordinates;
 

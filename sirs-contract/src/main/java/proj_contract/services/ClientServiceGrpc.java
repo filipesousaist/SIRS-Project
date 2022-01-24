@@ -92,35 +92,35 @@ public final class ClientServiceGrpc {
   }
 
   private static volatile io.grpc.MethodDescriptor<proj_contract.proto.TimestepData,
-      proj_contract.services.ClientResponse> getUpdateTimeStepMethod;
+      proj_contract.services.ClientResponse> getUpdateTimestepDataMethod;
 
   @io.grpc.stub.annotations.RpcMethod(
-      fullMethodName = SERVICE_NAME + '/' + "updateTimeStep",
+      fullMethodName = SERVICE_NAME + '/' + "updateTimestepData",
       requestType = proj_contract.proto.TimestepData.class,
       responseType = proj_contract.services.ClientResponse.class,
       methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
   public static io.grpc.MethodDescriptor<proj_contract.proto.TimestepData,
-      proj_contract.services.ClientResponse> getUpdateTimeStepMethod() {
-    io.grpc.MethodDescriptor<proj_contract.proto.TimestepData, proj_contract.services.ClientResponse> getUpdateTimeStepMethod;
-    if ((getUpdateTimeStepMethod = ClientServiceGrpc.getUpdateTimeStepMethod) == null) {
+      proj_contract.services.ClientResponse> getUpdateTimestepDataMethod() {
+    io.grpc.MethodDescriptor<proj_contract.proto.TimestepData, proj_contract.services.ClientResponse> getUpdateTimestepDataMethod;
+    if ((getUpdateTimestepDataMethod = ClientServiceGrpc.getUpdateTimestepDataMethod) == null) {
       synchronized (ClientServiceGrpc.class) {
-        if ((getUpdateTimeStepMethod = ClientServiceGrpc.getUpdateTimeStepMethod) == null) {
-          ClientServiceGrpc.getUpdateTimeStepMethod = getUpdateTimeStepMethod = 
+        if ((getUpdateTimestepDataMethod = ClientServiceGrpc.getUpdateTimestepDataMethod) == null) {
+          ClientServiceGrpc.getUpdateTimestepDataMethod = getUpdateTimestepDataMethod = 
               io.grpc.MethodDescriptor.<proj_contract.proto.TimestepData, proj_contract.services.ClientResponse>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
               .setFullMethodName(generateFullMethodName(
-                  "Proj.Proto.ClientService", "updateTimeStep"))
+                  "Proj.Proto.ClientService", "updateTimestepData"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
                   proj_contract.proto.TimestepData.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
                   proj_contract.services.ClientResponse.getDefaultInstance()))
-                  .setSchemaDescriptor(new ClientServiceMethodDescriptorSupplier("updateTimeStep"))
+                  .setSchemaDescriptor(new ClientServiceMethodDescriptorSupplier("updateTimestepData"))
                   .build();
           }
         }
      }
-     return getUpdateTimeStepMethod;
+     return getUpdateTimestepDataMethod;
   }
 
   /**
@@ -166,9 +166,9 @@ public final class ClientServiceGrpc {
 
     /**
      */
-    public void updateTimeStep(proj_contract.proto.TimestepData request,
+    public void updateTimestepData(proj_contract.proto.TimestepData request,
         io.grpc.stub.StreamObserver<proj_contract.services.ClientResponse> responseObserver) {
-      asyncUnimplementedUnaryCall(getUpdateTimeStepMethod(), responseObserver);
+      asyncUnimplementedUnaryCall(getUpdateTimestepDataMethod(), responseObserver);
     }
 
     @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
@@ -188,12 +188,12 @@ public final class ClientServiceGrpc {
                 proj_contract.services.ClientResponse>(
                   this, METHODID_COLLECT_DATA_FROM_SENSORS)))
           .addMethod(
-            getUpdateTimeStepMethod(),
+            getUpdateTimestepDataMethod(),
             asyncUnaryCall(
               new MethodHandlers<
                 proj_contract.proto.TimestepData,
                 proj_contract.services.ClientResponse>(
-                  this, METHODID_UPDATE_TIME_STEP)))
+                  this, METHODID_UPDATE_TIMESTEP_DATA)))
           .build();
     }
   }
@@ -234,10 +234,10 @@ public final class ClientServiceGrpc {
 
     /**
      */
-    public void updateTimeStep(proj_contract.proto.TimestepData request,
+    public void updateTimestepData(proj_contract.proto.TimestepData request,
         io.grpc.stub.StreamObserver<proj_contract.services.ClientResponse> responseObserver) {
       asyncUnaryCall(
-          getChannel().newCall(getUpdateTimeStepMethod(), getCallOptions()), request, responseObserver);
+          getChannel().newCall(getUpdateTimestepDataMethod(), getCallOptions()), request, responseObserver);
     }
   }
 
@@ -275,9 +275,9 @@ public final class ClientServiceGrpc {
 
     /**
      */
-    public proj_contract.services.ClientResponse updateTimeStep(proj_contract.proto.TimestepData request) {
+    public proj_contract.services.ClientResponse updateTimestepData(proj_contract.proto.TimestepData request) {
       return blockingUnaryCall(
-          getChannel(), getUpdateTimeStepMethod(), getCallOptions(), request);
+          getChannel(), getUpdateTimestepDataMethod(), getCallOptions(), request);
     }
   }
 
@@ -317,16 +317,16 @@ public final class ClientServiceGrpc {
 
     /**
      */
-    public com.google.common.util.concurrent.ListenableFuture<proj_contract.services.ClientResponse> updateTimeStep(
+    public com.google.common.util.concurrent.ListenableFuture<proj_contract.services.ClientResponse> updateTimestepData(
         proj_contract.proto.TimestepData request) {
       return futureUnaryCall(
-          getChannel().newCall(getUpdateTimeStepMethod(), getCallOptions()), request);
+          getChannel().newCall(getUpdateTimestepDataMethod(), getCallOptions()), request);
     }
   }
 
   private static final int METHODID_RECEIVE_LOCATION_CLAIM = 0;
   private static final int METHODID_COLLECT_DATA_FROM_SENSORS = 1;
-  private static final int METHODID_UPDATE_TIME_STEP = 2;
+  private static final int METHODID_UPDATE_TIMESTEP_DATA = 2;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -353,8 +353,8 @@ public final class ClientServiceGrpc {
           serviceImpl.collectDataFromSensors((proj_contract.proto.EntitiesData) request,
               (io.grpc.stub.StreamObserver<proj_contract.services.ClientResponse>) responseObserver);
           break;
-        case METHODID_UPDATE_TIME_STEP:
-          serviceImpl.updateTimeStep((proj_contract.proto.TimestepData) request,
+        case METHODID_UPDATE_TIMESTEP_DATA:
+          serviceImpl.updateTimestepData((proj_contract.proto.TimestepData) request,
               (io.grpc.stub.StreamObserver<proj_contract.services.ClientResponse>) responseObserver);
           break;
         default:
@@ -420,7 +420,7 @@ public final class ClientServiceGrpc {
               .setSchemaDescriptor(new ClientServiceFileDescriptorSupplier())
               .addMethod(getReceiveLocationClaimMethod())
               .addMethod(getCollectDataFromSensorsMethod())
-              .addMethod(getUpdateTimeStepMethod())
+              .addMethod(getUpdateTimestepDataMethod())
               .build();
         }
       }

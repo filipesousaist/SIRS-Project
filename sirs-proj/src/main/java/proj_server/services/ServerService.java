@@ -1,6 +1,5 @@
 package proj_server.services;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -15,12 +14,12 @@ import proj_contract.services.ClientServiceGrpc.ClientServiceBlockingStub;
 import proj_contract.services.RegisterRequest;
 import proj_contract.services.ServerResponse;
 import proj_contract.services.ServerServiceGrpc.ServerServiceImplBase;
-import proj_server.AuthoritativeRSU;
-import proj_server.Entity;
-import proj_server.EnvironmentServer;
-import proj_server.Location;
-import proj_server.NonAuthoritativeRSU;
-import proj_server.SmartVehicle;
+import proj_server.base.EnvironmentServer;
+import proj_server.base.Location;
+import proj_server.entities.AuthoritativeRSU;
+import proj_server.entities.Entity;
+import proj_server.entities.NonAuthoritativeRSU;
+import proj_server.entities.SmartVehicle;
 import proj_server.exception.MapPositionOutOfBoundsException;
 import proj_server.exception.MapPositionTakenException;
 
@@ -30,8 +29,12 @@ public class ServerService extends ServerServiceImplBase {
 	
 	public ServerService(EnvironmentServer server) {
 		_server = server;
-		_clientStubs = new HashMap<Integer, ClientServiceBlockingStub>();
+		_clientStubs = server.getClientStubs();
 	}
+	
+	// ***********************
+	// *** Service methods ***
+	// ***********************
 	
 	@Override
 	public void register(RegisterRequest request, StreamObserver<proj_contract.services.ServerResponse> responseObserver) {
@@ -58,6 +61,23 @@ public class ServerService extends ServerServiceImplBase {
 		respondToClient(responseObserver, "Register");
 	}
 	
+	@Override
+	public void broadcastLocationClaim(LocationClaim request, StreamObserver<ServerResponse> responseObserver) {
+		List<Entity> entities = _server.getNearbyEntities(_server.getEntity(request.getProverId()), 3);
+		for (Entity ent: entities) {
+			if (ent != null) {
+				ClientResponse response = _clientStubs.get(ent.getID()).receiveLocationClaim(request);
+				System.out.println(response.getResponseMessage());		
+			}
+		}
+		
+		respondToClient(responseObserver, "Broadcast Location Claim");
+	}
+	
+	// *************************
+	// *** Auxiliary methods ***
+	// *************************
+	
 	private Entity createEntity(int id, Location location, String type, int speed) {
 		switch (type) {
 			case "SV":
@@ -78,29 +98,11 @@ public class ServerService extends ServerServiceImplBase {
 		ManagedChannel channel = ManagedChannelBuilder.forAddress("localhost", port).usePlaintext().build();
 		ClientServiceBlockingStub clientStub = ClientServiceGrpc.newBlockingStub(channel);
 		_clientStubs.put(id, clientStub);
-	}
-	
-	public void setServer(EnvironmentServer server) {
-		_server = server;	
+		
+		System.out.println("Successfully connected to port " + port + ".");
 	}
 
-	@Override
-	public void broadcastLocationClaim(LocationClaim request, StreamObserver<ServerResponse> responseObserver) {
-		List<Entity> entities = _server.getCloseEntities(_server.getEntity(request.getProverId()), 3);
-		for (Entity ent: entities) {
-			if (ent != null) {
-				int port = ent.getID() + 9090;
-				System.out.println("Trying to connect to port " + port + "...");
-				
-				ManagedChannel channel = ManagedChannelBuilder.forAddress("localhost", port).usePlaintext().build();
-				ClientServiceBlockingStub clientStub = ClientServiceGrpc.newBlockingStub(channel);
-				ClientResponse response = clientStub.receiveLocationClaim(request);
-				System.out.println("Answer: " + response.getResponseMessage());		
-			}
-		}
-		
-		respondToClient(responseObserver, "Broadcast Location Claim");
-	}
+	
 	
 	private void respondToClient(StreamObserver<ServerResponse> responseObserver, String message) {
 		ServerResponse response = ServerResponse.newBuilder()

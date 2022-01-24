@@ -1,9 +1,11 @@
-package proj_client;
+package proj_client.entities;
 
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import proj_client.base.Location;
 
 public abstract class Entity {
 	private int _id;
@@ -11,7 +13,7 @@ public abstract class Entity {
 	private List<SmartVehicle> _observations;
 	private int _timestep;
 	
-	public Entity(int id, int x, int y) {
+	public Entity(int id, int x, int y, int timestep) {
 		_id = id;
 		_location = new Location(x, y);
 		_observations = new ArrayList<SmartVehicle>();
@@ -62,7 +64,8 @@ public abstract class Entity {
 	
 	@Override
 	public String toString() {
-		return "<" + getType() + " " + _id + ">: \n" + 
+		return "<" + getType() + " " + _id + ">: \n" +
+			"  - Timestep: " + _timestep + "\n" +
 			"  - Location: " + _location;
 	}
 }

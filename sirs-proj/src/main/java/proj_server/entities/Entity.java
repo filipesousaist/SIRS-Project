@@ -1,4 +1,8 @@
-package proj_server;
+package proj_server.entities;
+
+import proj_contract.proto.EntityData;
+import proj_server.base.Location;
+
 public abstract class Entity {
 	int _id;
 	Location _location;
@@ -11,14 +15,12 @@ public abstract class Entity {
 	}
 	
 	public void setLocation(Location loc) {
-		_location = loc;		
-		
+		_location = loc;
 	}
 	
 	public Location getLocation() {
 		return _location;
 	}
-	
 	
 	public int getID() {
 		return _id;
@@ -32,5 +34,13 @@ public abstract class Entity {
 	
 	public void collectDataFromSensors() {
 		
+	}
+
+	public EntityData toData() {
+		return EntityData.newBuilder()
+			.setType(getType())
+			.setCoordinates(_location.toCoordinates())
+			.setId(_id)
+			.build();
 	}
 }

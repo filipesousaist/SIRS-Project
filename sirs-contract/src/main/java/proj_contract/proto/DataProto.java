@@ -44,11 +44,11 @@ public final class DataProto {
   static {
     java.lang.String[] descriptorData = {
       "\n\nData.proto\022\nProj.Proto\"#\n\013Coordinates\022" +
-      "\t\n\001x\030\001 \001(\005\022\t\n\001y\030\002 \001(\005\"N\n\014TimestepData\022,\n" +
-      "\013coordinates\030\001 \001(\0132\027.Proj.Proto.Coordina" +
-      "tes\022\020\n\010timestep\030\002 \001(\005\"T\n\nEntityData\022\014\n\004t" +
-      "ype\030\001 \001(\t\022,\n\013coordinates\030\002 \001(\0132\027.Proj.Pr" +
-      "oto.Coordinates\022\n\n\002id\030\003 \001(\005\":\n\014EntitiesD" +
+      "\t\n\001x\030\001 \001(\005\022\t\n\001y\030\002 \001(\005\"N\n\014TimestepData\022\020\n" +
+      "\010timestep\030\001 \001(\005\022,\n\013coordinates\030\002 \001(\0132\027.P" +
+      "roj.Proto.Coordinates\"T\n\nEntityData\022\n\n\002i" +
+      "d\030\001 \001(\005\022\014\n\004type\030\002 \001(\t\022,\n\013coordinates\030\003 \001" +
+      "(\0132\027.Proj.Proto.Coordinates\":\n\014EntitiesD" +
       "ata\022*\n\nentityData\030\001 \003(\0132\026.Proj.Proto.Ent" +
       "ityDataB\"\n\023proj_contract.protoB\tDataProt" +
       "oP\001b\006proto3"
@@ -76,13 +76,13 @@ public final class DataProto {
     internal_static_Proj_Proto_TimestepData_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_Proj_Proto_TimestepData_descriptor,
-        new java.lang.String[] { "Coordinates", "Timestep", });
+        new java.lang.String[] { "Timestep", "Coordinates", });
     internal_static_Proj_Proto_EntityData_descriptor =
       getDescriptor().getMessageTypes().get(2);
     internal_static_Proj_Proto_EntityData_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_Proj_Proto_EntityData_descriptor,
-        new java.lang.String[] { "Type", "Coordinates", "Id", });
+        new java.lang.String[] { "Id", "Type", "Coordinates", });
     internal_static_Proj_Proto_EntitiesData_descriptor =
       getDescriptor().getMessageTypes().get(3);
     internal_static_Proj_Proto_EntitiesData_fieldAccessorTable = new

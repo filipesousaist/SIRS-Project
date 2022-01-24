@@ -43,7 +43,12 @@ private static final long serialVersionUID = 0L;
           case 0:
             done = true;
             break;
-          case 10: {
+          case 8: {
+
+            timestep_ = input.readInt32();
+            break;
+          }
+          case 18: {
             proj_contract.proto.Coordinates.Builder subBuilder = null;
             if (coordinates_ != null) {
               subBuilder = coordinates_.toBuilder();
@@ -54,11 +59,6 @@ private static final long serialVersionUID = 0L;
               coordinates_ = subBuilder.buildPartial();
             }
 
-            break;
-          }
-          case 16: {
-
-            timestep_ = input.readInt32();
             break;
           }
           default: {
@@ -93,34 +93,34 @@ private static final long serialVersionUID = 0L;
             proj_contract.proto.TimestepData.class, proj_contract.proto.TimestepData.Builder.class);
   }
 
-  public static final int COORDINATES_FIELD_NUMBER = 1;
+  public static final int TIMESTEP_FIELD_NUMBER = 1;
+  private int timestep_;
+  /**
+   * <code>int32 timestep = 1;</code>
+   */
+  public int getTimestep() {
+    return timestep_;
+  }
+
+  public static final int COORDINATES_FIELD_NUMBER = 2;
   private proj_contract.proto.Coordinates coordinates_;
   /**
-   * <code>.Proj.Proto.Coordinates coordinates = 1;</code>
+   * <code>.Proj.Proto.Coordinates coordinates = 2;</code>
    */
   public boolean hasCoordinates() {
     return coordinates_ != null;
   }
   /**
-   * <code>.Proj.Proto.Coordinates coordinates = 1;</code>
+   * <code>.Proj.Proto.Coordinates coordinates = 2;</code>
    */
   public proj_contract.proto.Coordinates getCoordinates() {
     return coordinates_ == null ? proj_contract.proto.Coordinates.getDefaultInstance() : coordinates_;
   }
   /**
-   * <code>.Proj.Proto.Coordinates coordinates = 1;</code>
+   * <code>.Proj.Proto.Coordinates coordinates = 2;</code>
    */
   public proj_contract.proto.CoordinatesOrBuilder getCoordinatesOrBuilder() {
     return getCoordinates();
-  }
-
-  public static final int TIMESTEP_FIELD_NUMBER = 2;
-  private int timestep_;
-  /**
-   * <code>int32 timestep = 2;</code>
-   */
-  public int getTimestep() {
-    return timestep_;
   }
 
   private byte memoizedIsInitialized = -1;
@@ -137,11 +137,11 @@ private static final long serialVersionUID = 0L;
   @java.lang.Override
   public void writeTo(com.google.protobuf.CodedOutputStream output)
                       throws java.io.IOException {
-    if (coordinates_ != null) {
-      output.writeMessage(1, getCoordinates());
-    }
     if (timestep_ != 0) {
-      output.writeInt32(2, timestep_);
+      output.writeInt32(1, timestep_);
+    }
+    if (coordinates_ != null) {
+      output.writeMessage(2, getCoordinates());
     }
     unknownFields.writeTo(output);
   }
@@ -152,13 +152,13 @@ private static final long serialVersionUID = 0L;
     if (size != -1) return size;
 
     size = 0;
-    if (coordinates_ != null) {
-      size += com.google.protobuf.CodedOutputStream
-        .computeMessageSize(1, getCoordinates());
-    }
     if (timestep_ != 0) {
       size += com.google.protobuf.CodedOutputStream
-        .computeInt32Size(2, timestep_);
+        .computeInt32Size(1, timestep_);
+    }
+    if (coordinates_ != null) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeMessageSize(2, getCoordinates());
     }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
@@ -176,13 +176,13 @@ private static final long serialVersionUID = 0L;
     proj_contract.proto.TimestepData other = (proj_contract.proto.TimestepData) obj;
 
     boolean result = true;
+    result = result && (getTimestep()
+        == other.getTimestep());
     result = result && (hasCoordinates() == other.hasCoordinates());
     if (hasCoordinates()) {
       result = result && getCoordinates()
           .equals(other.getCoordinates());
     }
-    result = result && (getTimestep()
-        == other.getTimestep());
     result = result && unknownFields.equals(other.unknownFields);
     return result;
   }
@@ -194,12 +194,12 @@ private static final long serialVersionUID = 0L;
     }
     int hash = 41;
     hash = (19 * hash) + getDescriptor().hashCode();
+    hash = (37 * hash) + TIMESTEP_FIELD_NUMBER;
+    hash = (53 * hash) + getTimestep();
     if (hasCoordinates()) {
       hash = (37 * hash) + COORDINATES_FIELD_NUMBER;
       hash = (53 * hash) + getCoordinates().hashCode();
     }
-    hash = (37 * hash) + TIMESTEP_FIELD_NUMBER;
-    hash = (53 * hash) + getTimestep();
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
     return hash;
@@ -333,14 +333,14 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public Builder clear() {
       super.clear();
+      timestep_ = 0;
+
       if (coordinatesBuilder_ == null) {
         coordinates_ = null;
       } else {
         coordinates_ = null;
         coordinatesBuilder_ = null;
       }
-      timestep_ = 0;
-
       return this;
     }
 
@@ -367,12 +367,12 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public proj_contract.proto.TimestepData buildPartial() {
       proj_contract.proto.TimestepData result = new proj_contract.proto.TimestepData(this);
+      result.timestep_ = timestep_;
       if (coordinatesBuilder_ == null) {
         result.coordinates_ = coordinates_;
       } else {
         result.coordinates_ = coordinatesBuilder_.build();
       }
-      result.timestep_ = timestep_;
       onBuilt();
       return result;
     }
@@ -421,11 +421,11 @@ private static final long serialVersionUID = 0L;
 
     public Builder mergeFrom(proj_contract.proto.TimestepData other) {
       if (other == proj_contract.proto.TimestepData.getDefaultInstance()) return this;
-      if (other.hasCoordinates()) {
-        mergeCoordinates(other.getCoordinates());
-      }
       if (other.getTimestep() != 0) {
         setTimestep(other.getTimestep());
+      }
+      if (other.hasCoordinates()) {
+        mergeCoordinates(other.getCoordinates());
       }
       this.mergeUnknownFields(other.unknownFields);
       onChanged();
@@ -456,17 +456,43 @@ private static final long serialVersionUID = 0L;
       return this;
     }
 
+    private int timestep_ ;
+    /**
+     * <code>int32 timestep = 1;</code>
+     */
+    public int getTimestep() {
+      return timestep_;
+    }
+    /**
+     * <code>int32 timestep = 1;</code>
+     */
+    public Builder setTimestep(int value) {
+      
+      timestep_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>int32 timestep = 1;</code>
+     */
+    public Builder clearTimestep() {
+      
+      timestep_ = 0;
+      onChanged();
+      return this;
+    }
+
     private proj_contract.proto.Coordinates coordinates_ = null;
     private com.google.protobuf.SingleFieldBuilderV3<
         proj_contract.proto.Coordinates, proj_contract.proto.Coordinates.Builder, proj_contract.proto.CoordinatesOrBuilder> coordinatesBuilder_;
     /**
-     * <code>.Proj.Proto.Coordinates coordinates = 1;</code>
+     * <code>.Proj.Proto.Coordinates coordinates = 2;</code>
      */
     public boolean hasCoordinates() {
       return coordinatesBuilder_ != null || coordinates_ != null;
     }
     /**
-     * <code>.Proj.Proto.Coordinates coordinates = 1;</code>
+     * <code>.Proj.Proto.Coordinates coordinates = 2;</code>
      */
     public proj_contract.proto.Coordinates getCoordinates() {
       if (coordinatesBuilder_ == null) {
@@ -476,7 +502,7 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <code>.Proj.Proto.Coordinates coordinates = 1;</code>
+     * <code>.Proj.Proto.Coordinates coordinates = 2;</code>
      */
     public Builder setCoordinates(proj_contract.proto.Coordinates value) {
       if (coordinatesBuilder_ == null) {
@@ -492,7 +518,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>.Proj.Proto.Coordinates coordinates = 1;</code>
+     * <code>.Proj.Proto.Coordinates coordinates = 2;</code>
      */
     public Builder setCoordinates(
         proj_contract.proto.Coordinates.Builder builderForValue) {
@@ -506,7 +532,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>.Proj.Proto.Coordinates coordinates = 1;</code>
+     * <code>.Proj.Proto.Coordinates coordinates = 2;</code>
      */
     public Builder mergeCoordinates(proj_contract.proto.Coordinates value) {
       if (coordinatesBuilder_ == null) {
@@ -524,7 +550,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>.Proj.Proto.Coordinates coordinates = 1;</code>
+     * <code>.Proj.Proto.Coordinates coordinates = 2;</code>
      */
     public Builder clearCoordinates() {
       if (coordinatesBuilder_ == null) {
@@ -538,7 +564,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>.Proj.Proto.Coordinates coordinates = 1;</code>
+     * <code>.Proj.Proto.Coordinates coordinates = 2;</code>
      */
     public proj_contract.proto.Coordinates.Builder getCoordinatesBuilder() {
       
@@ -546,7 +572,7 @@ private static final long serialVersionUID = 0L;
       return getCoordinatesFieldBuilder().getBuilder();
     }
     /**
-     * <code>.Proj.Proto.Coordinates coordinates = 1;</code>
+     * <code>.Proj.Proto.Coordinates coordinates = 2;</code>
      */
     public proj_contract.proto.CoordinatesOrBuilder getCoordinatesOrBuilder() {
       if (coordinatesBuilder_ != null) {
@@ -557,7 +583,7 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <code>.Proj.Proto.Coordinates coordinates = 1;</code>
+     * <code>.Proj.Proto.Coordinates coordinates = 2;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         proj_contract.proto.Coordinates, proj_contract.proto.Coordinates.Builder, proj_contract.proto.CoordinatesOrBuilder> 
@@ -571,32 +597,6 @@ private static final long serialVersionUID = 0L;
         coordinates_ = null;
       }
       return coordinatesBuilder_;
-    }
-
-    private int timestep_ ;
-    /**
-     * <code>int32 timestep = 2;</code>
-     */
-    public int getTimestep() {
-      return timestep_;
-    }
-    /**
-     * <code>int32 timestep = 2;</code>
-     */
-    public Builder setTimestep(int value) {
-      
-      timestep_ = value;
-      onChanged();
-      return this;
-    }
-    /**
-     * <code>int32 timestep = 2;</code>
-     */
-    public Builder clearTimestep() {
-      
-      timestep_ = 0;
-      onChanged();
-      return this;
     }
     @java.lang.Override
     public final Builder setUnknownFields(

@@ -1,9 +1,10 @@
-package proj_server;
+package proj_server.base;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import proj_server.entities.Entity;
 import proj_server.exception.MapPositionOutOfBoundsException;
 import proj_server.exception.MapPositionTakenException;
 
@@ -78,11 +79,10 @@ public class Road {
 		
 		// Place entity in new location
 		loc.setX(x);
-		_entities.set(x * _height + y, ent);
-		
+		_entities.set(x * _height + y, ent);		
 	}
 	
-	public void print() {
+	private void print() {
 		String roadLimit = "";
 		for (int i = 0; i < _width; i ++)
 			roadLimit += '=';
@@ -116,7 +116,8 @@ public class Road {
 		}
 	}
 	
-	public void draw() {
+	public void display() {
+		//print();
 		_display.render();
 	}
 }

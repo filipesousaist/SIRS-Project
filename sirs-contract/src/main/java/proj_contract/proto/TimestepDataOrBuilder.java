@@ -8,20 +8,20 @@ public interface TimestepDataOrBuilder extends
     com.google.protobuf.MessageOrBuilder {
 
   /**
-   * <code>.Proj.Proto.Coordinates coordinates = 1;</code>
+   * <code>int32 timestep = 1;</code>
+   */
+  int getTimestep();
+
+  /**
+   * <code>.Proj.Proto.Coordinates coordinates = 2;</code>
    */
   boolean hasCoordinates();
   /**
-   * <code>.Proj.Proto.Coordinates coordinates = 1;</code>
+   * <code>.Proj.Proto.Coordinates coordinates = 2;</code>
    */
   proj_contract.proto.Coordinates getCoordinates();
   /**
-   * <code>.Proj.Proto.Coordinates coordinates = 1;</code>
+   * <code>.Proj.Proto.Coordinates coordinates = 2;</code>
    */
   proj_contract.proto.CoordinatesOrBuilder getCoordinatesOrBuilder();
-
-  /**
-   * <code>int32 timestep = 2;</code>
-   */
-  int getTimestep();
 }

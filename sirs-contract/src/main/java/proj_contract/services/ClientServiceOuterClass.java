@@ -31,14 +31,14 @@ public final class ClientServiceOuterClass {
       "\n\023ClientService.proto\022\nProj.Proto\032\nData." +
       "proto\032\023LocationClaim.proto\"?\n\016ClientResp" +
       "onse\022\027\n\017responseMessage\030\001 \001(\t\022\024\n\014respons" +
-      "eCode\030\002 \001(\0052\366\001\n\rClientService\022M\n\024receive" +
+      "eCode\030\002 \001(\0052\372\001\n\rClientService\022M\n\024receive" +
       "LocationClaim\022\031.Proj.Proto.LocationClaim" +
       "\032\032.Proj.Proto.ClientResponse\022N\n\026collectD" +
       "ataFromSensors\022\030.Proj.Proto.EntitiesData" +
-      "\032\032.Proj.Proto.ClientResponse\022F\n\016updateTi" +
-      "meStep\022\030.Proj.Proto.TimestepData\032\032.Proj." +
-      "Proto.ClientResponseB\032\n\026proj_contract.se" +
-      "rvicesP\001b\006proto3"
+      "\032\032.Proj.Proto.ClientResponse\022J\n\022updateTi" +
+      "mestepData\022\030.Proj.Proto.TimestepData\032\032.P" +
+      "roj.Proto.ClientResponseB\032\n\026proj_contrac" +
+      "t.servicesP\001b\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {

@@ -1,7 +1,7 @@
 package proj_client.services;
 import io.grpc.stub.StreamObserver;
-import proj_client.EntityServer;
-import proj_client.SmartVehicle;
+import proj_client.base.EntityServer;
+import proj_client.entities.SmartVehicle;
 import proj_contract.proto.Coordinates;
 import proj_contract.proto.EntitiesData;
 import proj_contract.proto.EntityData;
@@ -25,6 +25,14 @@ public class ClientService extends ClientServiceImplBase {
 		
 		respondToServer(responseObserver, "Location Claim");
 	}
+	
+	@Override
+	public void updateTimestepData(TimestepData request, StreamObserver<ClientResponse> responseObserver) {
+		Coordinates coords = request.getCoordinates();
+		_entityServer.updateTimestepData(request.getTimestep(), coords.getX(), coords.getY());
+		
+		respondToServer(responseObserver, "Timestep Data");
+	}
 
 	@Override
 	public void collectDataFromSensors(EntitiesData request, StreamObserver<ClientResponse> responseObserver) {
@@ -32,7 +40,7 @@ public class ClientService extends ClientServiceImplBase {
 			if (entData != null) {
 				Coordinates coords = entData.getCoordinates();
 				SmartVehicle sv = new SmartVehicle(
-					entData.getId(), coords.getX(), coords.getY()
+					entData.getId(), coords.getX(), coords.getY(), _entityServer.getTimestep()
 				);
 				_entityServer.collectDataFromSensors(sv);
 			}			
@@ -41,13 +49,6 @@ public class ClientService extends ClientServiceImplBase {
 		respondToServer(responseObserver, "Sensors Data");
 	}
 
-	@Override
-	public void updateTimeStep(TimestepData request, StreamObserver<ClientResponse> responseObserver) {
-		Coordinates coords = request.getCoordinates();
-		_entityServer.updateTimestepData(request.getTimestep(), coords.getX(), coords.getY());
-		
-		respondToServer(responseObserver, "Timestep Data");
-	}
 	
 	private void respondToServer(StreamObserver<ClientResponse> responseObserver, String message) {
 		ClientResponse response = ClientResponse.newBuilder()

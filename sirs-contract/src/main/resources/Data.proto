@@ -12,14 +12,14 @@ message Coordinates {
 }
 
 message TimestepData {
-	Coordinates coordinates = 1;
-	int32 timestep = 2;
+	int32 timestep = 1;
+	Coordinates coordinates = 2;
 }
 
 message EntityData {
-	string type = 1;
-	Coordinates coordinates = 2;
-	int32 id = 3; 
+	int32 id = 1; 
+	string type = 2;
+	Coordinates coordinates = 3;
 } 
 
 message EntitiesData {

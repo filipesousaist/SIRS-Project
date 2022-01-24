@@ -1,7 +1,7 @@
 package proj_server.exception;
 
-import proj_server.Entity;
-import proj_server.Location;
+import proj_server.base.Location;
+import proj_server.entities.Entity;
 
 public class MapPositionOutOfBoundsException extends Exception {
 	Entity _entity;

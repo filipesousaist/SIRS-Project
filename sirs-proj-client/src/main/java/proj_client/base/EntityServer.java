@@ -1,4 +1,4 @@
-package proj_client;
+package proj_client.base;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -7,6 +7,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import proj_client.entities.Entity;
+import proj_client.entities.SmartVehicle;
 import proj_contract.proto.Coordinates;
 import proj_contract.proto.EntityData;
 import proj_contract.proto.LocationClaim;
@@ -28,6 +30,10 @@ public class EntityServer implements Runnable {
 	
 	public int getEntityId() {
 		return _entity.getId();
+	}
+	
+	public int getTimestep() {
+		return _entity.getTimestep();
 	}
 	
 	public void updateTimestepData(int timestep, int x, int y) {
@@ -64,25 +70,32 @@ public class EntityServer implements Runnable {
 	
 	private void executeCommand(List<String> words) throws IOException {
 		int numWords = words.size();
-		if (numWords == 0 || words.get(0).length() == 0)
-			return;
-		
-		switch (words.get(0).charAt(0)) {
-			case 'O':
-				printObservations(); break;
-			case 'L':
-				if (numWords == 1)
-					broadcastLocationClaim(_entity.getId());
-				else // At least 2 words
-					try {
-						broadcastLocationClaim(Integer.parseInt(words.get(1)));
-					} catch (NumberFormatException e) {
-						System.out.println("Invalid ID format. ID must be an integer.");
-					}
-				break;
-			case 'Q':
-				_running = false; break;
+		if (numWords > 0) {	
+			String firstWord = words.get(0);
+			if (firstWord.length() > 0)
+				switch (firstWord.charAt(0)) {
+					case 'I':
+						printOwnInformation(); break;
+					case 'O':
+						printObservations(); break;
+					case 'L':
+						if (numWords == 1)
+							broadcastLocationClaim(_entity.getId());
+						else // At least 2 words
+							try {
+								broadcastLocationClaim(Integer.parseInt(words.get(1)));
+							} catch (NumberFormatException e) {
+								System.out.println("Invalid ID format. ID must be an integer.");
+							}
+						break;
+					case 'Q':
+						_running = false; break;
+				}
 		}
+	}
+	
+	private void printOwnInformation() {
+		System.out.println(_entity);
 	}
 	
 	private void printObservations() {

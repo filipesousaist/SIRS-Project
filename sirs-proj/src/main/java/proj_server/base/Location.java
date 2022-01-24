@@ -1,4 +1,6 @@
-package proj_server;
+package proj_server.base;
+
+import proj_contract.proto.Coordinates;
 
 public class Location {
 	int _x;
@@ -23,5 +25,9 @@ public class Location {
 	
 	public void setY(int y) {
 		_y = y;
+	}
+	
+	public Coordinates toCoordinates() {
+		return Coordinates.newBuilder().setX(_x).setY(_y).build();
 	}
 }
