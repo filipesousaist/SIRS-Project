@@ -1,0 +1,34 @@
+syntax = "proto3";
+
+package Proj.Proto;
+
+option java_multiple_files = true;
+option java_package = "proj_contract.proto";
+
+import "Data.proto";
+import "LocationClaim.proto";
+
+message LocationEndorsementRequest {
+	LocationClaim locationClaim = 1;
+	int32 requesterId = 2;
+}
+
+message LocationEndorsementRequestWithId {
+	LocationEndorsementRequest locationEndorsementRequest = 1;
+	int32 receiverId = 2;
+}
+
+message LocationEndorsement {
+	int32 witnessId = 1;
+    int32 claimId = 2;
+	int32 proverId = 3;
+    int32 timestep = 4;
+	EntityData entityData = 5;
+}
+
+message LocationEndorsementWithId {
+    LocationEndorsement locationEndorsement = 1;
+    int32 receiverId = 2;
+}
+
+

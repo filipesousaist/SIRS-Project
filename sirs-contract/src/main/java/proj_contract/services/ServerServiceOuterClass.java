@@ -15,11 +15,6 @@ public final class ServerServiceOuterClass {
         (com.google.protobuf.ExtensionRegistryLite) registry);
   }
   static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_Proj_Proto_RegisterRequest_descriptor;
-  static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_Proj_Proto_RegisterRequest_fieldAccessorTable;
-  static final com.google.protobuf.Descriptors.Descriptor
     internal_static_Proj_Proto_ServerResponse_descriptor;
   static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
@@ -33,18 +28,27 @@ public final class ServerServiceOuterClass {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\023ServerService.proto\022\nProj.Proto\032\nData." +
-      "proto\032\023LocationClaim.proto\"h\n\017RegisterRe" +
-      "quest\022\n\n\002id\030\001 \001(\005\022,\n\013coordinates\030\002 \001(\0132\027" +
-      ".Proj.Proto.Coordinates\022\014\n\004type\030\003 \001(\t\022\r\n" +
-      "\005speed\030\004 \001(\005\"?\n\016ServerResponse\022\027\n\017respon" +
-      "seMessage\030\001 \001(\t\022\024\n\014responseCode\030\002 \001(\0052\245\001" +
-      "\n\rServerService\022C\n\010register\022\033.Proj.Proto" +
-      ".RegisterRequest\032\032.Proj.Proto.ServerResp" +
-      "onse\022O\n\026broadcastLocationClaim\022\031.Proj.Pr" +
-      "oto.LocationClaim\032\032.Proj.Proto.ServerRes" +
-      "ponseB\032\n\026proj_contract.servicesP\001b\006proto" +
-      "3"
+      "\n\023ServerService.proto\022\nProj.Proto\032\020Conne" +
+      "ction.proto\032\023LocationClaim.proto\032\031Locati" +
+      "onEndorsement.proto\032\016Register.proto\"?\n\016S" +
+      "erverResponse\022\027\n\017responseMessage\030\001 \001(\t\022\024" +
+      "\n\014responseCode\030\002 \001(\0052\341\004\n\rServerService\022X" +
+      "\n\036broadcastConnectionInfoRequest\022\032.Proj." +
+      "Proto.ConnectionInfo\032\032.Proj.Proto.Server" +
+      "Response\022L\n\022sendConnectionInfo\022\032.Proj.Pr" +
+      "oto.ConnectionInfo\032\032.Proj.Proto.ServerRe" +
+      "sponse\022K\n\021requestConnection\022\032.Proj.Proto" +
+      ".ConnectionInfo\032\032.Proj.Proto.ServerRespo" +
+      "nse\022C\n\010register\022\033.Proj.Proto.RegisterReq" +
+      "uest\032\032.Proj.Proto.ServerResponse\022P\n\021send" +
+      "LocationClaim\022\037.Proj.Proto.LocationClaim" +
+      "WithId\032\032.Proj.Proto.ServerResponse\022f\n\032re" +
+      "questLocationEndorsement\022,.Proj.Proto.Lo" +
+      "cationEndorsementRequestWithId\032\032.Proj.Pr" +
+      "oto.ServerResponse\022\\\n\027sendLocationEndors" +
+      "ement\022%.Proj.Proto.LocationEndorsementWi" +
+      "thId\032\032.Proj.Proto.ServerResponseB\032\n\026proj" +
+      "_contract.servicesP\001b\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -57,23 +61,21 @@ public final class ServerServiceOuterClass {
     com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
         new com.google.protobuf.Descriptors.FileDescriptor[] {
-          proj_contract.proto.DataProto.getDescriptor(),
-          proj_contract.proto.LocationClaimProto.getDescriptor(),
+          proj_contract.services.Connection.getDescriptor(),
+          proj_contract.proto.LocationClaimOuterClass.getDescriptor(),
+          proj_contract.proto.LocationEndorsementOuterClass.getDescriptor(),
+          proj_contract.services.Register.getDescriptor(),
         }, assigner);
-    internal_static_Proj_Proto_RegisterRequest_descriptor =
-      getDescriptor().getMessageTypes().get(0);
-    internal_static_Proj_Proto_RegisterRequest_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_Proj_Proto_RegisterRequest_descriptor,
-        new java.lang.String[] { "Id", "Coordinates", "Type", "Speed", });
     internal_static_Proj_Proto_ServerResponse_descriptor =
-      getDescriptor().getMessageTypes().get(1);
+      getDescriptor().getMessageTypes().get(0);
     internal_static_Proj_Proto_ServerResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_Proj_Proto_ServerResponse_descriptor,
         new java.lang.String[] { "ResponseMessage", "ResponseCode", });
-    proj_contract.proto.DataProto.getDescriptor();
-    proj_contract.proto.LocationClaimProto.getDescriptor();
+    proj_contract.services.Connection.getDescriptor();
+    proj_contract.proto.LocationClaimOuterClass.getDescriptor();
+    proj_contract.proto.LocationEndorsementOuterClass.getDescriptor();
+    proj_contract.services.Register.getDescriptor();
   }
 
   // @@protoc_insertion_point(outer_class_scope)

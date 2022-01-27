@@ -1,16 +1,17 @@
-package proj_server.entities;
+package proj_server.base;
 
 import proj_contract.proto.EntityData;
-import proj_server.base.Location;
 
-public abstract class Entity {
+public class Entity {
 	int _id;
 	Location _location;
+	String _type;
 	int _speed;
 	
-	public Entity(int id, Location location, int speed) {
+	public Entity(int id, Location location, String type, int speed) {
 		_id = id;
 		_location = location;
+		_type = type;
 		_speed = speed;
 	}
 	
@@ -26,19 +27,17 @@ public abstract class Entity {
 		return _id;
 	}
 	
-	public abstract String getType();
+	public String getType() {
+		return _type;
+	}
 	
 	public int getSpeed() {
 		return _speed;
 	}
-	
-	public void collectDataFromSensors() {
-		
-	}
 
 	public EntityData toData() {
 		return EntityData.newBuilder()
-			.setType(getType())
+			.setType(_type)
 			.setCoordinates(_location.toCoordinates())
 			.setId(_id)
 			.build();

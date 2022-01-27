@@ -1,21 +1,10 @@
 package proj_client.main;
 
-import java.io.IOException;
-
-import io.grpc.ManagedChannel;
-import io.grpc.ManagedChannelBuilder;
-import io.grpc.Server;
-import io.grpc.ServerBuilder;
 import proj_client.base.EntityServer;
 import proj_client.entities.AuthoritativeRSU;
 import proj_client.entities.Entity;
 import proj_client.entities.NonAuthoritativeRSU;
 import proj_client.entities.SmartVehicle;
-import proj_client.services.ClientService;
-import proj_contract.services.RegisterRequest;
-import proj_contract.services.ServerResponse;
-import proj_contract.services.ServerServiceGrpc;
-import proj_contract.services.ServerServiceGrpc.ServerServiceBlockingStub;
 
 public class ClientApp {
 	public static void main(String[] args) { //falta verificar argumentos
@@ -27,32 +16,11 @@ public class ClientApp {
 		
 		Entity entity = createEntity(id, x, y, type, speed);
 		
-		ManagedChannel channel = ManagedChannelBuilder.forAddress("localhost", 9090).usePlaintext().build();
-		ServerServiceBlockingStub serverStub = ServerServiceGrpc.newBlockingStub(channel);
-		
-		EntityServer entityServer = new EntityServer(entity, serverStub);
+		(new Thread(()->{entity.setupConnections();})).start();
 			
-		register(entity, serverStub);
+		//(new Thread(new EntityServer(entity))).start();
 		
-		(new Thread(entityServer)).start();
-		
-    	startClientService(entityServer, id);
 	}
-	
-	public static void register(Entity entity, ServerServiceBlockingStub serverStub) {
-		RegisterRequest registerRequest = RegisterRequest.newBuilder()
-			.setId(entity.getId())
-			.setCoordinates(
-				entity.getLocation().toCoordinates()
-			)
-			.setType(entity.getType())
-			.setSpeed(entity.getSpeed())
-			.build();
-		
-		ServerResponse response = serverStub.register(registerRequest);		
-		System.out.println(response.getResponseMessage());
-	}
-	
 	private static Entity createEntity(int id, int x, int y, String type, int speed) {
 		Entity entity;
 		switch (type) {
@@ -68,17 +36,5 @@ public class ClientApp {
 		return entity;
 	}
 	
-	private static void startClientService(EntityServer entityServer, int id) {
-		ClientService service = new ClientService(entityServer);
-		Server server = ServerBuilder.forPort(9090 + id).addService(service).build();
-		
-		try {
-			server.start();
-			System.out.println("Client services started at port: " + server.getPort() + " at time: " + java.time.LocalDate.now() + " " + java.time.LocalTime.now());
-			
-			server.awaitTermination();
-		} catch (IOException | InterruptedException e) {
-			e.printStackTrace();
-		}   
-	}
+	
 }

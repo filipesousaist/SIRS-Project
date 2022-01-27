@@ -4,16 +4,19 @@ package Proj.Proto;
 
 option java_multiple_files = true;
 option java_package = "proj_contract.proto";
-option java_outer_classname = "LocationClaimProto";
 
 import "Data.proto";
 
-// definition of the location claim
 message LocationClaim {
     int32 claimId = 1;
 	int32 proverId = 2;
     int32 timestep = 3;
 	EntityData entityData = 4;
+}
+
+message LocationClaimWithId {
+    LocationClaim locationClaim = 1;
+    int32 receiverId = 2;
 }
 
 

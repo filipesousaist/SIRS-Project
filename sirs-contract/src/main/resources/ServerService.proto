@@ -1,22 +1,25 @@
 syntax = "proto3";
 
 package Proj.Proto;
+
 option java_multiple_files = true;
 option java_package = "proj_contract.services";
 
-import "Data.proto";
+import "Connection.proto";
 import "LocationClaim.proto";
+import "LocationEndorsement.proto";
+import "Register.proto";
 
 service ServerService {
-	rpc register(RegisterRequest) returns (ServerResponse);
-	rpc broadcastLocationClaim(LocationClaim) returns (ServerResponse);
-}
+	rpc broadcastConnectionInfoRequest(ConnectionInfo) returns (ServerResponse);
+	rpc sendConnectionInfo(ConnectionInfo) returns (ServerResponse);
+	rpc requestConnection(ConnectionInfo) returns (ServerResponse);
 
-message RegisterRequest {
-	int32 id = 1;
-	Coordinates coordinates = 2;
-	string type = 3;
-	int32 speed = 4;
+	rpc register(RegisterRequest) returns (ServerResponse);
+	
+	rpc sendLocationClaim(LocationClaimWithId) returns (ServerResponse);
+	rpc requestLocationEndorsement(LocationEndorsementRequestWithId) returns (ServerResponse);
+	rpc sendLocationEndorsement(LocationEndorsementWithId) returns (ServerResponse);
 }
 
 message ServerResponse {

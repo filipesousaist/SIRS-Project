@@ -89,13 +89,13 @@ private static final long serialVersionUID = 0L;
   }
   public static final com.google.protobuf.Descriptors.Descriptor
       getDescriptor() {
-    return proj_contract.proto.DataProto.internal_static_Proj_Proto_EntityData_descriptor;
+    return proj_contract.proto.Data.internal_static_Proj_Proto_EntityData_descriptor;
   }
 
   @java.lang.Override
   protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internalGetFieldAccessorTable() {
-    return proj_contract.proto.DataProto.internal_static_Proj_Proto_EntityData_fieldAccessorTable
+    return proj_contract.proto.Data.internal_static_Proj_Proto_EntityData_fieldAccessorTable
         .ensureFieldAccessorsInitialized(
             proj_contract.proto.EntityData.class, proj_contract.proto.EntityData.Builder.class);
   }
@@ -355,13 +355,13 @@ private static final long serialVersionUID = 0L;
       proj_contract.proto.EntityDataOrBuilder {
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return proj_contract.proto.DataProto.internal_static_Proj_Proto_EntityData_descriptor;
+      return proj_contract.proto.Data.internal_static_Proj_Proto_EntityData_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return proj_contract.proto.DataProto.internal_static_Proj_Proto_EntityData_fieldAccessorTable
+      return proj_contract.proto.Data.internal_static_Proj_Proto_EntityData_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
               proj_contract.proto.EntityData.class, proj_contract.proto.EntityData.Builder.class);
     }
@@ -400,7 +400,7 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public com.google.protobuf.Descriptors.Descriptor
         getDescriptorForType() {
-      return proj_contract.proto.DataProto.internal_static_Proj_Proto_EntityData_descriptor;
+      return proj_contract.proto.Data.internal_static_Proj_Proto_EntityData_descriptor;
     }
 
     @java.lang.Override

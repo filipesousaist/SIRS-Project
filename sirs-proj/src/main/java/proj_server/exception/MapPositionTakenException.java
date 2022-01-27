@@ -1,7 +1,7 @@
 package proj_server.exception;
 
+import proj_server.base.Entity;
 import proj_server.base.Location;
-import proj_server.entities.Entity;
 
 public class MapPositionTakenException extends Exception {
 	Entity _oldEntity;

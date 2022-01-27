@@ -8,8 +8,6 @@ import java.awt.image.BufferStrategy;
 
 import javax.swing.JFrame;
 
-import proj_server.entities.Entity;
-
 public class MapDisplay extends Canvas {
 	private static final long serialVersionUID = 1L;
 	

@@ -34,4 +34,10 @@ public class Location {
 	public Coordinates toCoordinates() {
 		return Coordinates.newBuilder().setX(_x).setY(_y).build();
 	}
+	
+	public double distance(Coordinates coords) {
+		int dx = (_x - coords.getX());
+		int dy = (_y - coords.getY());
+		return Math.sqrt(dx * dx + dy * dy);
+	}
 }

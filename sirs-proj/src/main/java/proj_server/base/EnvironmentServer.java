@@ -14,7 +14,6 @@ import proj_contract.proto.EntityData;
 import proj_contract.proto.TimestepData;
 import proj_contract.services.ClientResponse;
 import proj_contract.services.ClientServiceGrpc.ClientServiceBlockingStub;
-import proj_server.entities.Entity;
 import proj_server.exception.MapPositionOutOfBoundsException;
 import proj_server.exception.MapPositionTakenException;
 
@@ -34,16 +33,22 @@ public class EnvironmentServer implements Runnable {
 	public void addEntity(Entity entity) throws MapPositionTakenException, MapPositionOutOfBoundsException {	 
 		_road.addEntity(entity);
 		// entity will only be added to _entities if _map.addEntity does not throw an exception
-		_entities.add(entity);
+		synchronized (_entities) {			
+			_entities.add(entity);
+		}
 		_road.display();
 	}
  
-	public List<Entity> getEntities() {
+	public List<Entity> getEntities() {			
 		return _entities;
 	}
 	 
 	public Entity getEntity(int id) {
-		for (Entity ent: _entities)
+		List<Entity> entities;
+		synchronized (_entities) {
+			entities = new ArrayList<>(_entities);
+		}
+		for (Entity ent: entities)
 			if (ent.getID() == id)
 				return ent;
 		return null;
@@ -52,9 +57,13 @@ public class EnvironmentServer implements Runnable {
 	public List<Entity> getNearbyEntities(Entity ent, int minDistance) {
 		List<Entity> list = new ArrayList<Entity>();
 		Location loc1 = ent.getLocation();
-		int x1 = loc1.getX(), y1 = loc1.getY();
-		 
-		for (Entity otherEnt: _entities) {
+		int x1 = loc1.getX(), y1 = loc1.getY();	
+		
+		List<Entity> entities;
+		synchronized (_entities) {
+			entities = new ArrayList<>(_entities);
+		}
+		for (Entity otherEnt: entities) {
 			Location loc2 = otherEnt.getLocation();
 			int x2 = loc2.getX(), y2 = loc2.getY();
 			int dx = x1 - x2, dy = y1 - y2;
@@ -62,7 +71,7 @@ public class EnvironmentServer implements Runnable {
 			if (dx * dx + dy * dy <= minDistance * minDistance &&
 				otherEnt.getID() != ent.getID()) 
 				list.add(otherEnt);
-		}		 
+		}
 		return list;
 	}
 	
@@ -80,8 +89,9 @@ public class EnvironmentServer implements Runnable {
 	}
  
 	public void collectDataFromSensors(Entity entity) {
-		List<EntityData> nearbyEntities = getNearbyEntities(entity, 2)
+		List<EntityData> nearbyEntities = getNearbyEntities(entity, 3)
 			.stream()
+			.filter(ent -> ent.getType().equals("SV"))
 			.map(ent -> ent.toData())
 			.collect(Collectors.toList());
 		EntitiesData data = EntitiesData.newBuilder()
@@ -99,18 +109,26 @@ public class EnvironmentServer implements Runnable {
 			while (true) {
 				reader.readLine();
 				++ _timestep;
-				System.out.println("Starting timestep " + _timestep + ".");
-				for (Entity ent: _entities)
-					_road.moveEntity(ent, ent.getSpeed());
-				_road.display();
-				for (Entity ent: _entities) {
-					sendTimestepData(ent);
-					collectDataFromSensors(ent);
-				}
+				System.out.println("Starting timestep " + _timestep + ".");	
+				updateEntities();
 			} 
 		}
 		catch (IOException e) {			
 			 e.printStackTrace();
+		}
+	}
+
+	private void updateEntities() {
+		List<Entity> entities;
+		synchronized (_entities) {
+			entities = new ArrayList<>(_entities);
+		}
+		for (Entity ent: entities)
+			_road.moveEntity(ent, ent.getSpeed());
+		_road.display();
+		for (Entity ent: entities) {
+			sendTimestepData(ent);
+			collectDataFromSensors(ent);
 		}
 	}
 }

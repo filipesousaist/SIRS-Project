@@ -1,18 +1,28 @@
 syntax = "proto3";
 
 package Proj.Proto;
+
 option java_multiple_files = true;
 option java_package = "proj_contract.services";
 
+import "Connection.proto";
 import "Data.proto";
 import "LocationClaim.proto";
+import "LocationEndorsement.proto";
 
 service ClientService {
-	rpc receiveLocationClaim(LocationClaim) returns (ClientResponse);
+	rpc getConnectionInfo(ConnectionInfo) returns (ClientResponse);
+	rpc sendConnectionInfo(ConnectionInfo) returns (ClientResponse);
+	
 	rpc collectDataFromSensors(EntitiesData) returns (ClientResponse);
 	rpc updateTimestepData(TimestepData) returns (ClientResponse);	
+
+	rpc sendLocationClaim(LocationClaim) returns (ClientResponse);
+	rpc requestLocationEndorsement(LocationEndorsementRequest) returns (ClientResponse);
+	rpc sendLocationEndorsement(LocationEndorsement) returns (ClientResponse);
 }
-message ClientResponse{
+
+message ClientResponse {
 	string responseMessage = 1;
 	int32 responseCode = 2;
 }

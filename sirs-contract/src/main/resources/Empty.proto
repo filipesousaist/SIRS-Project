@@ -1,0 +1,8 @@
+syntax = "proto3";
+
+package Proj.Proto;
+
+option java_multiple_files = true;
+option java_package = "proj_contract.services";
+
+message EmptyMessage {}

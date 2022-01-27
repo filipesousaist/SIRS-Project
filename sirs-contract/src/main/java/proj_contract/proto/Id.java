@@ -4,20 +4,19 @@
 package proj_contract.proto;
 
 /**
- * Protobuf type {@code Proj.Proto.Coordinates}
+ * Protobuf type {@code Proj.Proto.Id}
  */
-public  final class Coordinates extends
+public  final class Id extends
     com.google.protobuf.GeneratedMessageV3 implements
-    // @@protoc_insertion_point(message_implements:Proj.Proto.Coordinates)
-    CoordinatesOrBuilder {
+    // @@protoc_insertion_point(message_implements:Proj.Proto.Id)
+    IdOrBuilder {
 private static final long serialVersionUID = 0L;
-  // Use Coordinates.newBuilder() to construct.
-  private Coordinates(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+  // Use Id.newBuilder() to construct.
+  private Id(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
     super(builder);
   }
-  private Coordinates() {
-    x_ = 0;
-    y_ = 0;
+  private Id() {
+    id_ = 0;
   }
 
   @java.lang.Override
@@ -25,7 +24,7 @@ private static final long serialVersionUID = 0L;
   getUnknownFields() {
     return this.unknownFields;
   }
-  private Coordinates(
+  private Id(
       com.google.protobuf.CodedInputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -46,12 +45,7 @@ private static final long serialVersionUID = 0L;
             break;
           case 8: {
 
-            x_ = input.readInt32();
-            break;
-          }
-          case 16: {
-
-            y_ = input.readInt32();
+            id_ = input.readInt32();
             break;
           }
           default: {
@@ -75,33 +69,24 @@ private static final long serialVersionUID = 0L;
   }
   public static final com.google.protobuf.Descriptors.Descriptor
       getDescriptor() {
-    return proj_contract.proto.Data.internal_static_Proj_Proto_Coordinates_descriptor;
+    return proj_contract.proto.Data.internal_static_Proj_Proto_Id_descriptor;
   }
 
   @java.lang.Override
   protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internalGetFieldAccessorTable() {
-    return proj_contract.proto.Data.internal_static_Proj_Proto_Coordinates_fieldAccessorTable
+    return proj_contract.proto.Data.internal_static_Proj_Proto_Id_fieldAccessorTable
         .ensureFieldAccessorsInitialized(
-            proj_contract.proto.Coordinates.class, proj_contract.proto.Coordinates.Builder.class);
+            proj_contract.proto.Id.class, proj_contract.proto.Id.Builder.class);
   }
 
-  public static final int X_FIELD_NUMBER = 1;
-  private int x_;
+  public static final int ID_FIELD_NUMBER = 1;
+  private int id_;
   /**
-   * <code>int32 x = 1;</code>
+   * <code>int32 id = 1;</code>
    */
-  public int getX() {
-    return x_;
-  }
-
-  public static final int Y_FIELD_NUMBER = 2;
-  private int y_;
-  /**
-   * <code>int32 y = 2;</code>
-   */
-  public int getY() {
-    return y_;
+  public int getId() {
+    return id_;
   }
 
   private byte memoizedIsInitialized = -1;
@@ -118,11 +103,8 @@ private static final long serialVersionUID = 0L;
   @java.lang.Override
   public void writeTo(com.google.protobuf.CodedOutputStream output)
                       throws java.io.IOException {
-    if (x_ != 0) {
-      output.writeInt32(1, x_);
-    }
-    if (y_ != 0) {
-      output.writeInt32(2, y_);
+    if (id_ != 0) {
+      output.writeInt32(1, id_);
     }
     unknownFields.writeTo(output);
   }
@@ -133,13 +115,9 @@ private static final long serialVersionUID = 0L;
     if (size != -1) return size;
 
     size = 0;
-    if (x_ != 0) {
+    if (id_ != 0) {
       size += com.google.protobuf.CodedOutputStream
-        .computeInt32Size(1, x_);
-    }
-    if (y_ != 0) {
-      size += com.google.protobuf.CodedOutputStream
-        .computeInt32Size(2, y_);
+        .computeInt32Size(1, id_);
     }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
@@ -151,16 +129,14 @@ private static final long serialVersionUID = 0L;
     if (obj == this) {
      return true;
     }
-    if (!(obj instanceof proj_contract.proto.Coordinates)) {
+    if (!(obj instanceof proj_contract.proto.Id)) {
       return super.equals(obj);
     }
-    proj_contract.proto.Coordinates other = (proj_contract.proto.Coordinates) obj;
+    proj_contract.proto.Id other = (proj_contract.proto.Id) obj;
 
     boolean result = true;
-    result = result && (getX()
-        == other.getX());
-    result = result && (getY()
-        == other.getY());
+    result = result && (getId()
+        == other.getId());
     result = result && unknownFields.equals(other.unknownFields);
     return result;
   }
@@ -172,78 +148,76 @@ private static final long serialVersionUID = 0L;
     }
     int hash = 41;
     hash = (19 * hash) + getDescriptor().hashCode();
-    hash = (37 * hash) + X_FIELD_NUMBER;
-    hash = (53 * hash) + getX();
-    hash = (37 * hash) + Y_FIELD_NUMBER;
-    hash = (53 * hash) + getY();
+    hash = (37 * hash) + ID_FIELD_NUMBER;
+    hash = (53 * hash) + getId();
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
     return hash;
   }
 
-  public static proj_contract.proto.Coordinates parseFrom(
+  public static proj_contract.proto.Id parseFrom(
       java.nio.ByteBuffer data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static proj_contract.proto.Coordinates parseFrom(
+  public static proj_contract.proto.Id parseFrom(
       java.nio.ByteBuffer data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static proj_contract.proto.Coordinates parseFrom(
+  public static proj_contract.proto.Id parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static proj_contract.proto.Coordinates parseFrom(
+  public static proj_contract.proto.Id parseFrom(
       com.google.protobuf.ByteString data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static proj_contract.proto.Coordinates parseFrom(byte[] data)
+  public static proj_contract.proto.Id parseFrom(byte[] data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static proj_contract.proto.Coordinates parseFrom(
+  public static proj_contract.proto.Id parseFrom(
       byte[] data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static proj_contract.proto.Coordinates parseFrom(java.io.InputStream input)
+  public static proj_contract.proto.Id parseFrom(java.io.InputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input);
   }
-  public static proj_contract.proto.Coordinates parseFrom(
+  public static proj_contract.proto.Id parseFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input, extensionRegistry);
   }
-  public static proj_contract.proto.Coordinates parseDelimitedFrom(java.io.InputStream input)
+  public static proj_contract.proto.Id parseDelimitedFrom(java.io.InputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseDelimitedWithIOException(PARSER, input);
   }
-  public static proj_contract.proto.Coordinates parseDelimitedFrom(
+  public static proj_contract.proto.Id parseDelimitedFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
   }
-  public static proj_contract.proto.Coordinates parseFrom(
+  public static proj_contract.proto.Id parseFrom(
       com.google.protobuf.CodedInputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input);
   }
-  public static proj_contract.proto.Coordinates parseFrom(
+  public static proj_contract.proto.Id parseFrom(
       com.google.protobuf.CodedInputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
@@ -256,7 +230,7 @@ private static final long serialVersionUID = 0L;
   public static Builder newBuilder() {
     return DEFAULT_INSTANCE.toBuilder();
   }
-  public static Builder newBuilder(proj_contract.proto.Coordinates prototype) {
+  public static Builder newBuilder(proj_contract.proto.Id prototype) {
     return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
   }
   @java.lang.Override
@@ -272,26 +246,26 @@ private static final long serialVersionUID = 0L;
     return builder;
   }
   /**
-   * Protobuf type {@code Proj.Proto.Coordinates}
+   * Protobuf type {@code Proj.Proto.Id}
    */
   public static final class Builder extends
       com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-      // @@protoc_insertion_point(builder_implements:Proj.Proto.Coordinates)
-      proj_contract.proto.CoordinatesOrBuilder {
+      // @@protoc_insertion_point(builder_implements:Proj.Proto.Id)
+      proj_contract.proto.IdOrBuilder {
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return proj_contract.proto.Data.internal_static_Proj_Proto_Coordinates_descriptor;
+      return proj_contract.proto.Data.internal_static_Proj_Proto_Id_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return proj_contract.proto.Data.internal_static_Proj_Proto_Coordinates_fieldAccessorTable
+      return proj_contract.proto.Data.internal_static_Proj_Proto_Id_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              proj_contract.proto.Coordinates.class, proj_contract.proto.Coordinates.Builder.class);
+              proj_contract.proto.Id.class, proj_contract.proto.Id.Builder.class);
     }
 
-    // Construct using proj_contract.proto.Coordinates.newBuilder()
+    // Construct using proj_contract.proto.Id.newBuilder()
     private Builder() {
       maybeForceBuilderInitialization();
     }
@@ -309,9 +283,7 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public Builder clear() {
       super.clear();
-      x_ = 0;
-
-      y_ = 0;
+      id_ = 0;
 
       return this;
     }
@@ -319,17 +291,17 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public com.google.protobuf.Descriptors.Descriptor
         getDescriptorForType() {
-      return proj_contract.proto.Data.internal_static_Proj_Proto_Coordinates_descriptor;
+      return proj_contract.proto.Data.internal_static_Proj_Proto_Id_descriptor;
     }
 
     @java.lang.Override
-    public proj_contract.proto.Coordinates getDefaultInstanceForType() {
-      return proj_contract.proto.Coordinates.getDefaultInstance();
+    public proj_contract.proto.Id getDefaultInstanceForType() {
+      return proj_contract.proto.Id.getDefaultInstance();
     }
 
     @java.lang.Override
-    public proj_contract.proto.Coordinates build() {
-      proj_contract.proto.Coordinates result = buildPartial();
+    public proj_contract.proto.Id build() {
+      proj_contract.proto.Id result = buildPartial();
       if (!result.isInitialized()) {
         throw newUninitializedMessageException(result);
       }
@@ -337,10 +309,9 @@ private static final long serialVersionUID = 0L;
     }
 
     @java.lang.Override
-    public proj_contract.proto.Coordinates buildPartial() {
-      proj_contract.proto.Coordinates result = new proj_contract.proto.Coordinates(this);
-      result.x_ = x_;
-      result.y_ = y_;
+    public proj_contract.proto.Id buildPartial() {
+      proj_contract.proto.Id result = new proj_contract.proto.Id(this);
+      result.id_ = id_;
       onBuilt();
       return result;
     }
@@ -379,21 +350,18 @@ private static final long serialVersionUID = 0L;
     }
     @java.lang.Override
     public Builder mergeFrom(com.google.protobuf.Message other) {
-      if (other instanceof proj_contract.proto.Coordinates) {
-        return mergeFrom((proj_contract.proto.Coordinates)other);
+      if (other instanceof proj_contract.proto.Id) {
+        return mergeFrom((proj_contract.proto.Id)other);
       } else {
         super.mergeFrom(other);
         return this;
       }
     }
 
-    public Builder mergeFrom(proj_contract.proto.Coordinates other) {
-      if (other == proj_contract.proto.Coordinates.getDefaultInstance()) return this;
-      if (other.getX() != 0) {
-        setX(other.getX());
-      }
-      if (other.getY() != 0) {
-        setY(other.getY());
+    public Builder mergeFrom(proj_contract.proto.Id other) {
+      if (other == proj_contract.proto.Id.getDefaultInstance()) return this;
+      if (other.getId() != 0) {
+        setId(other.getId());
       }
       this.mergeUnknownFields(other.unknownFields);
       onChanged();
@@ -410,11 +378,11 @@ private static final long serialVersionUID = 0L;
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      proj_contract.proto.Coordinates parsedMessage = null;
+      proj_contract.proto.Id parsedMessage = null;
       try {
         parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
       } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        parsedMessage = (proj_contract.proto.Coordinates) e.getUnfinishedMessage();
+        parsedMessage = (proj_contract.proto.Id) e.getUnfinishedMessage();
         throw e.unwrapIOException();
       } finally {
         if (parsedMessage != null) {
@@ -424,54 +392,28 @@ private static final long serialVersionUID = 0L;
       return this;
     }
 
-    private int x_ ;
+    private int id_ ;
     /**
-     * <code>int32 x = 1;</code>
+     * <code>int32 id = 1;</code>
      */
-    public int getX() {
-      return x_;
+    public int getId() {
+      return id_;
     }
     /**
-     * <code>int32 x = 1;</code>
+     * <code>int32 id = 1;</code>
      */
-    public Builder setX(int value) {
+    public Builder setId(int value) {
       
-      x_ = value;
+      id_ = value;
       onChanged();
       return this;
     }
     /**
-     * <code>int32 x = 1;</code>
+     * <code>int32 id = 1;</code>
      */
-    public Builder clearX() {
+    public Builder clearId() {
       
-      x_ = 0;
-      onChanged();
-      return this;
-    }
-
-    private int y_ ;
-    /**
-     * <code>int32 y = 2;</code>
-     */
-    public int getY() {
-      return y_;
-    }
-    /**
-     * <code>int32 y = 2;</code>
-     */
-    public Builder setY(int value) {
-      
-      y_ = value;
-      onChanged();
-      return this;
-    }
-    /**
-     * <code>int32 y = 2;</code>
-     */
-    public Builder clearY() {
-      
-      y_ = 0;
+      id_ = 0;
       onChanged();
       return this;
     }
@@ -488,41 +430,41 @@ private static final long serialVersionUID = 0L;
     }
 
 
-    // @@protoc_insertion_point(builder_scope:Proj.Proto.Coordinates)
+    // @@protoc_insertion_point(builder_scope:Proj.Proto.Id)
   }
 
-  // @@protoc_insertion_point(class_scope:Proj.Proto.Coordinates)
-  private static final proj_contract.proto.Coordinates DEFAULT_INSTANCE;
+  // @@protoc_insertion_point(class_scope:Proj.Proto.Id)
+  private static final proj_contract.proto.Id DEFAULT_INSTANCE;
   static {
-    DEFAULT_INSTANCE = new proj_contract.proto.Coordinates();
+    DEFAULT_INSTANCE = new proj_contract.proto.Id();
   }
 
-  public static proj_contract.proto.Coordinates getDefaultInstance() {
+  public static proj_contract.proto.Id getDefaultInstance() {
     return DEFAULT_INSTANCE;
   }
 
-  private static final com.google.protobuf.Parser<Coordinates>
-      PARSER = new com.google.protobuf.AbstractParser<Coordinates>() {
+  private static final com.google.protobuf.Parser<Id>
+      PARSER = new com.google.protobuf.AbstractParser<Id>() {
     @java.lang.Override
-    public Coordinates parsePartialFrom(
+    public Id parsePartialFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return new Coordinates(input, extensionRegistry);
+      return new Id(input, extensionRegistry);
     }
   };
 
-  public static com.google.protobuf.Parser<Coordinates> parser() {
+  public static com.google.protobuf.Parser<Id> parser() {
     return PARSER;
   }
 
   @java.lang.Override
-  public com.google.protobuf.Parser<Coordinates> getParserForType() {
+  public com.google.protobuf.Parser<Id> getParserForType() {
     return PARSER;
   }
 
   @java.lang.Override
-  public proj_contract.proto.Coordinates getDefaultInstanceForType() {
+  public proj_contract.proto.Id getDefaultInstanceForType() {
     return DEFAULT_INSTANCE;
   }
 

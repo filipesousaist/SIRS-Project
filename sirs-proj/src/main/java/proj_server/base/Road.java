@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import proj_server.entities.Entity;
 import proj_server.exception.MapPositionOutOfBoundsException;
 import proj_server.exception.MapPositionTakenException;
 

@@ -28,17 +28,27 @@ public final class ClientServiceOuterClass {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\023ClientService.proto\022\nProj.Proto\032\nData." +
-      "proto\032\023LocationClaim.proto\"?\n\016ClientResp" +
-      "onse\022\027\n\017responseMessage\030\001 \001(\t\022\024\n\014respons" +
-      "eCode\030\002 \001(\0052\372\001\n\rClientService\022M\n\024receive" +
-      "LocationClaim\022\031.Proj.Proto.LocationClaim" +
-      "\032\032.Proj.Proto.ClientResponse\022N\n\026collectD" +
-      "ataFromSensors\022\030.Proj.Proto.EntitiesData" +
-      "\032\032.Proj.Proto.ClientResponse\022J\n\022updateTi" +
-      "mestepData\022\030.Proj.Proto.TimestepData\032\032.P" +
-      "roj.Proto.ClientResponseB\032\n\026proj_contrac" +
-      "t.servicesP\001b\006proto3"
+      "\n\023ClientService.proto\022\nProj.Proto\032\020Conne" +
+      "ction.proto\032\nData.proto\032\023LocationClaim.p" +
+      "roto\032\031LocationEndorsement.proto\"?\n\016Clien" +
+      "tResponse\022\027\n\017responseMessage\030\001 \001(\t\022\024\n\014re" +
+      "sponseCode\030\002 \001(\0052\314\004\n\rClientService\022K\n\021ge" +
+      "tConnectionInfo\022\032.Proj.Proto.ConnectionI" +
+      "nfo\032\032.Proj.Proto.ClientResponse\022L\n\022sendC" +
+      "onnectionInfo\022\032.Proj.Proto.ConnectionInf" +
+      "o\032\032.Proj.Proto.ClientResponse\022N\n\026collect" +
+      "DataFromSensors\022\030.Proj.Proto.EntitiesDat" +
+      "a\032\032.Proj.Proto.ClientResponse\022J\n\022updateT" +
+      "imestepData\022\030.Proj.Proto.TimestepData\032\032." +
+      "Proj.Proto.ClientResponse\022J\n\021sendLocatio" +
+      "nClaim\022\031.Proj.Proto.LocationClaim\032\032.Proj" +
+      ".Proto.ClientResponse\022`\n\032requestLocation" +
+      "Endorsement\022&.Proj.Proto.LocationEndorse" +
+      "mentRequest\032\032.Proj.Proto.ClientResponse\022" +
+      "V\n\027sendLocationEndorsement\022\037.Proj.Proto." +
+      "LocationEndorsement\032\032.Proj.Proto.ClientR" +
+      "esponseB\032\n\026proj_contract.servicesP\001b\006pro" +
+      "to3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -51,8 +61,10 @@ public final class ClientServiceOuterClass {
     com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
         new com.google.protobuf.Descriptors.FileDescriptor[] {
-          proj_contract.proto.DataProto.getDescriptor(),
-          proj_contract.proto.LocationClaimProto.getDescriptor(),
+          proj_contract.services.Connection.getDescriptor(),
+          proj_contract.proto.Data.getDescriptor(),
+          proj_contract.proto.LocationClaimOuterClass.getDescriptor(),
+          proj_contract.proto.LocationEndorsementOuterClass.getDescriptor(),
         }, assigner);
     internal_static_Proj_Proto_ClientResponse_descriptor =
       getDescriptor().getMessageTypes().get(0);
@@ -60,8 +72,10 @@ public final class ClientServiceOuterClass {
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_Proj_Proto_ClientResponse_descriptor,
         new java.lang.String[] { "ResponseMessage", "ResponseCode", });
-    proj_contract.proto.DataProto.getDescriptor();
-    proj_contract.proto.LocationClaimProto.getDescriptor();
+    proj_contract.services.Connection.getDescriptor();
+    proj_contract.proto.Data.getDescriptor();
+    proj_contract.proto.LocationClaimOuterClass.getDescriptor();
+    proj_contract.proto.LocationEndorsementOuterClass.getDescriptor();
   }
 
   // @@protoc_insertion_point(outer_class_scope)

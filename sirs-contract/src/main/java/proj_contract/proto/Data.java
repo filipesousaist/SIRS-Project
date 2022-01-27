@@ -3,8 +3,8 @@
 
 package proj_contract.proto;
 
-public final class DataProto {
-  private DataProto() {}
+public final class Data {
+  private Data() {}
   public static void registerAllExtensions(
       com.google.protobuf.ExtensionRegistryLite registry) {
   }
@@ -55,8 +55,8 @@ public final class DataProto {
       "d\030\001 \001(\005\022\014\n\004type\030\002 \001(\t\022,\n\013coordinates\030\003 \001" +
       "(\0132\027.Proj.Proto.Coordinates\":\n\014EntitiesD" +
       "ata\022*\n\nentityData\030\001 \003(\0132\026.Proj.Proto.Ent" +
-      "ityData\"\020\n\002Id\022\n\n\002id\030\001 \001(\005B\"\n\023proj_contra" +
-      "ct.protoB\tDataProtoP\001b\006proto3"
+      "ityData\"\020\n\002Id\022\n\n\002id\030\001 \001(\005B\027\n\023proj_contra" +
+      "ct.protoP\001b\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {

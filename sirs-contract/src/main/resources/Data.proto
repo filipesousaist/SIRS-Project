@@ -4,7 +4,6 @@ package Proj.Proto;
 
 option java_multiple_files = true;
 option java_package = "proj_contract.proto";
-option java_outer_classname = "DataProto";
 
 message Coordinates {
 	int32 x = 1;
@@ -24,4 +23,8 @@ message EntityData {
 
 message EntitiesData {
 	repeated EntityData entityData = 1;
+}
+
+message Id {
+	int32 id = 1;
 }

@@ -3,8 +3,8 @@
 
 package proj_contract.proto;
 
-public final class LocationClaimProto {
-  private LocationClaimProto() {}
+public final class LocationClaimOuterClass {
+  private LocationClaimOuterClass() {}
   public static void registerAllExtensions(
       com.google.protobuf.ExtensionRegistryLite registry) {
   }
@@ -39,8 +39,8 @@ public final class LocationClaimProto {
       "ntityData\030\004 \001(\0132\026.Proj.Proto.EntityData\"" +
       "[\n\023LocationClaimWithId\0220\n\rlocationClaim\030" +
       "\001 \001(\0132\031.Proj.Proto.LocationClaim\022\022\n\nrece" +
-      "iverId\030\002 \001(\005B+\n\023proj_contract.protoB\022Loc" +
-      "ationClaimProtoP\001b\006proto3"
+      "iverId\030\002 \001(\005B\027\n\023proj_contract.protoP\001b\006p" +
+      "roto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -53,7 +53,7 @@ public final class LocationClaimProto {
     com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
         new com.google.protobuf.Descriptors.FileDescriptor[] {
-          proj_contract.proto.DataProto.getDescriptor(),
+          proj_contract.proto.Data.getDescriptor(),
         }, assigner);
     internal_static_Proj_Proto_LocationClaim_descriptor =
       getDescriptor().getMessageTypes().get(0);
@@ -67,7 +67,7 @@ public final class LocationClaimProto {
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_Proj_Proto_LocationClaimWithId_descriptor,
         new java.lang.String[] { "LocationClaim", "ReceiverId", });
-    proj_contract.proto.DataProto.getDescriptor();
+    proj_contract.proto.Data.getDescriptor();
   }
 
   // @@protoc_insertion_point(outer_class_scope)
