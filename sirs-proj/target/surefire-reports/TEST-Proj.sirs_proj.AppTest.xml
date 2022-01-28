@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuite tests="1" failures="0" name="Proj.sirs_proj.AppTest" time="0.004" errors="0" skipped="0">
+  <properties>
+    <property name="java.vendor" value="Eclipse OpenJ9"/>
+    <property name="sun.java.launcher" value="SUN_STANDARD"/>
+    <property name="os.name" value="Windows 10"/>
+    <property name="sun.desktop" value="windows"/>
+    <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
+    <property name="java.runtime.version" value="11.0.6+10"/>
+    <property name="user.name" value="Filipe"/>
+    <property name="java.compiler" value="j9jit29"/>
+    <property name="os.encoding" value="UTF8"/>
+    <property name="guice.disable.misplaced.annotation.check" value="true"/>
+    <property name="com.ibm.util.extralibs.properties" value=""/>
+    <property name="com.ibm.jcl.checkClassPath" value=""/>
+    <property name="user.language" value="pt"/>
+    <property name="com.ibm.oti.vm.bootstrap.library.path" value="C:\Program Files\AdoptOpenJDK\jdk-11.0.6.10-openj9\bin\compressedrefs;C:\Program Files\AdoptOpenJDK\jdk-11.0.6.10-openj9\bin"/>
+    <property name="sun.boot.library.path" value="C:\Program Files\AdoptOpenJDK\jdk-11.0.6.10-openj9\bin\compressedrefs;C:\Program Files\AdoptOpenJDK\jdk-11.0.6.10-openj9\bin"/>
+    <property name="classworlds.conf" value="C:\Users\Filipe\eclipse-workspace-sd\.metadata\.plugins\org.eclipse.m2e.launching\launches\m2conf8197546689920583331.tmp"/>
+    <property name="jdk.extensions.version" value="11.0.6.1"/>
+    <property name="java.version" value="11.0.6"/>
+    <property name="user.timezone" value="Europe/London"/>
+    <property name="com.ibm.system.agent.path" value="C:\Program Files\AdoptOpenJDK\jdk-11.0.6.10-openj9\bin"/>
+    <property name="sun.arch.data.model" value="64"/>
+    <property name="com.ibm.oti.vm.library.version" value="29"/>
+    <property name="sun.jnu.encoding" value="Cp1252"/>
+    <property name="file.encoding.pkg" value="sun.io"/>
+    <property name="file.separator" value="\"/>
+    <property name="java.specification.name" value="Java Platform API Specification"/>
+    <property name="java.class.version" value="55.0"/>
+    <property name="user.country" value="PT"/>
+    <property name="java.home" value="C:\Program Files\AdoptOpenJDK\jdk-11.0.6.10-openj9"/>
+    <property name="java.vm.info" value="JRE 11 Windows 10 amd64-64-Bit Compressed References 20200122_442 (JIT enabled, AOT enabled)
+OpenJ9   - 51a5857d2
+OMR      - 7a1b0239a
+JCL      - da35e0c380 based on jdk-11.0.6+10"/>
+    <property name="os.version" value="10.0"/>
+    <property name="java.awt.fonts" value=""/>
+    <property name="path.separator" value=";"/>
+    <property name="java.vm.version" value="openj9-0.18.1"/>
+    <property name="user.variant" value=""/>
+    <property name="java.awt.printerjob" value="sun.awt.windows.WPrinterJob"/>
+    <property name="jdk.extensions.name" value="Extensions for OpenJDK for Eclipse OpenJ9"/>
+    <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
+    <property name="os.detected.version" value="10.0"/>
+    <property name="awt.toolkit" value="sun.awt.windows.WToolkit"/>
+    <property name="ibm.signalhandling.sigint" value="true"/>
+    <property name="user.home" value="C:\Users\Filipe"/>
+    <property name="com.ibm.cpu.endian" value="little"/>
+    <property name="java.version.date" value="2020-01-14"/>
+    <property name="java.specification.vendor" value="Oracle Corporation"/>
+    <property name="ibm.signalhandling.sigchain" value="true"/>
+    <property name="java.library.path" value="C:\Program Files\AdoptOpenJDK\jdk-11.0.6.10-openj9\bin\compressedrefs;C:\Program Files\AdoptOpenJDK\jdk-11.0.6.10-openj9\bin;C:\WINDOWS\system32;C:\WINDOWS;C:/Program Files/AdoptOpenJDK/jdk-11.0.6.10-openj9/bin/j9vm;C:/Program Files/AdoptOpenJDK/jdk-11.0.6.10-openj9/bin;C:\Program Files\AdoptOpenJDK\jdk-11.0.6.10-openj9\bin;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\php;C:\Program Files\dotnet\;C:\Program Files\Microsoft SQL Server\130\Tools\Binn\;C:\Program Files\Microsoft SQL Server\Client SDK\ODBC\170\Tools\Binn\;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\ProgramData\chocolatey\bin;C:\Program Files\Git\cmd;C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\bin;C:\Program Files\nodejs\;C:\Program Files\Wolfram Research\WolframScript\;C:\Users\Filipe\AppData\Local\Programs\Python\Python37-32\Scripts\;C:\Users\Filipe\AppData\Local\Programs\Python\Python37-32\;C:\Users\Filipe\AppData\Local\Microsoft\WindowsApps;C:\Users\Filipe\AppData\Local\GitHubDesktop\bin;C:\Users\Filipe\AppData\Local\atom\bin;C:\Users\Filipe\AppData\Local\Microsoft\WindowsApps;C:\Users\Filipe\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\Filipe\AppData\Local\apache-jmeter-5.2.1\bin;C:\Users\Filipe\AppData\Roaming\npm;C:\Program Files (x86)\apache-maven-3.6.3\bin;C:\Users\Filipe\.dotnet\tools;;C:\Users\Filipe\AppData\Local\Programs\Fiddler;C:\Users\Filipe\.dotnet\tools;C:\Users\Filipe\Desktop;;."/>
+    <property name="java.vendor.url" value="http://www.eclipse.org/openj9"/>
+    <property name="java.vm.vendor" value="Eclipse OpenJ9"/>
+    <property name="java.fullversion" value="11.0.6+10
+JRE 11 Windows 10 amd64-64-Bit Compressed References 20200122_442 (JIT enabled, AOT enabled)
+OpenJ9   - 51a5857d2
+OMR      - 7a1b0239a
+JCL      - da35e0c380 based on jdk-11.0.6+10"/>
+    <property name="maven.home" value="C:\Users\Filipe\Documents\GitHub\SIRS\EMBEDDED"/>
+    <property name="java.runtime.name" value="OpenJDK Runtime Environment"/>
+    <property name="sun.java.command" value="org.codehaus.plexus.classworlds.launcher.Launcher -B clean install"/>
+    <property name="java.class.path" value="C:\Users\Filipe\.p2\pool\plugins\org.eclipse.m2e.maven.runtime_1.18.1.20211011-2139\jars\plexus-classworlds-2.6.0.jar"/>
+    <property name="os.detected.arch" value="x86_64"/>
+    <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
+    <property name="java.vm.specification.version" value="11"/>
+    <property name="sun.cpu.endian" value="little"/>
+    <property name="os.detected.classifier" value="windows-x86_64"/>
+    <property name="java.io.tmpdir" value="C:\Users\Filipe\AppData\Local\Temp\"/>
+    <property name="maven.multiModuleProjectDirectory" value="C:\Users\Filipe\Documents\GitHub\SIRS"/>
+    <property name="ibm.system.encoding" value="Cp1252"/>
+    <property name="os.arch" value="amd64"/>
+    <property name="java.awt.graphicsenv" value="sun.awt.Win32GraphicsEnvironment"/>
+    <property name="ibm.signalhandling.rs" value="false"/>
+    <property name="user.dir" value="C:\Users\Filipe\Documents\GitHub\SIRS"/>
+    <property name="line.separator" value="
+"/>
+    <property name="java.vm.name" value="Eclipse OpenJ9 VM"/>
+    <property name="com.ibm.oti.shared.enabled" value="false"/>
+    <property name="os.detected.version.major" value="10"/>
+    <property name="com.ibm.vm.bitmode" value="64"/>
+    <property name="file.encoding" value="Cp1252"/>
+    <property name="os.detected.name" value="windows"/>
+    <property name="os.detected.version.minor" value="0"/>
+    <property name="java.specification.version" value="11"/>
+    <property name="com.ibm.oti.configuration" value="scar"/>
+    <property name="java.vendor.version" value="AdoptOpenJDK"/>
+  </properties>
+  <testcase classname="Proj.sirs_proj.AppTest" name="testApp" time="0.004"/>
+</testsuite>
