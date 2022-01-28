@@ -60,5 +60,4 @@ fabric.properties
 *.class
 
 sirs-contract/target*
-sirs-project/target*
 sirs-project-client/target*
