@@ -28,59 +28,59 @@ public final class ClientServiceGrpc {
 
   // Static method descriptors that strictly reflect the proto.
   private static volatile io.grpc.MethodDescriptor<proj_contract.services.ConnectionInfo,
-      proj_contract.services.ClientResponse> getGetConnectionInfoMethod;
+      proj_contract.services.ClientResponse> getRequestConnectionInfoMethod;
 
   @io.grpc.stub.annotations.RpcMethod(
-      fullMethodName = SERVICE_NAME + '/' + "getConnectionInfo",
+      fullMethodName = SERVICE_NAME + '/' + "requestConnectionInfo",
       requestType = proj_contract.services.ConnectionInfo.class,
       responseType = proj_contract.services.ClientResponse.class,
       methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
   public static io.grpc.MethodDescriptor<proj_contract.services.ConnectionInfo,
-      proj_contract.services.ClientResponse> getGetConnectionInfoMethod() {
-    io.grpc.MethodDescriptor<proj_contract.services.ConnectionInfo, proj_contract.services.ClientResponse> getGetConnectionInfoMethod;
-    if ((getGetConnectionInfoMethod = ClientServiceGrpc.getGetConnectionInfoMethod) == null) {
+      proj_contract.services.ClientResponse> getRequestConnectionInfoMethod() {
+    io.grpc.MethodDescriptor<proj_contract.services.ConnectionInfo, proj_contract.services.ClientResponse> getRequestConnectionInfoMethod;
+    if ((getRequestConnectionInfoMethod = ClientServiceGrpc.getRequestConnectionInfoMethod) == null) {
       synchronized (ClientServiceGrpc.class) {
-        if ((getGetConnectionInfoMethod = ClientServiceGrpc.getGetConnectionInfoMethod) == null) {
-          ClientServiceGrpc.getGetConnectionInfoMethod = getGetConnectionInfoMethod = 
+        if ((getRequestConnectionInfoMethod = ClientServiceGrpc.getRequestConnectionInfoMethod) == null) {
+          ClientServiceGrpc.getRequestConnectionInfoMethod = getRequestConnectionInfoMethod = 
               io.grpc.MethodDescriptor.<proj_contract.services.ConnectionInfo, proj_contract.services.ClientResponse>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
               .setFullMethodName(generateFullMethodName(
-                  "Proj.Proto.ClientService", "getConnectionInfo"))
+                  "Proj.Proto.ClientService", "requestConnectionInfo"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
                   proj_contract.services.ConnectionInfo.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
                   proj_contract.services.ClientResponse.getDefaultInstance()))
-                  .setSchemaDescriptor(new ClientServiceMethodDescriptorSupplier("getConnectionInfo"))
+                  .setSchemaDescriptor(new ClientServiceMethodDescriptorSupplier("requestConnectionInfo"))
                   .build();
           }
         }
      }
-     return getGetConnectionInfoMethod;
+     return getRequestConnectionInfoMethod;
   }
 
-  private static volatile io.grpc.MethodDescriptor<proj_contract.services.ConnectionInfo,
+  private static volatile io.grpc.MethodDescriptor<proj_contract.services.ConnectionInfoResponse,
       proj_contract.services.ClientResponse> getSendConnectionInfoMethod;
 
   @io.grpc.stub.annotations.RpcMethod(
       fullMethodName = SERVICE_NAME + '/' + "sendConnectionInfo",
-      requestType = proj_contract.services.ConnectionInfo.class,
+      requestType = proj_contract.services.ConnectionInfoResponse.class,
       responseType = proj_contract.services.ClientResponse.class,
       methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
-  public static io.grpc.MethodDescriptor<proj_contract.services.ConnectionInfo,
+  public static io.grpc.MethodDescriptor<proj_contract.services.ConnectionInfoResponse,
       proj_contract.services.ClientResponse> getSendConnectionInfoMethod() {
-    io.grpc.MethodDescriptor<proj_contract.services.ConnectionInfo, proj_contract.services.ClientResponse> getSendConnectionInfoMethod;
+    io.grpc.MethodDescriptor<proj_contract.services.ConnectionInfoResponse, proj_contract.services.ClientResponse> getSendConnectionInfoMethod;
     if ((getSendConnectionInfoMethod = ClientServiceGrpc.getSendConnectionInfoMethod) == null) {
       synchronized (ClientServiceGrpc.class) {
         if ((getSendConnectionInfoMethod = ClientServiceGrpc.getSendConnectionInfoMethod) == null) {
           ClientServiceGrpc.getSendConnectionInfoMethod = getSendConnectionInfoMethod = 
-              io.grpc.MethodDescriptor.<proj_contract.services.ConnectionInfo, proj_contract.services.ClientResponse>newBuilder()
+              io.grpc.MethodDescriptor.<proj_contract.services.ConnectionInfoResponse, proj_contract.services.ClientResponse>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
               .setFullMethodName(generateFullMethodName(
                   "Proj.Proto.ClientService", "sendConnectionInfo"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  proj_contract.services.ConnectionInfo.getDefaultInstance()))
+                  proj_contract.services.ConnectionInfoResponse.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
                   proj_contract.services.ClientResponse.getDefaultInstance()))
                   .setSchemaDescriptor(new ClientServiceMethodDescriptorSupplier("sendConnectionInfo"))
@@ -89,6 +89,38 @@ public final class ClientServiceGrpc {
         }
      }
      return getSendConnectionInfoMethod;
+  }
+
+  private static volatile io.grpc.MethodDescriptor<proj_contract.services.SecretKeyMessage,
+      proj_contract.services.ClientResponse> getSendSecretKeyMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "sendSecretKey",
+      requestType = proj_contract.services.SecretKeyMessage.class,
+      responseType = proj_contract.services.ClientResponse.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+  public static io.grpc.MethodDescriptor<proj_contract.services.SecretKeyMessage,
+      proj_contract.services.ClientResponse> getSendSecretKeyMethod() {
+    io.grpc.MethodDescriptor<proj_contract.services.SecretKeyMessage, proj_contract.services.ClientResponse> getSendSecretKeyMethod;
+    if ((getSendSecretKeyMethod = ClientServiceGrpc.getSendSecretKeyMethod) == null) {
+      synchronized (ClientServiceGrpc.class) {
+        if ((getSendSecretKeyMethod = ClientServiceGrpc.getSendSecretKeyMethod) == null) {
+          ClientServiceGrpc.getSendSecretKeyMethod = getSendSecretKeyMethod = 
+              io.grpc.MethodDescriptor.<proj_contract.services.SecretKeyMessage, proj_contract.services.ClientResponse>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "Proj.Proto.ClientService", "sendSecretKey"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  proj_contract.services.SecretKeyMessage.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  proj_contract.services.ClientResponse.getDefaultInstance()))
+                  .setSchemaDescriptor(new ClientServiceMethodDescriptorSupplier("sendSecretKey"))
+                  .build();
+          }
+        }
+     }
+     return getSendSecretKeyMethod;
   }
 
   private static volatile io.grpc.MethodDescriptor<proj_contract.proto.EntitiesData,
@@ -155,28 +187,28 @@ public final class ClientServiceGrpc {
      return getUpdateTimestepDataMethod;
   }
 
-  private static volatile io.grpc.MethodDescriptor<proj_contract.proto.LocationClaim,
+  private static volatile io.grpc.MethodDescriptor<proj_contract.proto.EncryptedLocationClaim,
       proj_contract.services.ClientResponse> getSendLocationClaimMethod;
 
   @io.grpc.stub.annotations.RpcMethod(
       fullMethodName = SERVICE_NAME + '/' + "sendLocationClaim",
-      requestType = proj_contract.proto.LocationClaim.class,
+      requestType = proj_contract.proto.EncryptedLocationClaim.class,
       responseType = proj_contract.services.ClientResponse.class,
       methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
-  public static io.grpc.MethodDescriptor<proj_contract.proto.LocationClaim,
+  public static io.grpc.MethodDescriptor<proj_contract.proto.EncryptedLocationClaim,
       proj_contract.services.ClientResponse> getSendLocationClaimMethod() {
-    io.grpc.MethodDescriptor<proj_contract.proto.LocationClaim, proj_contract.services.ClientResponse> getSendLocationClaimMethod;
+    io.grpc.MethodDescriptor<proj_contract.proto.EncryptedLocationClaim, proj_contract.services.ClientResponse> getSendLocationClaimMethod;
     if ((getSendLocationClaimMethod = ClientServiceGrpc.getSendLocationClaimMethod) == null) {
       synchronized (ClientServiceGrpc.class) {
         if ((getSendLocationClaimMethod = ClientServiceGrpc.getSendLocationClaimMethod) == null) {
           ClientServiceGrpc.getSendLocationClaimMethod = getSendLocationClaimMethod = 
-              io.grpc.MethodDescriptor.<proj_contract.proto.LocationClaim, proj_contract.services.ClientResponse>newBuilder()
+              io.grpc.MethodDescriptor.<proj_contract.proto.EncryptedLocationClaim, proj_contract.services.ClientResponse>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
               .setFullMethodName(generateFullMethodName(
                   "Proj.Proto.ClientService", "sendLocationClaim"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  proj_contract.proto.LocationClaim.getDefaultInstance()))
+                  proj_contract.proto.EncryptedLocationClaim.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
                   proj_contract.services.ClientResponse.getDefaultInstance()))
                   .setSchemaDescriptor(new ClientServiceMethodDescriptorSupplier("sendLocationClaim"))
@@ -187,28 +219,28 @@ public final class ClientServiceGrpc {
      return getSendLocationClaimMethod;
   }
 
-  private static volatile io.grpc.MethodDescriptor<proj_contract.proto.LocationEndorsementRequest,
+  private static volatile io.grpc.MethodDescriptor<proj_contract.proto.EncryptedLocationEndorsementRequest,
       proj_contract.services.ClientResponse> getRequestLocationEndorsementMethod;
 
   @io.grpc.stub.annotations.RpcMethod(
       fullMethodName = SERVICE_NAME + '/' + "requestLocationEndorsement",
-      requestType = proj_contract.proto.LocationEndorsementRequest.class,
+      requestType = proj_contract.proto.EncryptedLocationEndorsementRequest.class,
       responseType = proj_contract.services.ClientResponse.class,
       methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
-  public static io.grpc.MethodDescriptor<proj_contract.proto.LocationEndorsementRequest,
+  public static io.grpc.MethodDescriptor<proj_contract.proto.EncryptedLocationEndorsementRequest,
       proj_contract.services.ClientResponse> getRequestLocationEndorsementMethod() {
-    io.grpc.MethodDescriptor<proj_contract.proto.LocationEndorsementRequest, proj_contract.services.ClientResponse> getRequestLocationEndorsementMethod;
+    io.grpc.MethodDescriptor<proj_contract.proto.EncryptedLocationEndorsementRequest, proj_contract.services.ClientResponse> getRequestLocationEndorsementMethod;
     if ((getRequestLocationEndorsementMethod = ClientServiceGrpc.getRequestLocationEndorsementMethod) == null) {
       synchronized (ClientServiceGrpc.class) {
         if ((getRequestLocationEndorsementMethod = ClientServiceGrpc.getRequestLocationEndorsementMethod) == null) {
           ClientServiceGrpc.getRequestLocationEndorsementMethod = getRequestLocationEndorsementMethod = 
-              io.grpc.MethodDescriptor.<proj_contract.proto.LocationEndorsementRequest, proj_contract.services.ClientResponse>newBuilder()
+              io.grpc.MethodDescriptor.<proj_contract.proto.EncryptedLocationEndorsementRequest, proj_contract.services.ClientResponse>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
               .setFullMethodName(generateFullMethodName(
                   "Proj.Proto.ClientService", "requestLocationEndorsement"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  proj_contract.proto.LocationEndorsementRequest.getDefaultInstance()))
+                  proj_contract.proto.EncryptedLocationEndorsementRequest.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
                   proj_contract.services.ClientResponse.getDefaultInstance()))
                   .setSchemaDescriptor(new ClientServiceMethodDescriptorSupplier("requestLocationEndorsement"))
@@ -219,28 +251,28 @@ public final class ClientServiceGrpc {
      return getRequestLocationEndorsementMethod;
   }
 
-  private static volatile io.grpc.MethodDescriptor<proj_contract.proto.LocationEndorsement,
+  private static volatile io.grpc.MethodDescriptor<proj_contract.proto.EncryptedLocationEndorsement,
       proj_contract.services.ClientResponse> getSendLocationEndorsementMethod;
 
   @io.grpc.stub.annotations.RpcMethod(
       fullMethodName = SERVICE_NAME + '/' + "sendLocationEndorsement",
-      requestType = proj_contract.proto.LocationEndorsement.class,
+      requestType = proj_contract.proto.EncryptedLocationEndorsement.class,
       responseType = proj_contract.services.ClientResponse.class,
       methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
-  public static io.grpc.MethodDescriptor<proj_contract.proto.LocationEndorsement,
+  public static io.grpc.MethodDescriptor<proj_contract.proto.EncryptedLocationEndorsement,
       proj_contract.services.ClientResponse> getSendLocationEndorsementMethod() {
-    io.grpc.MethodDescriptor<proj_contract.proto.LocationEndorsement, proj_contract.services.ClientResponse> getSendLocationEndorsementMethod;
+    io.grpc.MethodDescriptor<proj_contract.proto.EncryptedLocationEndorsement, proj_contract.services.ClientResponse> getSendLocationEndorsementMethod;
     if ((getSendLocationEndorsementMethod = ClientServiceGrpc.getSendLocationEndorsementMethod) == null) {
       synchronized (ClientServiceGrpc.class) {
         if ((getSendLocationEndorsementMethod = ClientServiceGrpc.getSendLocationEndorsementMethod) == null) {
           ClientServiceGrpc.getSendLocationEndorsementMethod = getSendLocationEndorsementMethod = 
-              io.grpc.MethodDescriptor.<proj_contract.proto.LocationEndorsement, proj_contract.services.ClientResponse>newBuilder()
+              io.grpc.MethodDescriptor.<proj_contract.proto.EncryptedLocationEndorsement, proj_contract.services.ClientResponse>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
               .setFullMethodName(generateFullMethodName(
                   "Proj.Proto.ClientService", "sendLocationEndorsement"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  proj_contract.proto.LocationEndorsement.getDefaultInstance()))
+                  proj_contract.proto.EncryptedLocationEndorsement.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
                   proj_contract.services.ClientResponse.getDefaultInstance()))
                   .setSchemaDescriptor(new ClientServiceMethodDescriptorSupplier("sendLocationEndorsement"))
@@ -280,16 +312,23 @@ public final class ClientServiceGrpc {
 
     /**
      */
-    public void getConnectionInfo(proj_contract.services.ConnectionInfo request,
+    public void requestConnectionInfo(proj_contract.services.ConnectionInfo request,
         io.grpc.stub.StreamObserver<proj_contract.services.ClientResponse> responseObserver) {
-      asyncUnimplementedUnaryCall(getGetConnectionInfoMethod(), responseObserver);
+      asyncUnimplementedUnaryCall(getRequestConnectionInfoMethod(), responseObserver);
     }
 
     /**
      */
-    public void sendConnectionInfo(proj_contract.services.ConnectionInfo request,
+    public void sendConnectionInfo(proj_contract.services.ConnectionInfoResponse request,
         io.grpc.stub.StreamObserver<proj_contract.services.ClientResponse> responseObserver) {
       asyncUnimplementedUnaryCall(getSendConnectionInfoMethod(), responseObserver);
+    }
+
+    /**
+     */
+    public void sendSecretKey(proj_contract.services.SecretKeyMessage request,
+        io.grpc.stub.StreamObserver<proj_contract.services.ClientResponse> responseObserver) {
+      asyncUnimplementedUnaryCall(getSendSecretKeyMethod(), responseObserver);
     }
 
     /**
@@ -308,21 +347,21 @@ public final class ClientServiceGrpc {
 
     /**
      */
-    public void sendLocationClaim(proj_contract.proto.LocationClaim request,
+    public void sendLocationClaim(proj_contract.proto.EncryptedLocationClaim request,
         io.grpc.stub.StreamObserver<proj_contract.services.ClientResponse> responseObserver) {
       asyncUnimplementedUnaryCall(getSendLocationClaimMethod(), responseObserver);
     }
 
     /**
      */
-    public void requestLocationEndorsement(proj_contract.proto.LocationEndorsementRequest request,
+    public void requestLocationEndorsement(proj_contract.proto.EncryptedLocationEndorsementRequest request,
         io.grpc.stub.StreamObserver<proj_contract.services.ClientResponse> responseObserver) {
       asyncUnimplementedUnaryCall(getRequestLocationEndorsementMethod(), responseObserver);
     }
 
     /**
      */
-    public void sendLocationEndorsement(proj_contract.proto.LocationEndorsement request,
+    public void sendLocationEndorsement(proj_contract.proto.EncryptedLocationEndorsement request,
         io.grpc.stub.StreamObserver<proj_contract.services.ClientResponse> responseObserver) {
       asyncUnimplementedUnaryCall(getSendLocationEndorsementMethod(), responseObserver);
     }
@@ -330,19 +369,26 @@ public final class ClientServiceGrpc {
     @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
       return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
           .addMethod(
-            getGetConnectionInfoMethod(),
+            getRequestConnectionInfoMethod(),
             asyncUnaryCall(
               new MethodHandlers<
                 proj_contract.services.ConnectionInfo,
                 proj_contract.services.ClientResponse>(
-                  this, METHODID_GET_CONNECTION_INFO)))
+                  this, METHODID_REQUEST_CONNECTION_INFO)))
           .addMethod(
             getSendConnectionInfoMethod(),
             asyncUnaryCall(
               new MethodHandlers<
-                proj_contract.services.ConnectionInfo,
+                proj_contract.services.ConnectionInfoResponse,
                 proj_contract.services.ClientResponse>(
                   this, METHODID_SEND_CONNECTION_INFO)))
+          .addMethod(
+            getSendSecretKeyMethod(),
+            asyncUnaryCall(
+              new MethodHandlers<
+                proj_contract.services.SecretKeyMessage,
+                proj_contract.services.ClientResponse>(
+                  this, METHODID_SEND_SECRET_KEY)))
           .addMethod(
             getCollectDataFromSensorsMethod(),
             asyncUnaryCall(
@@ -361,21 +407,21 @@ public final class ClientServiceGrpc {
             getSendLocationClaimMethod(),
             asyncUnaryCall(
               new MethodHandlers<
-                proj_contract.proto.LocationClaim,
+                proj_contract.proto.EncryptedLocationClaim,
                 proj_contract.services.ClientResponse>(
                   this, METHODID_SEND_LOCATION_CLAIM)))
           .addMethod(
             getRequestLocationEndorsementMethod(),
             asyncUnaryCall(
               new MethodHandlers<
-                proj_contract.proto.LocationEndorsementRequest,
+                proj_contract.proto.EncryptedLocationEndorsementRequest,
                 proj_contract.services.ClientResponse>(
                   this, METHODID_REQUEST_LOCATION_ENDORSEMENT)))
           .addMethod(
             getSendLocationEndorsementMethod(),
             asyncUnaryCall(
               new MethodHandlers<
-                proj_contract.proto.LocationEndorsement,
+                proj_contract.proto.EncryptedLocationEndorsement,
                 proj_contract.services.ClientResponse>(
                   this, METHODID_SEND_LOCATION_ENDORSEMENT)))
           .build();
@@ -402,18 +448,26 @@ public final class ClientServiceGrpc {
 
     /**
      */
-    public void getConnectionInfo(proj_contract.services.ConnectionInfo request,
+    public void requestConnectionInfo(proj_contract.services.ConnectionInfo request,
         io.grpc.stub.StreamObserver<proj_contract.services.ClientResponse> responseObserver) {
       asyncUnaryCall(
-          getChannel().newCall(getGetConnectionInfoMethod(), getCallOptions()), request, responseObserver);
+          getChannel().newCall(getRequestConnectionInfoMethod(), getCallOptions()), request, responseObserver);
     }
 
     /**
      */
-    public void sendConnectionInfo(proj_contract.services.ConnectionInfo request,
+    public void sendConnectionInfo(proj_contract.services.ConnectionInfoResponse request,
         io.grpc.stub.StreamObserver<proj_contract.services.ClientResponse> responseObserver) {
       asyncUnaryCall(
           getChannel().newCall(getSendConnectionInfoMethod(), getCallOptions()), request, responseObserver);
+    }
+
+    /**
+     */
+    public void sendSecretKey(proj_contract.services.SecretKeyMessage request,
+        io.grpc.stub.StreamObserver<proj_contract.services.ClientResponse> responseObserver) {
+      asyncUnaryCall(
+          getChannel().newCall(getSendSecretKeyMethod(), getCallOptions()), request, responseObserver);
     }
 
     /**
@@ -434,7 +488,7 @@ public final class ClientServiceGrpc {
 
     /**
      */
-    public void sendLocationClaim(proj_contract.proto.LocationClaim request,
+    public void sendLocationClaim(proj_contract.proto.EncryptedLocationClaim request,
         io.grpc.stub.StreamObserver<proj_contract.services.ClientResponse> responseObserver) {
       asyncUnaryCall(
           getChannel().newCall(getSendLocationClaimMethod(), getCallOptions()), request, responseObserver);
@@ -442,7 +496,7 @@ public final class ClientServiceGrpc {
 
     /**
      */
-    public void requestLocationEndorsement(proj_contract.proto.LocationEndorsementRequest request,
+    public void requestLocationEndorsement(proj_contract.proto.EncryptedLocationEndorsementRequest request,
         io.grpc.stub.StreamObserver<proj_contract.services.ClientResponse> responseObserver) {
       asyncUnaryCall(
           getChannel().newCall(getRequestLocationEndorsementMethod(), getCallOptions()), request, responseObserver);
@@ -450,7 +504,7 @@ public final class ClientServiceGrpc {
 
     /**
      */
-    public void sendLocationEndorsement(proj_contract.proto.LocationEndorsement request,
+    public void sendLocationEndorsement(proj_contract.proto.EncryptedLocationEndorsement request,
         io.grpc.stub.StreamObserver<proj_contract.services.ClientResponse> responseObserver) {
       asyncUnaryCall(
           getChannel().newCall(getSendLocationEndorsementMethod(), getCallOptions()), request, responseObserver);
@@ -477,16 +531,23 @@ public final class ClientServiceGrpc {
 
     /**
      */
-    public proj_contract.services.ClientResponse getConnectionInfo(proj_contract.services.ConnectionInfo request) {
+    public proj_contract.services.ClientResponse requestConnectionInfo(proj_contract.services.ConnectionInfo request) {
       return blockingUnaryCall(
-          getChannel(), getGetConnectionInfoMethod(), getCallOptions(), request);
+          getChannel(), getRequestConnectionInfoMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public proj_contract.services.ClientResponse sendConnectionInfo(proj_contract.services.ConnectionInfo request) {
+    public proj_contract.services.ClientResponse sendConnectionInfo(proj_contract.services.ConnectionInfoResponse request) {
       return blockingUnaryCall(
           getChannel(), getSendConnectionInfoMethod(), getCallOptions(), request);
+    }
+
+    /**
+     */
+    public proj_contract.services.ClientResponse sendSecretKey(proj_contract.services.SecretKeyMessage request) {
+      return blockingUnaryCall(
+          getChannel(), getSendSecretKeyMethod(), getCallOptions(), request);
     }
 
     /**
@@ -505,21 +566,21 @@ public final class ClientServiceGrpc {
 
     /**
      */
-    public proj_contract.services.ClientResponse sendLocationClaim(proj_contract.proto.LocationClaim request) {
+    public proj_contract.services.ClientResponse sendLocationClaim(proj_contract.proto.EncryptedLocationClaim request) {
       return blockingUnaryCall(
           getChannel(), getSendLocationClaimMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public proj_contract.services.ClientResponse requestLocationEndorsement(proj_contract.proto.LocationEndorsementRequest request) {
+    public proj_contract.services.ClientResponse requestLocationEndorsement(proj_contract.proto.EncryptedLocationEndorsementRequest request) {
       return blockingUnaryCall(
           getChannel(), getRequestLocationEndorsementMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public proj_contract.services.ClientResponse sendLocationEndorsement(proj_contract.proto.LocationEndorsement request) {
+    public proj_contract.services.ClientResponse sendLocationEndorsement(proj_contract.proto.EncryptedLocationEndorsement request) {
       return blockingUnaryCall(
           getChannel(), getSendLocationEndorsementMethod(), getCallOptions(), request);
     }
@@ -545,18 +606,26 @@ public final class ClientServiceGrpc {
 
     /**
      */
-    public com.google.common.util.concurrent.ListenableFuture<proj_contract.services.ClientResponse> getConnectionInfo(
+    public com.google.common.util.concurrent.ListenableFuture<proj_contract.services.ClientResponse> requestConnectionInfo(
         proj_contract.services.ConnectionInfo request) {
       return futureUnaryCall(
-          getChannel().newCall(getGetConnectionInfoMethod(), getCallOptions()), request);
+          getChannel().newCall(getRequestConnectionInfoMethod(), getCallOptions()), request);
     }
 
     /**
      */
     public com.google.common.util.concurrent.ListenableFuture<proj_contract.services.ClientResponse> sendConnectionInfo(
-        proj_contract.services.ConnectionInfo request) {
+        proj_contract.services.ConnectionInfoResponse request) {
       return futureUnaryCall(
           getChannel().newCall(getSendConnectionInfoMethod(), getCallOptions()), request);
+    }
+
+    /**
+     */
+    public com.google.common.util.concurrent.ListenableFuture<proj_contract.services.ClientResponse> sendSecretKey(
+        proj_contract.services.SecretKeyMessage request) {
+      return futureUnaryCall(
+          getChannel().newCall(getSendSecretKeyMethod(), getCallOptions()), request);
     }
 
     /**
@@ -578,7 +647,7 @@ public final class ClientServiceGrpc {
     /**
      */
     public com.google.common.util.concurrent.ListenableFuture<proj_contract.services.ClientResponse> sendLocationClaim(
-        proj_contract.proto.LocationClaim request) {
+        proj_contract.proto.EncryptedLocationClaim request) {
       return futureUnaryCall(
           getChannel().newCall(getSendLocationClaimMethod(), getCallOptions()), request);
     }
@@ -586,7 +655,7 @@ public final class ClientServiceGrpc {
     /**
      */
     public com.google.common.util.concurrent.ListenableFuture<proj_contract.services.ClientResponse> requestLocationEndorsement(
-        proj_contract.proto.LocationEndorsementRequest request) {
+        proj_contract.proto.EncryptedLocationEndorsementRequest request) {
       return futureUnaryCall(
           getChannel().newCall(getRequestLocationEndorsementMethod(), getCallOptions()), request);
     }
@@ -594,19 +663,20 @@ public final class ClientServiceGrpc {
     /**
      */
     public com.google.common.util.concurrent.ListenableFuture<proj_contract.services.ClientResponse> sendLocationEndorsement(
-        proj_contract.proto.LocationEndorsement request) {
+        proj_contract.proto.EncryptedLocationEndorsement request) {
       return futureUnaryCall(
           getChannel().newCall(getSendLocationEndorsementMethod(), getCallOptions()), request);
     }
   }
 
-  private static final int METHODID_GET_CONNECTION_INFO = 0;
+  private static final int METHODID_REQUEST_CONNECTION_INFO = 0;
   private static final int METHODID_SEND_CONNECTION_INFO = 1;
-  private static final int METHODID_COLLECT_DATA_FROM_SENSORS = 2;
-  private static final int METHODID_UPDATE_TIMESTEP_DATA = 3;
-  private static final int METHODID_SEND_LOCATION_CLAIM = 4;
-  private static final int METHODID_REQUEST_LOCATION_ENDORSEMENT = 5;
-  private static final int METHODID_SEND_LOCATION_ENDORSEMENT = 6;
+  private static final int METHODID_SEND_SECRET_KEY = 2;
+  private static final int METHODID_COLLECT_DATA_FROM_SENSORS = 3;
+  private static final int METHODID_UPDATE_TIMESTEP_DATA = 4;
+  private static final int METHODID_SEND_LOCATION_CLAIM = 5;
+  private static final int METHODID_REQUEST_LOCATION_ENDORSEMENT = 6;
+  private static final int METHODID_SEND_LOCATION_ENDORSEMENT = 7;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -625,12 +695,16 @@ public final class ClientServiceGrpc {
     @java.lang.SuppressWarnings("unchecked")
     public void invoke(Req request, io.grpc.stub.StreamObserver<Resp> responseObserver) {
       switch (methodId) {
-        case METHODID_GET_CONNECTION_INFO:
-          serviceImpl.getConnectionInfo((proj_contract.services.ConnectionInfo) request,
+        case METHODID_REQUEST_CONNECTION_INFO:
+          serviceImpl.requestConnectionInfo((proj_contract.services.ConnectionInfo) request,
               (io.grpc.stub.StreamObserver<proj_contract.services.ClientResponse>) responseObserver);
           break;
         case METHODID_SEND_CONNECTION_INFO:
-          serviceImpl.sendConnectionInfo((proj_contract.services.ConnectionInfo) request,
+          serviceImpl.sendConnectionInfo((proj_contract.services.ConnectionInfoResponse) request,
+              (io.grpc.stub.StreamObserver<proj_contract.services.ClientResponse>) responseObserver);
+          break;
+        case METHODID_SEND_SECRET_KEY:
+          serviceImpl.sendSecretKey((proj_contract.services.SecretKeyMessage) request,
               (io.grpc.stub.StreamObserver<proj_contract.services.ClientResponse>) responseObserver);
           break;
         case METHODID_COLLECT_DATA_FROM_SENSORS:
@@ -642,15 +716,15 @@ public final class ClientServiceGrpc {
               (io.grpc.stub.StreamObserver<proj_contract.services.ClientResponse>) responseObserver);
           break;
         case METHODID_SEND_LOCATION_CLAIM:
-          serviceImpl.sendLocationClaim((proj_contract.proto.LocationClaim) request,
+          serviceImpl.sendLocationClaim((proj_contract.proto.EncryptedLocationClaim) request,
               (io.grpc.stub.StreamObserver<proj_contract.services.ClientResponse>) responseObserver);
           break;
         case METHODID_REQUEST_LOCATION_ENDORSEMENT:
-          serviceImpl.requestLocationEndorsement((proj_contract.proto.LocationEndorsementRequest) request,
+          serviceImpl.requestLocationEndorsement((proj_contract.proto.EncryptedLocationEndorsementRequest) request,
               (io.grpc.stub.StreamObserver<proj_contract.services.ClientResponse>) responseObserver);
           break;
         case METHODID_SEND_LOCATION_ENDORSEMENT:
-          serviceImpl.sendLocationEndorsement((proj_contract.proto.LocationEndorsement) request,
+          serviceImpl.sendLocationEndorsement((proj_contract.proto.EncryptedLocationEndorsement) request,
               (io.grpc.stub.StreamObserver<proj_contract.services.ClientResponse>) responseObserver);
           break;
         default:
@@ -714,8 +788,9 @@ public final class ClientServiceGrpc {
         if (result == null) {
           serviceDescriptor = result = io.grpc.ServiceDescriptor.newBuilder(SERVICE_NAME)
               .setSchemaDescriptor(new ClientServiceFileDescriptorSupplier())
-              .addMethod(getGetConnectionInfoMethod())
+              .addMethod(getRequestConnectionInfoMethod())
               .addMethod(getSendConnectionInfoMethod())
+              .addMethod(getSendSecretKeyMethod())
               .addMethod(getCollectDataFromSensorsMethod())
               .addMethod(getUpdateTimestepDataMethod())
               .addMethod(getSendLocationClaimMethod())

@@ -13,8 +13,13 @@ message LocationEndorsementRequest {
 	int32 requesterId = 2;
 }
 
-message LocationEndorsementRequestWithId {
-	LocationEndorsementRequest locationEndorsementRequest = 1;
+message EncryptedLocationEndorsementRequest {
+	bytes data = 1;
+	bytes initializationVector = 2;
+}
+
+message EncryptedLocationEndorsementRequestWithId {
+	EncryptedLocationEndorsementRequest encryptedLocationEndorsementRequest = 1;
 	int32 receiverId = 2;
 }
 
@@ -26,9 +31,14 @@ message LocationEndorsement {
 	EntityData entityData = 5;
 }
 
-message LocationEndorsementWithId {
-    LocationEndorsement locationEndorsement = 1;
-    int32 receiverId = 2;
+message EncryptedLocationEndorsement {
+	bytes data = 1;
+	bytes initializationVector = 2;
+}
+
+message EncryptedLocationEndorsementWithId {
+	EncryptedLocationEndorsement encryptedLocationEndorsement = 1;
+	int32 receiverId = 2;
 }
 
 

@@ -1,11 +1,22 @@
 package proj_client.entities;
 
+import java.util.Set;
+
+import javax.crypto.SecretKey;
+
+import com.google.protobuf.ByteString;
+
 import proj_client.interfaces.IProver;
 import proj_client.interfaces.IWitness;
 import proj_contract.proto.Coordinates;
+import proj_contract.proto.EncryptedLocationClaim;
+import proj_contract.proto.EncryptedLocationClaimWithId;
+import proj_contract.proto.EncryptedLocationEndorsement;
+import proj_contract.proto.EncryptedLocationEndorsementRequest;
+import proj_contract.proto.EncryptedLocationEndorsementWithId;
 import proj_contract.proto.EntityData;
 import proj_contract.proto.LocationClaim;
-import proj_contract.proto.LocationClaimWithId;
+import proj_contract.proto.LocationEndorsement;
 import proj_contract.proto.LocationEndorsementRequest;
 import proj_contract.services.ServerResponse;
 
@@ -71,14 +82,28 @@ public class SmartVehicle extends Entity implements IProver, IWitness {
 				.setEntityData(entityData)
 				.build();
 			
-			LocationClaimWithId.Builder builder = LocationClaimWithId.newBuilder()
-				.setLocationClaim(locationClaim);
 			for (int receiverId: _clientsData.keySet()) {
-				LocationClaimWithId locationClaimWithId = builder
-					.setReceiverId(receiverId)
-					.build();
-				ServerResponse response = _serverStub.sendLocationClaim(locationClaimWithId);			
-				System.out.println(response.getResponseMessage());				
+				byte[] initializationVector = createInitializationVector();
+				SecretKey secretKey;
+				synchronized (_clientsData) {
+					secretKey = _clientsData.get(receiverId).secretKey;
+				}
+				if (secretKey != null) {	
+					EncryptedLocationClaim encryptedLocationClaim = EncryptedLocationClaim.newBuilder()
+						.setData(ByteString.copyFrom(encrypt(
+							convertObjectToBytes(locationClaim),
+							secretKey,
+							initializationVector)))
+						.setInitializationVector(ByteString.copyFrom(initializationVector))
+						.build();
+						
+					EncryptedLocationClaimWithId encryptedLocationClaimWithId = EncryptedLocationClaimWithId.newBuilder()
+						.setEncryptedLocationClaim(encryptedLocationClaim)
+						.setReceiverId(receiverId)
+						.build();
+					ServerResponse response = _serverStub.sendLocationClaim(encryptedLocationClaimWithId);			
+					System.out.println(response.getResponseMessage());				
+				}
 			}
 		}	
 	}
@@ -92,7 +117,46 @@ public class SmartVehicle extends Entity implements IProver, IWitness {
 	}
 	
 	@Override
-	public void sendLocationEndorsement(LocationEndorsementRequest request) {
-		_serverStub.sendLocationEndorsement(getLocationEndorsement(request));
+	public void sendLocationEndorsement(EncryptedLocationEndorsementRequest request) {
+		Set<Integer> clientIds;
+		synchronized(_clientsData) {
+			clientIds = _clientsData.keySet();
+		}
+		for (int senderId: clientIds) {
+			ClientData clientData;
+			synchronized(_clientsData) {
+				clientData = _clientsData.get(senderId);
+			}
+			if (clientData.secretKey != null) {	
+				byte[] locationEndorsementRequestBytes = decrypt(
+					request.getData().toByteArray(),
+					clientData.secretKey,
+					request.getInitializationVector().toByteArray());
+				if (locationEndorsementRequestBytes != null) {
+					LocationEndorsementRequest locationEndorsementRequest =
+						(LocationEndorsementRequest) convertBytesToObject(locationEndorsementRequestBytes);
+					LocationEndorsement locationEndorsement = getLocationEndorsement(locationEndorsementRequest);
+					if (locationEndorsement != null) {
+						byte[] initializationVector = createInitializationVector();
+						byte[] encryptedLocationEndorsementBytes = encrypt(
+							convertObjectToBytes(locationEndorsement),
+							clientData.secretKey,
+							initializationVector
+							);
+						EncryptedLocationEndorsement encryptedLocationEndorsement = EncryptedLocationEndorsement.newBuilder()
+							.setData(ByteString.copyFrom(encryptedLocationEndorsementBytes))
+							.setInitializationVector(ByteString.copyFrom(initializationVector))
+							.build();
+						EncryptedLocationEndorsementWithId encryptedLocationEndorsementWithId = EncryptedLocationEndorsementWithId.newBuilder()
+							.setEncryptedLocationEndorsement(encryptedLocationEndorsement)
+							.setReceiverId(senderId)
+							.build();
+						ServerResponse response = _serverStub.sendLocationEndorsement(encryptedLocationEndorsementWithId);
+						System.out.println(response.getResponseMessage());
+						return;
+					}	
+				}
+			}
+		}
 	}
 }

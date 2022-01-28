@@ -7,14 +7,16 @@ import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
 import io.grpc.stub.StreamObserver;
 import proj_contract.proto.Coordinates;
-import proj_contract.proto.LocationClaimWithId;
-import proj_contract.proto.LocationEndorsementRequestWithId;
-import proj_contract.proto.LocationEndorsementWithId;
+import proj_contract.proto.EncryptedLocationClaimWithId;
+import proj_contract.proto.EncryptedLocationEndorsementRequestWithId;
+import proj_contract.proto.EncryptedLocationEndorsementWithId;
 import proj_contract.services.ClientResponse;
 import proj_contract.services.ClientServiceGrpc;
 import proj_contract.services.ClientServiceGrpc.ClientServiceBlockingStub;
 import proj_contract.services.ConnectionInfo;
+import proj_contract.services.ConnectionInfoResponse;
 import proj_contract.services.RegisterRequest;
+import proj_contract.services.SecretKeyMessageWithId;
 import proj_contract.services.ServerResponse;
 import proj_contract.services.ServerServiceGrpc.ServerServiceImplBase;
 import proj_server.base.Entity;
@@ -63,10 +65,10 @@ public class ServerService extends ServerServiceImplBase {
 	
 	@Override
 	public void broadcastConnectionInfoRequest(ConnectionInfo request, StreamObserver<ServerResponse> responseObserver) {
-		List<Entity> entities = _server.getNearbyEntities(_server.getEntity(request.getRequesterId()), 5);
+		List<Entity> entities = _server.getNearbyEntities(_server.getEntity(request.getId()), 4);
 		for (Entity ent: entities) {
 			if (ent != null) {
-				ClientResponse response = _clientStubs.get(ent.getID()).getConnectionInfo(request);
+				ClientResponse response = _clientStubs.get(ent.getID()).requestConnectionInfo(request);
 				System.out.println(response.getResponseMessage());
 			}
 		}
@@ -75,17 +77,26 @@ public class ServerService extends ServerServiceImplBase {
 	}
 	
 	@Override
-	public void sendConnectionInfo(ConnectionInfo request, StreamObserver<ServerResponse> responseObserver) {
-		_clientStubs.get(request.getRequesterId()).sendConnectionInfo(request);
+	public void sendConnectionInfo(ConnectionInfoResponse request, StreamObserver<ServerResponse> responseObserver) {
+		ClientResponse response = _clientStubs.get(request.getRequesterId()).sendConnectionInfo(request);
+		System.out.println(response.getResponseMessage());
 		
 		respondToClient(responseObserver, "Send Connection Info");
 	}
 	
 	@Override
-	public void sendLocationClaim(LocationClaimWithId request, StreamObserver<ServerResponse> responseObserver) {
+	public void sendSecretKey(SecretKeyMessageWithId request, StreamObserver<ServerResponse> responseObserver) {
+		ClientResponse response = _clientStubs.get(request.getReceiverId()).sendSecretKey(request.getSecretKeyMessage());
+		System.out.println(response.getResponseMessage());
+		
+		respondToClient(responseObserver, "Send Secret Key");
+	}
+	
+	@Override
+	public void sendLocationClaim(EncryptedLocationClaimWithId request, StreamObserver<ServerResponse> responseObserver) {
 		int id = request.getReceiverId();
 		if (_clientStubs.containsKey(id)) {
-			ClientResponse response = _clientStubs.get(id).sendLocationClaim(request.getLocationClaim());
+			ClientResponse response = _clientStubs.get(id).sendLocationClaim(request.getEncryptedLocationClaim());
 			System.out.println(response.getResponseMessage());
 			respondToClient(responseObserver, "Send Location Claim");
 		}
@@ -94,10 +105,10 @@ public class ServerService extends ServerServiceImplBase {
 	}
 	
 	@Override
-	public void requestLocationEndorsement(LocationEndorsementRequestWithId request, StreamObserver<ServerResponse> responseObserver) {
+	public void requestLocationEndorsement(EncryptedLocationEndorsementRequestWithId request, StreamObserver<ServerResponse> responseObserver) {
 		int id = request.getReceiverId();
 		if (_clientStubs.containsKey(id)) {
-			ClientResponse response = _clientStubs.get(id).requestLocationEndorsement(request.getLocationEndorsementRequest());
+			ClientResponse response = _clientStubs.get(id).requestLocationEndorsement(request.getEncryptedLocationEndorsementRequest());
 			System.out.println(response.getResponseMessage());
 			respondToClient(responseObserver, "Request Location Endorsement");
 		}
@@ -106,10 +117,10 @@ public class ServerService extends ServerServiceImplBase {
 	}
 	
 	@Override
-	public void sendLocationEndorsement(LocationEndorsementWithId request, StreamObserver<ServerResponse> responseObserver) {
+	public void sendLocationEndorsement(EncryptedLocationEndorsementWithId request, StreamObserver<ServerResponse> responseObserver) {
 		int id = request.getReceiverId();
 		if (_clientStubs.containsKey(id)) {
-			ClientResponse response = _clientStubs.get(id).sendLocationEndorsement(request.getLocationEndorsement());
+			ClientResponse response = _clientStubs.get(id).sendLocationEndorsement(request.getEncryptedLocationEndorsement());
 			System.out.println(response.getResponseMessage());
 			respondToClient(responseObserver, "Send Location Endorsement");
 		}

@@ -14,9 +14,12 @@ message LocationClaim {
 	EntityData entityData = 4;
 }
 
-message LocationClaimWithId {
-    LocationClaim locationClaim = 1;
-    int32 receiverId = 2;
+message EncryptedLocationClaim {
+	bytes data = 1;
+	bytes initializationVector = 2;
 }
 
-
+message EncryptedLocationClaimWithId {
+	EncryptedLocationClaim encryptedLocationClaim = 1;
+	int32 receiverId = 2;
+}

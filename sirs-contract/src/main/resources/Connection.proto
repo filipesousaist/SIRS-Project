@@ -5,9 +5,25 @@ package Proj.Proto;
 option java_multiple_files = true;
 option java_package = "proj_contract.services";
 
+import "google/protobuf/any.proto";
+
 message ConnectionInfo {
-	int32 requesterId = 1;
-	int32 id = 2;
-	int32 port = 3;
-	string type = 4;
+	int32 id = 1;
+	google.protobuf.Any certificate = 2;
+	string type = 3;
+}
+
+message ConnectionInfoResponse {
+	ConnectionInfo connectionInfo = 1;
+	int32 requesterId = 2;
+}
+
+message SecretKeyMessage {
+	bytes encryptedKey = 1;
+	bytes signature = 2;
+}
+
+message SecretKeyMessageWithId {
+	SecretKeyMessage secretKeyMessage = 1;
+	int32 receiverId = 2;
 }

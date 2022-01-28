@@ -19,6 +19,21 @@ public final class Connection {
   static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_Proj_Proto_ConnectionInfo_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_Proj_Proto_ConnectionInfoResponse_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_Proj_Proto_ConnectionInfoResponse_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_Proj_Proto_SecretKeyMessage_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_Proj_Proto_SecretKeyMessage_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_Proj_Proto_SecretKeyMessageWithId_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_Proj_Proto_SecretKeyMessageWithId_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -28,10 +43,18 @@ public final class Connection {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\020Connection.proto\022\nProj.Proto\"M\n\016Connec" +
-      "tionInfo\022\023\n\013requesterId\030\001 \001(\005\022\n\n\002id\030\002 \001(" +
-      "\005\022\014\n\004port\030\003 \001(\005\022\014\n\004type\030\004 \001(\tB\032\n\026proj_co" +
-      "ntract.servicesP\001b\006proto3"
+      "\n\020Connection.proto\022\nProj.Proto\032\031google/p" +
+      "rotobuf/any.proto\"U\n\016ConnectionInfo\022\n\n\002i" +
+      "d\030\001 \001(\005\022)\n\013certificate\030\002 \001(\0132\024.google.pr" +
+      "otobuf.Any\022\014\n\004type\030\003 \001(\t\"a\n\026ConnectionIn" +
+      "foResponse\0222\n\016connectionInfo\030\001 \001(\0132\032.Pro" +
+      "j.Proto.ConnectionInfo\022\023\n\013requesterId\030\002 " +
+      "\001(\005\";\n\020SecretKeyMessage\022\024\n\014encryptedKey\030" +
+      "\001 \001(\014\022\021\n\tsignature\030\002 \001(\014\"d\n\026SecretKeyMes" +
+      "sageWithId\0226\n\020secretKeyMessage\030\001 \001(\0132\034.P" +
+      "roj.Proto.SecretKeyMessage\022\022\n\nreceiverId" +
+      "\030\002 \001(\005B\032\n\026proj_contract.servicesP\001b\006prot" +
+      "o3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -44,13 +67,33 @@ public final class Connection {
     com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
         new com.google.protobuf.Descriptors.FileDescriptor[] {
+          com.google.protobuf.AnyProto.getDescriptor(),
         }, assigner);
     internal_static_Proj_Proto_ConnectionInfo_descriptor =
       getDescriptor().getMessageTypes().get(0);
     internal_static_Proj_Proto_ConnectionInfo_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_Proj_Proto_ConnectionInfo_descriptor,
-        new java.lang.String[] { "RequesterId", "Id", "Port", "Type", });
+        new java.lang.String[] { "Id", "Certificate", "Type", });
+    internal_static_Proj_Proto_ConnectionInfoResponse_descriptor =
+      getDescriptor().getMessageTypes().get(1);
+    internal_static_Proj_Proto_ConnectionInfoResponse_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_Proj_Proto_ConnectionInfoResponse_descriptor,
+        new java.lang.String[] { "ConnectionInfo", "RequesterId", });
+    internal_static_Proj_Proto_SecretKeyMessage_descriptor =
+      getDescriptor().getMessageTypes().get(2);
+    internal_static_Proj_Proto_SecretKeyMessage_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_Proj_Proto_SecretKeyMessage_descriptor,
+        new java.lang.String[] { "EncryptedKey", "Signature", });
+    internal_static_Proj_Proto_SecretKeyMessageWithId_descriptor =
+      getDescriptor().getMessageTypes().get(3);
+    internal_static_Proj_Proto_SecretKeyMessageWithId_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_Proj_Proto_SecretKeyMessageWithId_descriptor,
+        new java.lang.String[] { "SecretKeyMessage", "ReceiverId", });
+    com.google.protobuf.AnyProto.getDescriptor();
   }
 
   // @@protoc_insertion_point(outer_class_scope)

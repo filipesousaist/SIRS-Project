@@ -1,11 +1,14 @@
 package proj_client.entities;
 
 import proj_contract.proto.Coordinates;
+import proj_contract.proto.EncryptedLocationClaim;
+import proj_contract.proto.EncryptedLocationEndorsement;
+import proj_contract.proto.EncryptedLocationEndorsementRequest;
+import proj_contract.proto.EncryptedLocationEndorsementRequestWithId;
 import proj_contract.proto.EntityData;
 import proj_contract.proto.LocationClaim;
 import proj_contract.proto.LocationEndorsement;
 import proj_contract.proto.LocationEndorsementRequest;
-import proj_contract.proto.LocationEndorsementRequestWithId;
 import proj_contract.services.ServerResponse;
 
 import java.util.ArrayList;
@@ -13,6 +16,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
+
+import com.google.protobuf.ByteString;
 
 public class AuthoritativeRSU extends Entity {
 	private static final int MAX_ENDORSEMENTS = 3; 
@@ -99,58 +104,118 @@ public class AuthoritativeRSU extends Entity {
 	}
 	
 	@Override
-	public void broadcastLocationEndorsementRequest(LocationClaim request) {
-		ClaimIdentifier claimIdentifier = new ClaimIdentifier(request.getClaimId(), request.getProverId());
-		boolean idExists;
-		synchronized (_claimsData) {			
-			idExists = _claimsData.containsKey(claimIdentifier);
+	public void broadcastLocationEndorsementRequest(EncryptedLocationClaim request) {
+		Set<Integer> clientIds;
+		synchronized(_clientsData) {
+			clientIds = _clientsData.keySet();
 		}
-		if (! idExists) {
-			synchronized (_claimsData) {				
-				_claimsData.put(claimIdentifier, new ClaimData(request));
+		for (int senderId: clientIds) {
+			ClientData senderData;
+			synchronized(_clientsData) {
+				senderData = _clientsData.get(senderId);
 			}
-			LocationEndorsementRequest locationEndorsementRequest = LocationEndorsementRequest.newBuilder()
-				.setLocationClaim(request)
-				.setRequesterId(_id)
-				.build();
-			
-			LocationEndorsementRequestWithId.Builder builder = LocationEndorsementRequestWithId.newBuilder()
-				.setLocationEndorsementRequest(locationEndorsementRequest);
-			
-			for (int receiverId: _clientsData.keySet()) {
-				LocationEndorsementRequestWithId locationEndorsementRequestWithId = builder
-					.setReceiverId(receiverId)
-					.build();
-				ServerResponse response = _serverStub.requestLocationEndorsement(locationEndorsementRequestWithId);			
-				System.out.println(response.getResponseMessage());				
+			if (senderData.secretKey != null) {	
+				byte[] locationClaimBytes = decrypt(
+					request.getData().toByteArray(),
+					senderData.secretKey,
+					request.getInitializationVector().toByteArray());
+				if (locationClaimBytes != null) {
+					LocationClaim locationClaim =
+						(LocationClaim) convertBytesToObject(locationClaimBytes);
+					
+					ClaimIdentifier claimIdentifier = new ClaimIdentifier(locationClaim.getClaimId(), locationClaim.getProverId());
+					boolean idExists;
+					synchronized (_claimsData) {			
+						idExists = _claimsData.containsKey(claimIdentifier);
+					}
+					if (! idExists) {
+						synchronized (_claimsData) {				
+							_claimsData.put(claimIdentifier, new ClaimData(locationClaim));
+						}
+						LocationEndorsementRequest locationEndorsementRequest = LocationEndorsementRequest.newBuilder()
+							.setLocationClaim(locationClaim)
+							.setRequesterId(_id)
+							.build();
+						
+						for (int receiverId: clientIds) {
+							ClientData receiverData;
+							synchronized(_clientsData) {
+								receiverData = _clientsData.get(receiverId);
+							}
+							byte[] initializationVector = createInitializationVector();
+							byte[] encryptedLocationEndorsementRequestBytes = encrypt(
+								convertObjectToBytes(locationEndorsementRequest),
+								receiverData.secretKey,
+								initializationVector		
+								);
+							EncryptedLocationEndorsementRequest encryptedLocationEndorsementRequest = EncryptedLocationEndorsementRequest.newBuilder()
+								.setData(ByteString.copyFrom(encryptedLocationEndorsementRequestBytes))
+								.setInitializationVector(ByteString.copyFrom(initializationVector))
+								.build();
+							EncryptedLocationEndorsementRequestWithId encryptedLocationEndorsementRequestWithId = EncryptedLocationEndorsementRequestWithId.newBuilder()
+								.setEncryptedLocationEndorsementRequest(encryptedLocationEndorsementRequest)
+								.setReceiverId(receiverId)
+								.build();
+							
+							ServerResponse response = _serverStub.requestLocationEndorsement(encryptedLocationEndorsementRequestWithId);			
+							System.out.println(response.getResponseMessage());
+							return;
+						}
+					}
+					else
+						System.out.println("Location claim identifier " + claimIdentifier + " already exists.");
+				}
 			}
+			
 		}
-		else
-			System.out.println("Location claim identifier " + claimIdentifier + " already exists.");
+		
 	}
 	
 	@Override
-	public void storeLocationEndorsement(LocationEndorsement request) {
-		ClaimIdentifier claimIdentifier = new ClaimIdentifier(request.getClaimId(), request.getProverId());
-		boolean idExists; 
-		synchronized (_claimsData) {
-			idExists = _claimsData.containsKey(claimIdentifier);
+	public void storeLocationEndorsement(EncryptedLocationEndorsement request) {
+		Set<Integer> clientIds;
+		synchronized(_clientsData) {
+			clientIds = _clientsData.keySet();
 		}
-		if (idExists) {
-			List<LocationEndorsement> endorsements;
-			synchronized (_claimsData) {				
-				endorsements = _claimsData.get(claimIdentifier)._endorsements;
+		for (int senderId: clientIds) {
+			ClientData senderData;
+			synchronized(_clientsData) {
+				senderData = _clientsData.get(senderId);
 			}
-			if (endorsements.size() < MAX_ENDORSEMENTS) {
-				endorsements.add(request);
-				if (endorsements.size() == MAX_ENDORSEMENTS)
-					verifyLocationClaim(claimIdentifier);
+			if (senderData.secretKey != null) {	
+				byte[] locationEndorsementBytes = decrypt(
+					request.getData().toByteArray(),
+					senderData.secretKey,
+					request.getInitializationVector().toByteArray());
+				if (locationEndorsementBytes != null) {
+					LocationEndorsement locationEndorsement =
+							(LocationEndorsement) convertBytesToObject(locationEndorsementBytes);
+					
+					ClaimIdentifier claimIdentifier = new ClaimIdentifier(locationEndorsement.getClaimId(), locationEndorsement.getProverId());
+					boolean idExists; 
+					synchronized (_claimsData) {
+						idExists = _claimsData.containsKey(claimIdentifier);
+					}
+					if (idExists) {
+						List<LocationEndorsement> endorsements;
+						synchronized (_claimsData) {				
+							endorsements = _claimsData.get(claimIdentifier)._endorsements;
+						}
+						if (endorsements.size() < MAX_ENDORSEMENTS) {
+							endorsements.add(locationEndorsement);
+							if (endorsements.size() == MAX_ENDORSEMENTS)
+								verifyLocationClaim(claimIdentifier);
+						}
+						else
+							System.out.println("Maximum amount of endorsements for location claim " + claimIdentifier + " reached.");
+					}
+					else
+						System.out.println("Location claim identifier " + claimIdentifier + "not found.");
+					return;
+				}
 			}
-			else
-				System.out.println("Maximum amount of endorsements for location claim " + claimIdentifier + " reached.");
 		}
-		else
-			System.out.println("Location claim identifier " + claimIdentifier + "not found.");
+		
 	}
 	
 	private void verifyLocationClaim(ClaimIdentifier claimIdentifier) {

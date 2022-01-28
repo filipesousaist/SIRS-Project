@@ -1,6 +1,5 @@
 package proj_client.main;
 
-import proj_client.base.EntityServer;
 import proj_client.entities.AuthoritativeRSU;
 import proj_client.entities.Entity;
 import proj_client.entities.NonAuthoritativeRSU;
@@ -8,12 +7,13 @@ import proj_client.entities.SmartVehicle;
 
 public class ClientApp {
 	public static void main(String[] args) { //falta verificar argumentos
+
 		int id = Integer.parseInt(args[0]);
 		int x = Integer.parseInt(args[1]);
 		int y = Integer.parseInt(args[2]);
 		int speed = (args.length > 4) ? Integer.parseInt(args[4]) : 0;
 		String type = args[3];
-		
+
 		Entity entity = createEntity(id, x, y, type, speed);
 		
 		(new Thread(()->{entity.setupConnections();})).start();

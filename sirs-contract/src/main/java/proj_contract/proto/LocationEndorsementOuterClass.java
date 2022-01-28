@@ -20,20 +20,30 @@ public final class LocationEndorsementOuterClass {
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_Proj_Proto_LocationEndorsementRequest_fieldAccessorTable;
   static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_Proj_Proto_LocationEndorsementRequestWithId_descriptor;
+    internal_static_Proj_Proto_EncryptedLocationEndorsementRequest_descriptor;
   static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_Proj_Proto_LocationEndorsementRequestWithId_fieldAccessorTable;
+      internal_static_Proj_Proto_EncryptedLocationEndorsementRequest_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_Proj_Proto_EncryptedLocationEndorsementRequestWithId_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_Proj_Proto_EncryptedLocationEndorsementRequestWithId_fieldAccessorTable;
   static final com.google.protobuf.Descriptors.Descriptor
     internal_static_Proj_Proto_LocationEndorsement_descriptor;
   static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_Proj_Proto_LocationEndorsement_fieldAccessorTable;
   static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_Proj_Proto_LocationEndorsementWithId_descriptor;
+    internal_static_Proj_Proto_EncryptedLocationEndorsement_descriptor;
   static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_Proj_Proto_LocationEndorsementWithId_fieldAccessorTable;
+      internal_static_Proj_Proto_EncryptedLocationEndorsement_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_Proj_Proto_EncryptedLocationEndorsementWithId_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_Proj_Proto_EncryptedLocationEndorsementWithId_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -47,17 +57,23 @@ public final class LocationEndorsementOuterClass {
       "\nData.proto\032\023LocationClaim.proto\"c\n\032Loca" +
       "tionEndorsementRequest\0220\n\rlocationClaim\030" +
       "\001 \001(\0132\031.Proj.Proto.LocationClaim\022\023\n\013requ" +
-      "esterId\030\002 \001(\005\"\202\001\n LocationEndorsementReq" +
-      "uestWithId\022J\n\032locationEndorsementRequest" +
-      "\030\001 \001(\0132&.Proj.Proto.LocationEndorsementR" +
-      "equest\022\022\n\nreceiverId\030\002 \001(\005\"\211\001\n\023LocationE" +
-      "ndorsement\022\021\n\twitnessId\030\001 \001(\005\022\017\n\007claimId" +
-      "\030\002 \001(\005\022\020\n\010proverId\030\003 \001(\005\022\020\n\010timestep\030\004 \001" +
-      "(\005\022*\n\nentityData\030\005 \001(\0132\026.Proj.Proto.Enti" +
-      "tyData\"m\n\031LocationEndorsementWithId\022<\n\023l" +
-      "ocationEndorsement\030\001 \001(\0132\037.Proj.Proto.Lo" +
-      "cationEndorsement\022\022\n\nreceiverId\030\002 \001(\005B\027\n" +
-      "\023proj_contract.protoP\001b\006proto3"
+      "esterId\030\002 \001(\005\"Q\n#EncryptedLocationEndors" +
+      "ementRequest\022\014\n\004data\030\001 \001(\014\022\034\n\024initializa" +
+      "tionVector\030\002 \001(\014\"\235\001\n)EncryptedLocationEn" +
+      "dorsementRequestWithId\022\\\n#encryptedLocat" +
+      "ionEndorsementRequest\030\001 \001(\0132/.Proj.Proto" +
+      ".EncryptedLocationEndorsementRequest\022\022\n\n" +
+      "receiverId\030\002 \001(\005\"\211\001\n\023LocationEndorsement" +
+      "\022\021\n\twitnessId\030\001 \001(\005\022\017\n\007claimId\030\002 \001(\005\022\020\n\010" +
+      "proverId\030\003 \001(\005\022\020\n\010timestep\030\004 \001(\005\022*\n\nenti" +
+      "tyData\030\005 \001(\0132\026.Proj.Proto.EntityData\"J\n\034" +
+      "EncryptedLocationEndorsement\022\014\n\004data\030\001 \001" +
+      "(\014\022\034\n\024initializationVector\030\002 \001(\014\"\210\001\n\"Enc" +
+      "ryptedLocationEndorsementWithId\022N\n\034encry" +
+      "ptedLocationEndorsement\030\001 \001(\0132(.Proj.Pro" +
+      "to.EncryptedLocationEndorsement\022\022\n\nrecei" +
+      "verId\030\002 \001(\005B\027\n\023proj_contract.protoP\001b\006pr" +
+      "oto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -79,24 +95,36 @@ public final class LocationEndorsementOuterClass {
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_Proj_Proto_LocationEndorsementRequest_descriptor,
         new java.lang.String[] { "LocationClaim", "RequesterId", });
-    internal_static_Proj_Proto_LocationEndorsementRequestWithId_descriptor =
+    internal_static_Proj_Proto_EncryptedLocationEndorsementRequest_descriptor =
       getDescriptor().getMessageTypes().get(1);
-    internal_static_Proj_Proto_LocationEndorsementRequestWithId_fieldAccessorTable = new
+    internal_static_Proj_Proto_EncryptedLocationEndorsementRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_Proj_Proto_LocationEndorsementRequestWithId_descriptor,
-        new java.lang.String[] { "LocationEndorsementRequest", "ReceiverId", });
-    internal_static_Proj_Proto_LocationEndorsement_descriptor =
+        internal_static_Proj_Proto_EncryptedLocationEndorsementRequest_descriptor,
+        new java.lang.String[] { "Data", "InitializationVector", });
+    internal_static_Proj_Proto_EncryptedLocationEndorsementRequestWithId_descriptor =
       getDescriptor().getMessageTypes().get(2);
+    internal_static_Proj_Proto_EncryptedLocationEndorsementRequestWithId_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_Proj_Proto_EncryptedLocationEndorsementRequestWithId_descriptor,
+        new java.lang.String[] { "EncryptedLocationEndorsementRequest", "ReceiverId", });
+    internal_static_Proj_Proto_LocationEndorsement_descriptor =
+      getDescriptor().getMessageTypes().get(3);
     internal_static_Proj_Proto_LocationEndorsement_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_Proj_Proto_LocationEndorsement_descriptor,
         new java.lang.String[] { "WitnessId", "ClaimId", "ProverId", "Timestep", "EntityData", });
-    internal_static_Proj_Proto_LocationEndorsementWithId_descriptor =
-      getDescriptor().getMessageTypes().get(3);
-    internal_static_Proj_Proto_LocationEndorsementWithId_fieldAccessorTable = new
+    internal_static_Proj_Proto_EncryptedLocationEndorsement_descriptor =
+      getDescriptor().getMessageTypes().get(4);
+    internal_static_Proj_Proto_EncryptedLocationEndorsement_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_Proj_Proto_LocationEndorsementWithId_descriptor,
-        new java.lang.String[] { "LocationEndorsement", "ReceiverId", });
+        internal_static_Proj_Proto_EncryptedLocationEndorsement_descriptor,
+        new java.lang.String[] { "Data", "InitializationVector", });
+    internal_static_Proj_Proto_EncryptedLocationEndorsementWithId_descriptor =
+      getDescriptor().getMessageTypes().get(5);
+    internal_static_Proj_Proto_EncryptedLocationEndorsementWithId_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_Proj_Proto_EncryptedLocationEndorsementWithId_descriptor,
+        new java.lang.String[] { "EncryptedLocationEndorsement", "ReceiverId", });
     proj_contract.proto.Data.getDescriptor();
     proj_contract.proto.LocationClaimOuterClass.getDescriptor();
   }

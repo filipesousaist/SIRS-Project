@@ -8,26 +8,29 @@ public interface ConnectionInfoOrBuilder extends
     com.google.protobuf.MessageOrBuilder {
 
   /**
-   * <code>int32 requesterId = 1;</code>
-   */
-  int getRequesterId();
-
-  /**
-   * <code>int32 id = 2;</code>
+   * <code>int32 id = 1;</code>
    */
   int getId();
 
   /**
-   * <code>int32 port = 3;</code>
+   * <code>.google.protobuf.Any certificate = 2;</code>
    */
-  int getPort();
+  boolean hasCertificate();
+  /**
+   * <code>.google.protobuf.Any certificate = 2;</code>
+   */
+  com.google.protobuf.Any getCertificate();
+  /**
+   * <code>.google.protobuf.Any certificate = 2;</code>
+   */
+  com.google.protobuf.AnyOrBuilder getCertificateOrBuilder();
 
   /**
-   * <code>string type = 4;</code>
+   * <code>string type = 3;</code>
    */
   java.lang.String getType();
   /**
-   * <code>string type = 4;</code>
+   * <code>string type = 3;</code>
    */
   com.google.protobuf.ByteString
       getTypeBytes();

@@ -16,9 +16,7 @@ private static final long serialVersionUID = 0L;
     super(builder);
   }
   private ConnectionInfo() {
-    requesterId_ = 0;
     id_ = 0;
-    port_ = 0;
     type_ = "";
   }
 
@@ -48,20 +46,23 @@ private static final long serialVersionUID = 0L;
             break;
           case 8: {
 
-            requesterId_ = input.readInt32();
-            break;
-          }
-          case 16: {
-
             id_ = input.readInt32();
             break;
           }
-          case 24: {
+          case 18: {
+            com.google.protobuf.Any.Builder subBuilder = null;
+            if (certificate_ != null) {
+              subBuilder = certificate_.toBuilder();
+            }
+            certificate_ = input.readMessage(com.google.protobuf.Any.parser(), extensionRegistry);
+            if (subBuilder != null) {
+              subBuilder.mergeFrom(certificate_);
+              certificate_ = subBuilder.buildPartial();
+            }
 
-            port_ = input.readInt32();
             break;
           }
-          case 34: {
+          case 26: {
             java.lang.String s = input.readStringRequireUtf8();
 
             type_ = s;
@@ -99,37 +100,40 @@ private static final long serialVersionUID = 0L;
             proj_contract.services.ConnectionInfo.class, proj_contract.services.ConnectionInfo.Builder.class);
   }
 
-  public static final int REQUESTERID_FIELD_NUMBER = 1;
-  private int requesterId_;
-  /**
-   * <code>int32 requesterId = 1;</code>
-   */
-  public int getRequesterId() {
-    return requesterId_;
-  }
-
-  public static final int ID_FIELD_NUMBER = 2;
+  public static final int ID_FIELD_NUMBER = 1;
   private int id_;
   /**
-   * <code>int32 id = 2;</code>
+   * <code>int32 id = 1;</code>
    */
   public int getId() {
     return id_;
   }
 
-  public static final int PORT_FIELD_NUMBER = 3;
-  private int port_;
+  public static final int CERTIFICATE_FIELD_NUMBER = 2;
+  private com.google.protobuf.Any certificate_;
   /**
-   * <code>int32 port = 3;</code>
+   * <code>.google.protobuf.Any certificate = 2;</code>
    */
-  public int getPort() {
-    return port_;
+  public boolean hasCertificate() {
+    return certificate_ != null;
+  }
+  /**
+   * <code>.google.protobuf.Any certificate = 2;</code>
+   */
+  public com.google.protobuf.Any getCertificate() {
+    return certificate_ == null ? com.google.protobuf.Any.getDefaultInstance() : certificate_;
+  }
+  /**
+   * <code>.google.protobuf.Any certificate = 2;</code>
+   */
+  public com.google.protobuf.AnyOrBuilder getCertificateOrBuilder() {
+    return getCertificate();
   }
 
-  public static final int TYPE_FIELD_NUMBER = 4;
+  public static final int TYPE_FIELD_NUMBER = 3;
   private volatile java.lang.Object type_;
   /**
-   * <code>string type = 4;</code>
+   * <code>string type = 3;</code>
    */
   public java.lang.String getType() {
     java.lang.Object ref = type_;
@@ -144,7 +148,7 @@ private static final long serialVersionUID = 0L;
     }
   }
   /**
-   * <code>string type = 4;</code>
+   * <code>string type = 3;</code>
    */
   public com.google.protobuf.ByteString
       getTypeBytes() {
@@ -174,17 +178,14 @@ private static final long serialVersionUID = 0L;
   @java.lang.Override
   public void writeTo(com.google.protobuf.CodedOutputStream output)
                       throws java.io.IOException {
-    if (requesterId_ != 0) {
-      output.writeInt32(1, requesterId_);
-    }
     if (id_ != 0) {
-      output.writeInt32(2, id_);
+      output.writeInt32(1, id_);
     }
-    if (port_ != 0) {
-      output.writeInt32(3, port_);
+    if (certificate_ != null) {
+      output.writeMessage(2, getCertificate());
     }
     if (!getTypeBytes().isEmpty()) {
-      com.google.protobuf.GeneratedMessageV3.writeString(output, 4, type_);
+      com.google.protobuf.GeneratedMessageV3.writeString(output, 3, type_);
     }
     unknownFields.writeTo(output);
   }
@@ -195,20 +196,16 @@ private static final long serialVersionUID = 0L;
     if (size != -1) return size;
 
     size = 0;
-    if (requesterId_ != 0) {
-      size += com.google.protobuf.CodedOutputStream
-        .computeInt32Size(1, requesterId_);
-    }
     if (id_ != 0) {
       size += com.google.protobuf.CodedOutputStream
-        .computeInt32Size(2, id_);
+        .computeInt32Size(1, id_);
     }
-    if (port_ != 0) {
+    if (certificate_ != null) {
       size += com.google.protobuf.CodedOutputStream
-        .computeInt32Size(3, port_);
+        .computeMessageSize(2, getCertificate());
     }
     if (!getTypeBytes().isEmpty()) {
-      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(4, type_);
+      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, type_);
     }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
@@ -226,12 +223,13 @@ private static final long serialVersionUID = 0L;
     proj_contract.services.ConnectionInfo other = (proj_contract.services.ConnectionInfo) obj;
 
     boolean result = true;
-    result = result && (getRequesterId()
-        == other.getRequesterId());
     result = result && (getId()
         == other.getId());
-    result = result && (getPort()
-        == other.getPort());
+    result = result && (hasCertificate() == other.hasCertificate());
+    if (hasCertificate()) {
+      result = result && getCertificate()
+          .equals(other.getCertificate());
+    }
     result = result && getType()
         .equals(other.getType());
     result = result && unknownFields.equals(other.unknownFields);
@@ -245,12 +243,12 @@ private static final long serialVersionUID = 0L;
     }
     int hash = 41;
     hash = (19 * hash) + getDescriptor().hashCode();
-    hash = (37 * hash) + REQUESTERID_FIELD_NUMBER;
-    hash = (53 * hash) + getRequesterId();
     hash = (37 * hash) + ID_FIELD_NUMBER;
     hash = (53 * hash) + getId();
-    hash = (37 * hash) + PORT_FIELD_NUMBER;
-    hash = (53 * hash) + getPort();
+    if (hasCertificate()) {
+      hash = (37 * hash) + CERTIFICATE_FIELD_NUMBER;
+      hash = (53 * hash) + getCertificate().hashCode();
+    }
     hash = (37 * hash) + TYPE_FIELD_NUMBER;
     hash = (53 * hash) + getType().hashCode();
     hash = (29 * hash) + unknownFields.hashCode();
@@ -386,12 +384,14 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public Builder clear() {
       super.clear();
-      requesterId_ = 0;
-
       id_ = 0;
 
-      port_ = 0;
-
+      if (certificateBuilder_ == null) {
+        certificate_ = null;
+      } else {
+        certificate_ = null;
+        certificateBuilder_ = null;
+      }
       type_ = "";
 
       return this;
@@ -420,9 +420,12 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public proj_contract.services.ConnectionInfo buildPartial() {
       proj_contract.services.ConnectionInfo result = new proj_contract.services.ConnectionInfo(this);
-      result.requesterId_ = requesterId_;
       result.id_ = id_;
-      result.port_ = port_;
+      if (certificateBuilder_ == null) {
+        result.certificate_ = certificate_;
+      } else {
+        result.certificate_ = certificateBuilder_.build();
+      }
       result.type_ = type_;
       onBuilt();
       return result;
@@ -472,14 +475,11 @@ private static final long serialVersionUID = 0L;
 
     public Builder mergeFrom(proj_contract.services.ConnectionInfo other) {
       if (other == proj_contract.services.ConnectionInfo.getDefaultInstance()) return this;
-      if (other.getRequesterId() != 0) {
-        setRequesterId(other.getRequesterId());
-      }
       if (other.getId() != 0) {
         setId(other.getId());
       }
-      if (other.getPort() != 0) {
-        setPort(other.getPort());
+      if (other.hasCertificate()) {
+        mergeCertificate(other.getCertificate());
       }
       if (!other.getType().isEmpty()) {
         type_ = other.type_;
@@ -514,41 +514,15 @@ private static final long serialVersionUID = 0L;
       return this;
     }
 
-    private int requesterId_ ;
-    /**
-     * <code>int32 requesterId = 1;</code>
-     */
-    public int getRequesterId() {
-      return requesterId_;
-    }
-    /**
-     * <code>int32 requesterId = 1;</code>
-     */
-    public Builder setRequesterId(int value) {
-      
-      requesterId_ = value;
-      onChanged();
-      return this;
-    }
-    /**
-     * <code>int32 requesterId = 1;</code>
-     */
-    public Builder clearRequesterId() {
-      
-      requesterId_ = 0;
-      onChanged();
-      return this;
-    }
-
     private int id_ ;
     /**
-     * <code>int32 id = 2;</code>
+     * <code>int32 id = 1;</code>
      */
     public int getId() {
       return id_;
     }
     /**
-     * <code>int32 id = 2;</code>
+     * <code>int32 id = 1;</code>
      */
     public Builder setId(int value) {
       
@@ -557,7 +531,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>int32 id = 2;</code>
+     * <code>int32 id = 1;</code>
      */
     public Builder clearId() {
       
@@ -566,35 +540,126 @@ private static final long serialVersionUID = 0L;
       return this;
     }
 
-    private int port_ ;
+    private com.google.protobuf.Any certificate_ = null;
+    private com.google.protobuf.SingleFieldBuilderV3<
+        com.google.protobuf.Any, com.google.protobuf.Any.Builder, com.google.protobuf.AnyOrBuilder> certificateBuilder_;
     /**
-     * <code>int32 port = 3;</code>
+     * <code>.google.protobuf.Any certificate = 2;</code>
      */
-    public int getPort() {
-      return port_;
+    public boolean hasCertificate() {
+      return certificateBuilder_ != null || certificate_ != null;
     }
     /**
-     * <code>int32 port = 3;</code>
+     * <code>.google.protobuf.Any certificate = 2;</code>
      */
-    public Builder setPort(int value) {
-      
-      port_ = value;
-      onChanged();
+    public com.google.protobuf.Any getCertificate() {
+      if (certificateBuilder_ == null) {
+        return certificate_ == null ? com.google.protobuf.Any.getDefaultInstance() : certificate_;
+      } else {
+        return certificateBuilder_.getMessage();
+      }
+    }
+    /**
+     * <code>.google.protobuf.Any certificate = 2;</code>
+     */
+    public Builder setCertificate(com.google.protobuf.Any value) {
+      if (certificateBuilder_ == null) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        certificate_ = value;
+        onChanged();
+      } else {
+        certificateBuilder_.setMessage(value);
+      }
+
       return this;
     }
     /**
-     * <code>int32 port = 3;</code>
+     * <code>.google.protobuf.Any certificate = 2;</code>
      */
-    public Builder clearPort() {
-      
-      port_ = 0;
-      onChanged();
+    public Builder setCertificate(
+        com.google.protobuf.Any.Builder builderForValue) {
+      if (certificateBuilder_ == null) {
+        certificate_ = builderForValue.build();
+        onChanged();
+      } else {
+        certificateBuilder_.setMessage(builderForValue.build());
+      }
+
       return this;
+    }
+    /**
+     * <code>.google.protobuf.Any certificate = 2;</code>
+     */
+    public Builder mergeCertificate(com.google.protobuf.Any value) {
+      if (certificateBuilder_ == null) {
+        if (certificate_ != null) {
+          certificate_ =
+            com.google.protobuf.Any.newBuilder(certificate_).mergeFrom(value).buildPartial();
+        } else {
+          certificate_ = value;
+        }
+        onChanged();
+      } else {
+        certificateBuilder_.mergeFrom(value);
+      }
+
+      return this;
+    }
+    /**
+     * <code>.google.protobuf.Any certificate = 2;</code>
+     */
+    public Builder clearCertificate() {
+      if (certificateBuilder_ == null) {
+        certificate_ = null;
+        onChanged();
+      } else {
+        certificate_ = null;
+        certificateBuilder_ = null;
+      }
+
+      return this;
+    }
+    /**
+     * <code>.google.protobuf.Any certificate = 2;</code>
+     */
+    public com.google.protobuf.Any.Builder getCertificateBuilder() {
+      
+      onChanged();
+      return getCertificateFieldBuilder().getBuilder();
+    }
+    /**
+     * <code>.google.protobuf.Any certificate = 2;</code>
+     */
+    public com.google.protobuf.AnyOrBuilder getCertificateOrBuilder() {
+      if (certificateBuilder_ != null) {
+        return certificateBuilder_.getMessageOrBuilder();
+      } else {
+        return certificate_ == null ?
+            com.google.protobuf.Any.getDefaultInstance() : certificate_;
+      }
+    }
+    /**
+     * <code>.google.protobuf.Any certificate = 2;</code>
+     */
+    private com.google.protobuf.SingleFieldBuilderV3<
+        com.google.protobuf.Any, com.google.protobuf.Any.Builder, com.google.protobuf.AnyOrBuilder> 
+        getCertificateFieldBuilder() {
+      if (certificateBuilder_ == null) {
+        certificateBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+            com.google.protobuf.Any, com.google.protobuf.Any.Builder, com.google.protobuf.AnyOrBuilder>(
+                getCertificate(),
+                getParentForChildren(),
+                isClean());
+        certificate_ = null;
+      }
+      return certificateBuilder_;
     }
 
     private java.lang.Object type_ = "";
     /**
-     * <code>string type = 4;</code>
+     * <code>string type = 3;</code>
      */
     public java.lang.String getType() {
       java.lang.Object ref = type_;
@@ -609,7 +674,7 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <code>string type = 4;</code>
+     * <code>string type = 3;</code>
      */
     public com.google.protobuf.ByteString
         getTypeBytes() {
@@ -625,7 +690,7 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <code>string type = 4;</code>
+     * <code>string type = 3;</code>
      */
     public Builder setType(
         java.lang.String value) {
@@ -638,7 +703,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>string type = 4;</code>
+     * <code>string type = 3;</code>
      */
     public Builder clearType() {
       
@@ -647,7 +712,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>string type = 4;</code>
+     * <code>string type = 3;</code>
      */
     public Builder setTypeBytes(
         com.google.protobuf.ByteString value) {

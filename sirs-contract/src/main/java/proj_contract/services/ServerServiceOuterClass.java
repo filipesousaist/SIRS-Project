@@ -32,23 +32,24 @@ public final class ServerServiceOuterClass {
       "ction.proto\032\023LocationClaim.proto\032\031Locati" +
       "onEndorsement.proto\032\016Register.proto\"?\n\016S" +
       "erverResponse\022\027\n\017responseMessage\030\001 \001(\t\022\024" +
-      "\n\014responseCode\030\002 \001(\0052\341\004\n\rServerService\022X" +
-      "\n\036broadcastConnectionInfoRequest\022\032.Proj." +
-      "Proto.ConnectionInfo\032\032.Proj.Proto.Server" +
-      "Response\022L\n\022sendConnectionInfo\022\032.Proj.Pr" +
-      "oto.ConnectionInfo\032\032.Proj.Proto.ServerRe" +
-      "sponse\022K\n\021requestConnection\022\032.Proj.Proto" +
-      ".ConnectionInfo\032\032.Proj.Proto.ServerRespo" +
-      "nse\022C\n\010register\022\033.Proj.Proto.RegisterReq" +
-      "uest\032\032.Proj.Proto.ServerResponse\022P\n\021send" +
-      "LocationClaim\022\037.Proj.Proto.LocationClaim" +
-      "WithId\032\032.Proj.Proto.ServerResponse\022f\n\032re" +
-      "questLocationEndorsement\022,.Proj.Proto.Lo" +
-      "cationEndorsementRequestWithId\032\032.Proj.Pr" +
-      "oto.ServerResponse\022\\\n\027sendLocationEndors" +
-      "ement\022%.Proj.Proto.LocationEndorsementWi" +
-      "thId\032\032.Proj.Proto.ServerResponseB\032\n\026proj" +
-      "_contract.servicesP\001b\006proto3"
+      "\n\014responseCode\030\002 \001(\0052\210\005\n\rServerService\022C" +
+      "\n\010register\022\033.Proj.Proto.RegisterRequest\032" +
+      "\032.Proj.Proto.ServerResponse\022X\n\036broadcast" +
+      "ConnectionInfoRequest\022\032.Proj.Proto.Conne" +
+      "ctionInfo\032\032.Proj.Proto.ServerResponse\022T\n" +
+      "\022sendConnectionInfo\022\".Proj.Proto.Connect" +
+      "ionInfoResponse\032\032.Proj.Proto.ServerRespo" +
+      "nse\022O\n\rsendSecretKey\022\".Proj.Proto.Secret" +
+      "KeyMessageWithId\032\032.Proj.Proto.ServerResp" +
+      "onse\022Y\n\021sendLocationClaim\022(.Proj.Proto.E" +
+      "ncryptedLocationClaimWithId\032\032.Proj.Proto" +
+      ".ServerResponse\022o\n\032requestLocationEndors" +
+      "ement\0225.Proj.Proto.EncryptedLocationEndo" +
+      "rsementRequestWithId\032\032.Proj.Proto.Server" +
+      "Response\022e\n\027sendLocationEndorsement\022..Pr" +
+      "oj.Proto.EncryptedLocationEndorsementWit" +
+      "hId\032\032.Proj.Proto.ServerResponseB\032\n\026proj_" +
+      "contract.servicesP\001b\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {

@@ -4,7 +4,6 @@ import proj_client.entities.SmartVehicle;
 import proj_contract.proto.LocationClaim;
 import proj_contract.proto.LocationEndorsement;
 import proj_contract.proto.LocationEndorsementRequest;
-import proj_contract.proto.LocationEndorsementWithId;
 
 public interface IWitness {
 	// Maximum acceptable difference between location claim and endorsement
@@ -13,7 +12,7 @@ public interface IWitness {
 	
 	public SmartVehicle getMostSimilarObservation(LocationClaim claim);
 	
-	default public LocationEndorsementWithId getLocationEndorsement(LocationEndorsementRequest endorsementRequest) {
+	default public LocationEndorsement getLocationEndorsement(LocationEndorsementRequest endorsementRequest) {
 		LocationClaim claim = endorsementRequest.getLocationClaim();
 		
 		SmartVehicle mostSimilarObservation = getMostSimilarObservation(claim);
@@ -33,11 +32,6 @@ public interface IWitness {
 			.setEntityData(mostSimilarObservation.toData())
 			.build();
 		
-		LocationEndorsementWithId endorsementWithId = LocationEndorsementWithId.newBuilder()
-			.setLocationEndorsement(endorsement)
-			.setReceiverId(endorsementRequest.getRequesterId())
-			.build();
-		
-		return endorsementWithId;
+		return endorsement;
 	}
 }

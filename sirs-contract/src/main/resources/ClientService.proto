@@ -11,15 +11,16 @@ import "LocationClaim.proto";
 import "LocationEndorsement.proto";
 
 service ClientService {
-	rpc getConnectionInfo(ConnectionInfo) returns (ClientResponse);
-	rpc sendConnectionInfo(ConnectionInfo) returns (ClientResponse);
+	rpc requestConnectionInfo(ConnectionInfo) returns (ClientResponse);
+	rpc sendConnectionInfo(ConnectionInfoResponse) returns (ClientResponse);
+	rpc sendSecretKey(SecretKeyMessage) returns (ClientResponse);
 	
 	rpc collectDataFromSensors(EntitiesData) returns (ClientResponse);
 	rpc updateTimestepData(TimestepData) returns (ClientResponse);	
 
-	rpc sendLocationClaim(LocationClaim) returns (ClientResponse);
-	rpc requestLocationEndorsement(LocationEndorsementRequest) returns (ClientResponse);
-	rpc sendLocationEndorsement(LocationEndorsement) returns (ClientResponse);
+	rpc sendLocationClaim(EncryptedLocationClaim) returns (ClientResponse);
+	rpc requestLocationEndorsement(EncryptedLocationEndorsementRequest) returns (ClientResponse);
+	rpc sendLocationEndorsement(EncryptedLocationEndorsement) returns (ClientResponse);
 }
 
 message ClientResponse {

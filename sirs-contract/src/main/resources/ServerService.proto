@@ -11,15 +11,15 @@ import "LocationEndorsement.proto";
 import "Register.proto";
 
 service ServerService {
-	rpc broadcastConnectionInfoRequest(ConnectionInfo) returns (ServerResponse);
-	rpc sendConnectionInfo(ConnectionInfo) returns (ServerResponse);
-	rpc requestConnection(ConnectionInfo) returns (ServerResponse);
-
 	rpc register(RegisterRequest) returns (ServerResponse);
 	
-	rpc sendLocationClaim(LocationClaimWithId) returns (ServerResponse);
-	rpc requestLocationEndorsement(LocationEndorsementRequestWithId) returns (ServerResponse);
-	rpc sendLocationEndorsement(LocationEndorsementWithId) returns (ServerResponse);
+	rpc broadcastConnectionInfoRequest(ConnectionInfo) returns (ServerResponse);
+	rpc sendConnectionInfo(ConnectionInfoResponse) returns (ServerResponse);
+	rpc sendSecretKey(SecretKeyMessageWithId) returns (ServerResponse);
+	
+	rpc sendLocationClaim(EncryptedLocationClaimWithId) returns (ServerResponse);
+	rpc requestLocationEndorsement(EncryptedLocationEndorsementRequestWithId) returns (ServerResponse);
+	rpc sendLocationEndorsement(EncryptedLocationEndorsementWithId) returns (ServerResponse);
 }
 
 message ServerResponse {

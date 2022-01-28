@@ -3,14 +3,16 @@ import io.grpc.stub.StreamObserver;
 import proj_client.entities.Entity;
 import proj_client.entities.SmartVehicle;
 import proj_contract.proto.Coordinates;
+import proj_contract.proto.EncryptedLocationClaim;
+import proj_contract.proto.EncryptedLocationEndorsement;
+import proj_contract.proto.EncryptedLocationEndorsementRequest;
 import proj_contract.proto.EntitiesData;
 import proj_contract.proto.EntityData;
-import proj_contract.proto.LocationClaim;
-import proj_contract.proto.LocationEndorsement;
-import proj_contract.proto.LocationEndorsementRequest;
 import proj_contract.proto.TimestepData;
 import proj_contract.services.ClientResponse;
 import proj_contract.services.ConnectionInfo;
+import proj_contract.services.ConnectionInfoResponse;
+import proj_contract.services.SecretKeyMessage;
 import proj_contract.services.ClientServiceGrpc.ClientServiceImplBase;
 
 public class ClientService extends ClientServiceImplBase {
@@ -23,17 +25,27 @@ public class ClientService extends ClientServiceImplBase {
 	}
 	
 	@Override
-	public void getConnectionInfo(ConnectionInfo request, StreamObserver<ClientResponse> responseObserver) {		
+	public void requestConnectionInfo(ConnectionInfo request, StreamObserver<ClientResponse> responseObserver) {		
 		_entity.getConnectionInfo(request);
 		
 		respondToServer(responseObserver, "Get Connection Info");
 	}
 	
 	@Override
-	public void sendConnectionInfo(ConnectionInfo request, StreamObserver<ClientResponse> responseObserver) {
-		_entity.storeConnectionInfo(request.getId(), request.getPort(), request.getType());
+	public void sendConnectionInfo(ConnectionInfoResponse request, StreamObserver<ClientResponse> responseObserver) {
+		ConnectionInfo connectionInfo = request.getConnectionInfo();
+		int id = connectionInfo.getId();
+		_entity.storeConnectionInfo(id, connectionInfo.getCertificate(), connectionInfo.getType());
+		_entity.sendSecretKey(id);
 		
 		respondToServer(responseObserver, "Send Connection Info");
+	}
+	
+	@Override
+	public void sendSecretKey(SecretKeyMessage request, StreamObserver<ClientResponse> responseObserver) {
+		_entity.storeSecretKey(request);
+		
+		respondToServer(responseObserver, "Send Secret Key");
 	}
 	
 	@Override
@@ -65,21 +77,21 @@ public class ClientService extends ClientServiceImplBase {
 	}
 	
 	@Override
-	public void sendLocationClaim(LocationClaim request, StreamObserver<ClientResponse> responseObserver) {
+	public void sendLocationClaim(EncryptedLocationClaim request, StreamObserver<ClientResponse> responseObserver) {
 		_entity.broadcastLocationEndorsementRequest(request);
 		
 		respondToServer(responseObserver, "Send Location Claim");
 	}
 	
 	@Override
-	public void requestLocationEndorsement(LocationEndorsementRequest request, StreamObserver<ClientResponse> responseObserver) {
+	public void requestLocationEndorsement(EncryptedLocationEndorsementRequest request, StreamObserver<ClientResponse> responseObserver) {
 		_entity.sendLocationEndorsement(request);
 		
 		respondToServer(responseObserver, "Request Location Endorsement");
 	}
 	
 	@Override
-	public void sendLocationEndorsement(LocationEndorsement request, StreamObserver<ClientResponse> responseObserver) {
+	public void sendLocationEndorsement(EncryptedLocationEndorsement request, StreamObserver<ClientResponse> responseObserver) {
 		_entity.storeLocationEndorsement(request);
 		
 		respondToServer(responseObserver, "Send Location Endorsement");
